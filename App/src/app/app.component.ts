@@ -39,21 +39,9 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    
- this.hasPermission().then(()=>{});
-   
   }
 
-  async hasPermission():Promise<boolean> {
-    try {
-      const permission = await this.speech.hasPermission();
-      console.log('permission', permission);
-
-      return permission;
-    } catch(e) {
-      console.log(e);
-    }
-  }
+ 
 
 
 
