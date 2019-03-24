@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,10 +9,18 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SignupPage implements OnInit {
  
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit() {
    
+  }
+
+  goToSignup(){
+    this.router.navigateByUrl('/signup');
+  }
+
+  goTOLogin(){
+    this.router.navigateByUrl('/login');
   }
 
 }
