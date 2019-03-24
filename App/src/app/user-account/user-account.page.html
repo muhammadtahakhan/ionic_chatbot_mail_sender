@@ -3,7 +3,37 @@
     <ion-title>user-account</ion-title>
   </ion-toolbar>
 </ion-header> -->
-<ion-content >
+
+<ion-content center text-center >
+  <ion-grid>
+    <ion-row style="height:100px"></ion-row>
+    <ion-row></ion-row>
+    <ion-row></ion-row>
+  <ion-row center>
+      
+        <ion-col class="animated swing delay-3s">
+            <ion-icon name="eye" style="font-size: 300%;"></ion-icon>
+              <h1 text-uppercase no-padding no-margin style="color:black; font-weight: bold;">EE - MAIL</h1>
+                        <h3 style="color:black"  #box >Eye Electronic Mail</h3>
+        </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<!-- Round -->
+<ion-button expand="block" color="primary" (click)="goTOLogin()">Login</ion-button>
+<ion-button expand="block" color="secondary" (click)="goToSignup()">Sign-up</ion-button>
+
+
+</ion-content>
+
+<ion-footer >
+  <ion-toolbar color="secondary">
+    <ion-title style=" text-align: center;">An App for Bliend Peopels</ion-title>
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-content >
 
     <h1 (click)="goTOLogin()" style="background-color:blue; height: 100%; width: 100%; text-align: center;"  >
     <span>Login</span>  
@@ -18,4 +48,4 @@
     <span>Signup</span> 
   </h1>
 
-</ion-content>
+</ion-content> -->

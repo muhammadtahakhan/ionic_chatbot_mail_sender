@@ -16,15 +16,16 @@ export class HomePage implements OnInit {
   ngAfterViewInit(){
     setTimeout(() => {
       this.doMagic();
-    }, 5000);
+    }, 4000);
    
   }
 
   doMagic() {
     this.box.nativeElement.classList.add('animated');
-    this.box.nativeElement.classList.add('swing');
-    // this.box.nativeElement.classList.add('delay-3s');
-    this.box.nativeElement.classList.add('foolishIn');
+    this.box.nativeElement.classList.add('infinite');
+    this.box.nativeElement.classList.add('pulse');
+    this.box.nativeElement.classList.add('delay-5s');
+   
 }
 
 }
