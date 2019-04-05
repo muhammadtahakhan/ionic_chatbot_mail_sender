@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Router } from '@angular/router';
+import { Router, RouterEvent } from '@angular/router';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 interface IWindow extends Window {
@@ -16,6 +16,21 @@ interface IWindow extends Window {
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+  selectedPath = '';
+ 
+  pages = [
+    {
+      title: 'First Page with Tabs',
+      url: '/menu/first'
+    },
+    {
+      title: 'Second Page blank',
+      url: '/menu/second'
+    }
+  ];
+
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -25,7 +40,15 @@ export class AppComponent {
     public speech: SpeechRecognition,
   ) {
     this.initializeApp();
+    this.router.events.subscribe((event: RouterEvent) => {
+      if (event && event.url) {
+        this.selectedPath = event.url;
+      }
+    });
   }
+
+
+
 
   goAccount() {
     this.router.navigateByUrl('/user-account');
