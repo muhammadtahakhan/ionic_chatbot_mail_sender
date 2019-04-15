@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router, RouterEvent } from '@angular/router';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 interface IWindow extends Window {
   webkitSpeechRecognition: any;
@@ -36,7 +37,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-   
+  
     public speech: SpeechRecognition,
   ) {
     this.initializeApp();
@@ -61,6 +62,11 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+
+      
+
+
     });
   }
 

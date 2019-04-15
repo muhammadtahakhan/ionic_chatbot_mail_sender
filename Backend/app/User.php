@@ -2,13 +2,24 @@
 
 namespace App;
 
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
+
+    use SoftDeletes;
+//    const DELETED_AT = 'status';
+    protected $dates = ['deleted_at'];
+    protected $table = 'users';
+    protected $primaryKey = 'user_id';
+    protected $dateFormat = 'U';
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +27,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'username', 'address', 'phone', 'phone2',
+        'avatar','description',
+        'email', 'password', 'active', 
+        'activation_token', 'role_id',
+        'company_name', 'company_phone', 'user_type'
     ];
 
     /**
@@ -28,12 +44,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function role() {
+        return $this->hasOne('App\models\Role',  'role_id', 'role_id');
+    }
+
 }
