@@ -21,13 +21,10 @@ export class AppComponent {
   selectedPath = '';
  
   pages = [
+    
     {
-      title: 'First Page with Tabs',
-      url: '/menu/first'
-    },
-    {
-      title: 'Second Page blank',
-      url: '/menu/second'
+      title: 'Login',
+      url: '/user-account'
     }
   ];
 
