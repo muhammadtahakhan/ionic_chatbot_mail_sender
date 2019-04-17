@@ -10,6 +10,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     IonicModule,
     IonicModule.forRoot(), 
-    AppRoutingModule],
+    AppRoutingModule,
+    IonicStorageModule.forRoot()
+  ],
   providers: [
     StatusBar,
     SplashScreen,
