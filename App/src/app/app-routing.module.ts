@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'user-account', loadChildren: './user-account/user-account.module#UserAccountPageModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: 'compose-email', loadChildren: './compose-email/compose-email.module#ComposeEmailPageModule' },
-  { path: 'read-email', loadChildren: './read-email/read-email.module#ReadEmailPageModule' }
+  { path: 'read-email', loadChildren: './read-email/read-email.module#ReadEmailPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
 ];
 @NgModule({
   imports: [

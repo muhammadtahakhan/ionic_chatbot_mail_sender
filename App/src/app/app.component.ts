@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router, RouterEvent } from '@angular/router';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { AuthenticationService } from './services/authentication.service';
 
 interface IWindow extends Window {
   webkitSpeechRecognition: any;
@@ -22,10 +23,7 @@ export class AppComponent {
  
   pages = [
     
-    {
-      title: 'Login',
-      url: '/user-account'
-    }
+   
   ];
 
 
@@ -34,7 +32,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-  
+    public authenticationService: AuthenticationService,
+    private menu: MenuController,
     public speech: SpeechRecognition,
   ) {
     this.initializeApp();
@@ -59,16 +58,36 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-
+      this.authenticationService.logout();
+      this.authenticationService.authenticationState.subscribe(
+        res=>{
+         
+          console.log('auth status', res);
+          if(!res){
+            this.router.navigate(['user-account']);
+                        
+          }else{
+            this.router.navigate(['']);
+          }
+        }
+      )
+ 
+      setTimeout(()=>{
+        this.authenticationService.login();
+      }, 5000);
       
+ 
+    
 
 
     });
   }
 
  
-
+logout(){
+  this.menu.close();
+  this.authenticationService.logout();
+}
 
 
 }

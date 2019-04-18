@@ -3,7 +3,7 @@
 </ion-app> -->
 
 <ion-split-pane>
-  <ion-menu contentId="content" type="push">
+  <ion-menu contentId="content" type="push" *ngIf="authenticationService.isAuthenticated()">
  
     <ion-header>
       <ion-toolbar color="primary">
@@ -13,15 +13,17 @@
  
     <ion-content>
       <ion-list>
-        <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+        
+        <ion-menu-toggle  auto-hide="false" *ngFor="let p of pages">
           <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
             <ion-label>
               {{ p.title }}
             </ion-label>
           </ion-item>
         </ion-menu-toggle>
- 
-        <ion-item tappable routerLink="/login" routerDirection="root">
+     
+
+        <ion-item tappable (click)="logout()" routerDirection="root">
           <ion-icon name="log-out" slot="start"></ion-icon>
           Logout
         </ion-item>
