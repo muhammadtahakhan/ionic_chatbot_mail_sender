@@ -72,15 +72,7 @@ export class AppComponent {
         }
       )
  
-      setTimeout(()=>{
-        this.authenticationService.login();
-      }, 5000);
-      
- 
-    
-
-
-    });
+        });
   }
 
  
