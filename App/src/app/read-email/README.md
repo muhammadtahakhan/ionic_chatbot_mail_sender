@@ -10,4 +10,11 @@ export PATH=$ANDROID_HOME/tools:$PATH
 export PATH=$ANDROID_HOME/platform-tools:$PATH 
 export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
 
+
+taha@taha-Latitude-E6430:~/Android/Sdk/tools/bin$ ./sdkmanager --licenses
+
+
 for create signed APK cd android && ./gradlew assembleRelease
+
+<!-- Android CMDS -->
+https://ccoenraets.github.io/ionic-tutorial/build-ionic-project.html
