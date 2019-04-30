@@ -8,5 +8,33 @@
 </ion-header>
 
 <ion-content padding>
-
-</ion-content>
+    <ion-list lines="none">
+  
+      <form >
+  
+   <br><br><br>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input  type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input  type="password"></ion-input>
+      </ion-item>
+  
+     
+  
+      </form>
+  
+  </ion-list>
+  
+  <ion-button expand="full" color="primary" (click)="login()" >Login</ion-button>
+  </ion-content>
+  
+  <ion-footer >
+    <ion-toolbar color="secondary">
+      <ion-title style=" text-align: center;">An App for Bliend Peopels</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+  

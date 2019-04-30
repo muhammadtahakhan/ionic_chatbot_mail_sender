@@ -155,10 +155,10 @@ class AuthController extends BaseController
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            // 'activation_token' => '',
-            // 'active' => true,
-            'activation_token' => str_random(60),
-            'active' => false,
+            'activation_token' => '',
+            'active' => true,
+            // 'activation_token' => str_random(60),
+            // 'active' => false,
             'role_id' =>  $request->role_id
         ]);
             DB::transaction(function() use ($user)
@@ -171,7 +171,7 @@ class AuthController extends BaseController
             
         return response()->json([
             'success'=> true,
-            'message' => 'Your Sign up has been successful, check your email. Thank you!'
+            'message' => 'Your Sign up has been successful, Thank you!'
         ], 201);
 
         } catch(\Exception $e) {
