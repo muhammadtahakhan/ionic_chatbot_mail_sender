@@ -4,7 +4,8 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content center text-center >
+<ion-content center text-center  [style.background-color]="bgcolor">
+    <button ion-button (click)="start()">Say a color{{bgcolor}}</button>
   <ion-grid>
     <ion-row style="height:100px"></ion-row>
     <ion-row></ion-row>

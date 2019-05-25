@@ -7,6 +7,7 @@ import { Router, RouterEvent } from '@angular/router';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { AuthenticationService } from './services/authentication.service';
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 
 interface IWindow extends Window {
   webkitSpeechRecognition: any;
@@ -35,6 +36,8 @@ export class AppComponent {
     public authenticationService: AuthenticationService,
     private menu: MenuController,
     public speech: SpeechRecognition,
+    private speechRecognition: SpeechRecognition, 
+    private tts: TextToSpeech
   ) {
     this.initializeApp();
     this.router.events.subscribe((event: RouterEvent) => {
@@ -42,6 +45,53 @@ export class AppComponent {
         this.selectedPath = event.url;
       }
     });
+  }
+
+
+  ngOnInit() {
+
+    this.tts.speak('well come, say login to login , or say signup for signup')
+    .then(() => {console.log('Success');  this.takeRoute();})
+    .catch((reason: any) => console.log(reason));
+
+
+    this.speechRecognition.hasPermission()
+    .then((hasPermission: boolean) => {
+
+      if (!hasPermission) {
+      this.speechRecognition.requestPermission()
+        .then(
+          () => {
+            console.log('Granted');
+            this.takeRoute();
+          },
+          () => console.log('Denied')
+        )
+      }
+
+   });
+
+  }
+
+  takeRoute(){
+   
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='login'){
+          this.router.navigate(['login'])
+          
+        }
+        if(matches[0]=='sign up'){
+          this.router.navigate(['signup'])
+        }
+        
+      },
+      (onerror) => console.log('error:', onerror)
+    )
+         
   }
 
 
