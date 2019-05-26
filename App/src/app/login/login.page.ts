@@ -28,54 +28,93 @@ export class LoginPage implements OnInit {
     }
 
   ngOnInit() {
-
-
-    this.takeUser();
     
+    }
+
+  ionViewDidEnter(){
+    this.start();
+  }
+
+  start(){
+    this.tts.speak('Please spell your username, once done call next for spell password')
+    .then(() => {console.log('Success'); this.takeUser();  })
+    .catch((reason: any) => console.log(reason));
   }
 
 
   takeUser(){
-    this.tts.speak('What is you user-name')
-    .then(() => {console.log('Success');  })
-    .catch((reason: any) => console.log(reason));
+   
     this.speechRecognition.startListening()
     .subscribe(
 
       (matches: Array<string>) => {
         console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+       if(matches[0]=='next'){
+        this.tts.speak('Please spell your password')
+        .then(() => { console.log('Success');  this.takePass(); })
+        .catch((reason: any) => console.log(reason));
        
-          this.user.get('username').setValue(matches[0]);
-        this.takePass();
-               
+       }else{
+
+        this.user.get('username').setValue( this.user.get('username').value+matches[0]);
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takeUser(); })
+        .catch((reason: any) => console.log(reason));
+       }
+      
+       
+       
+                     
       },
       (onerror) => console.log('error:', onerror)
     )
   }
 
 takePass(){
-  this.tts.speak('What is you password')
-  .then(() => {console.log('Success');  })
-  .catch((reason: any) => console.log(reason));
+
   this.speechRecognition.startListening()
   .subscribe(
 
     (matches: Array<string>) => {
       console.log(matches);
+      if(matches[0]=='back'){
+        this.router.navigate(['user-account']);
+      }
      
-    
-        this.user.get('password').setValue(matches[0]);
-     
+    if(matches[0]=='submit' || matches[0]=='done'){
+      this.login();
+    }else{
+      this.user.get('password').setValue(this.user.get('password').value+matches[0]);
+      this.tts.speak('say next work')
+      .then(() => {console.log('Success');  this.takePass(); })
+      .catch((reason: any) => console.log(reason));
+   
+    }
+      
       
     },
     (onerror) => console.log('error:', onerror)
   )
 }
 
+goBack(){
+  this.router.navigate(['user-account']);
+}
+
 
  
   login(){
-    console.log('login');
+    this.tts.speak('you are loging')
+    .then(() => { console.log('Success');  })
+    .catch((reason: any) => console.log(reason));
   }
+
+
+  swipeEvent(event){
+    alert(event.direction )
+ }
 
 }

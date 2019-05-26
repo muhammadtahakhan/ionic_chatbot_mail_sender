@@ -7,14 +7,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding (swipe)="swipeEvent($event)">
     <ion-list lines="none">
   
       <form [formGroup]="user">
   
    <br><br><br>
       <ion-item>
-        <ion-label position="floating">Email</ion-label>
+        <ion-label position="floating">Username</ion-label>
         <ion-input  formControlName="username" type="text"></ion-input>
       </ion-item>
   
