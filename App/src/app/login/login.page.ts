@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginPage implements OnInit {
 
 
   constructor( private router: Router,  private speechRecognition: SpeechRecognition, 
+    private faio: FingerprintAIO,
     private tts: TextToSpeech) { 
 
      this.user = new FormGroup({
@@ -84,7 +86,7 @@ takePass(){
         this.router.navigate(['user-account']);
       }
      
-    if(matches[0]=='submit' || matches[0]=='done'){
+    if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks'){
       this.login();
     }else{
       this.user.get('password').setValue(this.user.get('password').value+matches[0]);
@@ -107,14 +109,30 @@ goBack(){
 
  
   login(){
-    this.tts.speak('you are loging')
-    .then(() => { console.log('Success');  })
-    .catch((reason: any) => console.log(reason));
+    this.faio.isAvailable()
+    .then(isAvailable=>{
+
+
+      this.faio.show({
+        clientId: 'Fingerprint-Demo',
+        clientSecret: 'password', //Only necessary for Android
+        // disableBackup:true,  //Only for Android(optional)
+        // localizedFallbackTitle: 'Use Pin', //Only for iOS
+        // localizedReason: 'Please authenticate' //Only for iOS
+    })
+    .then((result: any) => console.log(result))
+    .catch((error: any) => console.log(error));
+
+
+
+    }).catch((error: any) => console.log(error));
+    
   }
 
 
   swipeEvent(event){
-    alert(event.direction )
+    alert(event.direction);
+   console.log(event.direction);
  }
 
 }

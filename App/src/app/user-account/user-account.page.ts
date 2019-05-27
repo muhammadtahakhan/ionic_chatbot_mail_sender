@@ -15,21 +15,49 @@ export class UserAccountPage implements OnInit {
 
   ngOnInit() {
 
+    this.tts.speak('well come, say login to login , or say signup for signup')
+    .then(() => {console.log('Success');  this.takeRoute();})
+    .catch((reason: any) => console.log(reason));
+
+
+    this.speechRecognition.hasPermission()
+    .then((hasPermission: boolean) => {
+
+      if (!hasPermission) {
+      this.speechRecognition.requestPermission()
+        .then(
+          () => {
+            console.log('Granted');
+            this.takeRoute();
+          },
+          () => console.log('Denied')
+        )
+      }
+
+   });
+
+
+  }
+
+  takeRoute(){
    
-  //   this.speechRecognition.hasPermission()
-  //   .then((hasPermission: boolean) => {
+    this.speechRecognition.startListening()
+    .subscribe(
 
-  //     if (!hasPermission) {
-  //     this.speechRecognition.requestPermission()
-  //       .then(
-  //         () => {console.log('Granted'); this.start()},
-  //         () => console.log('Denied')
-  //       )
-  //     }
-
-  //  });
-
-
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='login'){
+          this.router.navigate(['login'])
+          
+        }
+        if(matches[0]=='sign up'){
+          this.router.navigate(['signup'])
+        }
+        
+      },
+      (onerror) => console.log('error:', onerror)
+    )
+         
   }
 
   start() {

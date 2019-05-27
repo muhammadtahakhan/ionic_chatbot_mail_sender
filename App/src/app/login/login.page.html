@@ -7,7 +7,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding (swipe)="swipeEvent($event)">
+<ion-content padding >
+  <div (swipe)="swipeEvent($event)">
     <ion-list lines="none">
   
       <form [formGroup]="user">
@@ -30,6 +31,8 @@
   </ion-list>
   
   <ion-button expand="full" color="primary" (click)="login()" >Login</ion-button>
+
+</div>
   </ion-content>
   
   <ion-footer >
