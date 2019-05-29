@@ -16,6 +16,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { CommonModule } from '@angular/common';
 import { IonicGestureConfig } from './services/ionic-gesture-config.service'
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +36,7 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
     SpeechRecognition,
     TextToSpeech,
     FingerprintAIO,
+    NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,

@@ -103,7 +103,9 @@ takePass(){
 }
 
 goBack(){
+
   this.router.navigate(['user-account']);
+  
 }
 
 
