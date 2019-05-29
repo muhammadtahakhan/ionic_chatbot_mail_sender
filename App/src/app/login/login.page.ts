@@ -122,13 +122,19 @@ goBack(){
         // localizedFallbackTitle: 'Use Pin', //Only for iOS
         // localizedReason: 'Please authenticate' //Only for iOS
     })
-    .then((result: any) => console.log(result))
+    .then((result: any) => {console.log(result); this.sayfinalWord(); })
     .catch((error: any) => console.log(error));
 
 
 
-    }).catch((error: any) => console.log(error));
+    }).catch((error: any) =>{this.sayfinalWord(); console.log(error)} );
     
+  }
+
+  sayfinalWord(){
+    this.tts.speak('Thanks, You will be login soon')
+    .then(() => {console.log('Success'); })
+    .catch((reason: any) => console.log(reason));
   }
 
 

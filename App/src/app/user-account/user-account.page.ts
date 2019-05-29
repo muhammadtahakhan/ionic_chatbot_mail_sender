@@ -13,7 +13,10 @@ export class UserAccountPage implements OnInit {
 
   constructor( private router: Router, private speechRecognition: SpeechRecognition, private tts: TextToSpeech) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+
+  ionViewDidEnter() {
 
     this.tts.speak('well come, say login to login , or say signup for signup')
     .then(() => {console.log('Success');  this.takeRoute();})

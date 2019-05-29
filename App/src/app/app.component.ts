@@ -46,30 +46,31 @@ export class AppComponent {
       }
     });
   }
+  ngOnInit() {}
 
 
-  ngOnInit() {
+  ionViewDidEnter() {
 
-    this.tts.speak('well come, say login to login , or say signup for signup')
-    .then(() => {console.log('Success');  this.takeRoute();})
-    .catch((reason: any) => console.log(reason));
+  //   this.tts.speak('well come, say login to login , or say signup for signup')
+  //   .then(() => {console.log('Success');  this.takeRoute();})
+  //   .catch((reason: any) => console.log(reason));
 
 
-    this.speechRecognition.hasPermission()
-    .then((hasPermission: boolean) => {
+  //   this.speechRecognition.hasPermission()
+  //   .then((hasPermission: boolean) => {
 
-      if (!hasPermission) {
-      this.speechRecognition.requestPermission()
-        .then(
-          () => {
-            console.log('Granted');
-            this.takeRoute();
-          },
-          () => console.log('Denied')
-        )
-      }
+  //     if (!hasPermission) {
+  //     this.speechRecognition.requestPermission()
+  //       .then(
+  //         () => {
+  //           console.log('Granted');
+  //           this.takeRoute();
+  //         },
+  //         () => console.log('Denied')
+  //       )
+  //     }
 
-   });
+  //  });
 
   }
 
@@ -80,11 +81,11 @@ export class AppComponent {
 
       (matches: Array<string>) => {
         console.log(matches);
-        if(matches[0]=='login'){
+        if(matches[0]=='login' || matches[0]=='log in'){
           this.router.navigate(['login'])
           
         }
-        if(matches[0]=='sign up'){
+        if(matches[0]=='sign up' || matches[0]=='signup'){
           this.router.navigate(['signup'])
         }
         

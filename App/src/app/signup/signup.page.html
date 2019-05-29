@@ -1,50 +1,51 @@
 <ion-header >
-  <ion-toolbar color="secondary">
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-    <ion-title>signup</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  <ion-list lines="none">
-
-    <form >
-
-    <ion-item>
-      <ion-label position="floating">First Name</ion-label>
-      <ion-input  type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Last Name</ion-label>
-      <ion-input  type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input  type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input  type="password"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Confirm Password</ion-label>
-      <ion-input  type="password"></ion-input>
-    </ion-item>
-
-    </form>
-
-</ion-list>
-
-<ion-button expand="full" color="primary" >Create Account!</ion-button>
-</ion-content>
-
-<ion-footer >
-  <ion-toolbar color="secondary">
-    <ion-title style=" text-align: center;">An App for Bliend Peopels</ion-title>
-  </ion-toolbar>
-</ion-footer>
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+          </ion-buttons>
+      <ion-title>signup</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list lines="none">
+  
+      <form [formGroup]="user" >
+  
+      <ion-item>
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input  type="text" formControlName="firstname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input  type="text" formControlName="lastname"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">username</ion-label>
+        <ion-input  type="text" formControlName="username"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input  type="password" formControlName="password"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input  type="password" formControlName="c_password"></ion-input>
+      </ion-item>
+  
+      </form>
+  
+  </ion-list>
+  
+  <ion-button expand="full" color="primary" >Create Account!</ion-button>
+  </ion-content>
+  
+  <ion-footer >
+    <ion-toolbar color="secondary">
+      <ion-title style=" text-align: center;">An App for Bliend Peopels</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+  
