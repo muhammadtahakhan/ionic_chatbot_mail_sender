@@ -23,8 +23,9 @@ export class AppComponent {
   selectedPath = '';
  
   pages = [
-    
-   
+   {title:'inbox', url:'inbox'},
+   {title:'Outbox', url:'Outbox'},
+   {title:'Senditem', url:'Senditem'},
   ];
 
 

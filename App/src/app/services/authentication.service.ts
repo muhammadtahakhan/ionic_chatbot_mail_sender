@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 import { BaseService } from './baseService';
 import { HttpClient } from '@angular/common/http';
+import { tap, map } from 'rxjs/operators';
  
 const TOKEN_KEY = 'auth-token';
  
@@ -29,10 +30,20 @@ export class AuthenticationService extends BaseService {
     })
   }
  
-  login() {
-    return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
-      this.authenticationState.next(true);
-    });
+  login(user) {
+    return  this.http.post(this.url+'auth/login', user).pipe(
+      tap((res:any) => { 
+        if(res.success){
+        this.storage.set(TOKEN_KEY, 'Bearer '+res.data.token).then(() => {
+            this.authenticationState.next(true);
+          });
+        }
+      
+      }),
+    )
+    // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
+    //   this.authenticationState.next(true);
+    // });
   }
  
   logout() {

@@ -4,6 +4,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginPage implements OnInit {
  currentInput = 'user name'
 
 
-  constructor( private router: Router,  private speechRecognition: SpeechRecognition, 
+  constructor(public authenticationService:AuthenticationService,  private router: Router,  private speechRecognition: SpeechRecognition, 
     private faio: FingerprintAIO,
     private tts: TextToSpeech) { 
 
@@ -127,6 +128,14 @@ goBack(){
   }
 
   sayfinalWord(){
+
+  this.authenticationService.login(this.user.value).subscribe(
+    res=>{ console.log(res) },
+    error => { console.log(error) },
+    ()=>{}
+  );
+
+
     this.tts.speak('Thanks, You will be login soon')
     .then(() => {console.log('Success'); })
     .catch((reason: any) => console.log(reason));
