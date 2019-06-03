@@ -66,10 +66,7 @@ export class LoginPage implements OnInit {
         .then(() => {console.log('Success');  this.takeUser(); })
         .catch((reason: any) => console.log(reason));
        }
-      
        
-       
-                     
       },
       (onerror) => console.log('error:', onerror)
     )
@@ -103,9 +100,7 @@ takePass(){
 }
 
 goBack(){
-
   this.router.navigate(['user-account']);
-  
 }
 
 
