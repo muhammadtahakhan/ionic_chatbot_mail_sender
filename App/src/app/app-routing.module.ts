@@ -10,6 +10,10 @@ const routes: Routes = [
   { path: 'read-email', loadChildren: './read-email/read-email.module#ReadEmailPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: '', loadChildren: './home/home.module#HomePageModule' },  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
+  { path: 'inbox', loadChildren: './inbox/inbox.module#InboxPageModule' },
+  { path: 'outbox', loadChildren: './outbox/outbox.module#OutboxPageModule' },
+  { path: 'senditem', loadChildren: './senditem/senditem.module#SenditemPageModule' },
+  { path: 'contact', loadChildren: './contact/contact.module#ContactPageModule' },
 
 ];
 @NgModule({

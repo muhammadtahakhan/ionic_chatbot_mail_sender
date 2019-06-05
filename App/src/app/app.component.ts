@@ -25,7 +25,8 @@ export class AppComponent {
   pages = [
    {title:'inbox', url:'inbox'},
    {title:'Outbox', url:'Outbox'},
-   {title:'Senditem', url:'Senditem'},
+   {title:'Send Item', url:'Senditem'},
+   {title:'Contacts', url:'contacts'},
   ];
 
 
