@@ -23,10 +23,12 @@ export class AppComponent {
   selectedPath = '';
  
   pages = [
-   {title:'inbox', url:'inbox'},
-   {title:'Outbox', url:'Outbox'},
-   {title:'Send Item', url:'Senditem'},
-   {title:'Contacts', url:'contacts'},
+   {title:'inbox', url:'inbox', count:10, icon: 'mail'},
+   {title:'Outbox', url:'outbox', count:0, icon: 'cloud-upload'},
+   {title:'Send Item', url:'senditem', count:15, icon: 'at'},
+   {title:'Contact', url:'contact', count:5, icon: 'clipboard'},
+   {title:'Archive', url:'archive', count:50, icon: 'archive'},
+   {title:'Detete Items', url:'deleteitem', count:50, icon: 'trash'},
   ];
 
 
@@ -132,6 +134,10 @@ export class AppComponent {
 logout(){
   this.menu.close();
   this.authenticationService.logout();
+}
+
+goTo(url){
+  this.router.navigate([url]);
 }
 
 

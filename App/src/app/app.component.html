@@ -15,15 +15,17 @@
       <ion-list>
         
         <ion-menu-toggle  auto-hide="false" *ngFor="let p of pages">
-          <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
+          <ion-item class="animated bounceInLeft delay-0.5s" (click)="goTo(p.url)" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
+              <ion-icon slot="start" [name]="p.icon" ></ion-icon>
             <ion-label>
               {{ p.title }}
             </ion-label>
+            <ion-badge color="secondary">{{p.count}}</ion-badge>
           </ion-item>
         </ion-menu-toggle>
      
 
-        <ion-item tappable (click)="logout()" routerDirection="root">
+        <ion-item class="animated rollIn delay-1s" tappable (click)="logout()" routerDirection="root">
           <ion-icon name="log-out" slot="start"></ion-icon>
           Logout
         </ion-item>
@@ -33,7 +35,15 @@
     </ion-content>
  
   </ion-menu>
+
  
   <ion-router-outlet id="content" main></ion-router-outlet>
+
+
  
 </ion-split-pane>
+    <ion-fab (click)="goTo('compose')" vertical="bottom" horizontal="end" slot="fixed" *ngIf="authenticationService.isAuthenticated()">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
