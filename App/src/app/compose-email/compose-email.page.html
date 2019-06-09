@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>compose-email</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title>compose email</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+<ion-item>
+  <ion-label position="floating">To</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="fixed">CC</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Subject</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+<ion-item>
+    <ion-textarea placeholder="Enter email content..."></ion-textarea>
+</ion-item>
+
 
 </ion-content>
