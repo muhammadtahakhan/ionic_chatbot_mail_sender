@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,12 +17,14 @@ export class SignupPage implements OnInit {
   constructor( private router: Router,  
                 private speechRecognition: SpeechRecognition, 
                 private faio: FingerprintAIO,
-                private tts: TextToSpeech
+                private tts: TextToSpeech,
+                public authenticationService:AuthenticationService,
                 ) {
 
       this.user = new FormGroup({
-        firstname: new FormControl('', Validators.required),
-        lastname: new FormControl('', Validators.required),
+        name: new FormControl('', Validators.required),
+        role_id: new FormControl(1),
+        email: new FormControl('', Validators.required),
         username: new FormControl('', Validators.required),
         password: new FormControl('', Validators.required),
         c_password: new FormControl('', Validators.required),
@@ -168,7 +171,7 @@ export class SignupPage implements OnInit {
         }
        if(matches[0]=='done' || matches[0]=='next'){
         this.tts.speak('Thanks')
-        .then(() => { console.log('Success');})
+        .then(() => { console.log('Success'); this.signup(); })
         .catch((reason: any) => console.log(reason));
        
        }else{
@@ -182,6 +185,18 @@ export class SignupPage implements OnInit {
       },
       (onerror) => console.log('error:', onerror)
     ) 
+
+
+  }
+
+  signup(){
+
+
+    this.authenticationService.signup(this.user.value).subscribe(
+      res=>{ console.log(res) },
+      error => { console.log(error) },
+      ()=>{}
+    );
 
 
   }

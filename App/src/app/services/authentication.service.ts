@@ -55,5 +55,19 @@ export class AuthenticationService extends BaseService {
   isAuthenticated() {
     return this.authenticationState.value;
   }
+
+  signup(user) {
+    return  this.http.post(this.url+'auth/signup', user).pipe(
+      tap((res:any) => { 
+        if(res.success){
+      
+        }
+      
+      }),
+    )
+    // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
+    //   this.authenticationState.next(true);
+    // });
+  }
  
 }

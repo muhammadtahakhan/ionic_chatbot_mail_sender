@@ -133,7 +133,8 @@ class AuthController extends BaseController
 
         $rules = [
             'name' => 'required',
-            'email' => 'required|unique:users',
+            'username' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required',
             // 'c_password' => 'required|same:password'
             
@@ -153,13 +154,14 @@ class AuthController extends BaseController
 
         $user = new User([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'activation_token' => '',
             'active' => true,
             // 'activation_token' => str_random(60),
             // 'active' => false,
-            'role_id' =>  $request->role_id
+            'role_id' =>  @$request->role_id
         ]);
             DB::transaction(function() use ($user)
             {
