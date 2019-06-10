@@ -56,26 +56,28 @@ export class SignupPage implements OnInit {
         if(matches[0]=='back'){
         this.goBack();
         }
-       if(matches[0]=='next'){
-        this.tts.speak('Please spell last name')
-        .then(() => { console.log('Success');  this.takeLastname(); })
+       else if(matches[0]=='next'){
+        this.tts.speak('Please spell email address')
+        .then(() => { console.log('Success');  this.takeuseremail(); })
         .catch((reason: any) => console.log(reason));
        
        }else{
 
-        this.user.get('firstname').setValue( this.user.get('firstname').value+matches[0]);
+        this.user.get('name').setValue( this.user.get('name').value+matches[0]);
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeFirstname(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => console.log('error:', onerror)
-    ) 
+      (onerror) => {console.log('error:', onerror)}
+    )
 
   }
-  takeLastname(){
 
+  takeuseremail(){
+
+    
     this.speechRecognition.startListening()
     .subscribe(
 
@@ -91,9 +93,9 @@ export class SignupPage implements OnInit {
        
        }else{
 
-        this.user.get('lastname').setValue( this.user.get('lastname').value+matches[0]);
+        this.user.get('email').setValue( this.user.get('email').value+matches[0]);
         this.tts.speak('say next work')
-        .then(() => {console.log('Success');  this.takeLastname(); })
+        .then(() => {console.log('Success');  this.takeuseremail(); })
         .catch((reason: any) => console.log(reason));
        }
        
@@ -102,6 +104,7 @@ export class SignupPage implements OnInit {
     ) 
 
   }
+ 
   takeusername(){
 
     
@@ -115,7 +118,7 @@ export class SignupPage implements OnInit {
         }
        if(matches[0]=='next'){
         this.tts.speak('Please spell password')
-        .then(() => { console.log('Success');  this.takePasswordname(); })
+        .then(() => { console.log('Success');  this.takePassword(); })
         .catch((reason: any) => console.log(reason));
        
        }else{
@@ -131,7 +134,10 @@ export class SignupPage implements OnInit {
     ) 
 
   }
-  takePasswordname(){
+
+
+
+  takePassword(){
 
     this.speechRecognition.startListening()
     .subscribe(
@@ -150,7 +156,7 @@ export class SignupPage implements OnInit {
 
         this.user.get('password').setValue( this.user.get('password').value+matches[0]);
         this.tts.speak('say next work')
-        .then(() => {console.log('Success');  this.takePasswordname(); })
+        .then(() => {console.log('Success');  this.takePassword(); })
         .catch((reason: any) => console.log(reason));
        }
        
@@ -169,7 +175,7 @@ export class SignupPage implements OnInit {
         if(matches[0]=='back'){
         this.goBack();
         }
-       if(matches[0]=='done' || matches[0]=='next'){
+       if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='next'){
         this.tts.speak('Thanks')
         .then(() => { console.log('Success'); this.signup(); })
         .catch((reason: any) => console.log(reason));
@@ -178,7 +184,7 @@ export class SignupPage implements OnInit {
 
         this.user.get('c_password').setValue( this.user.get('c_password').value+matches[0]);
         this.tts.speak('say next work')
-        .then(() => {console.log('Success');  this.takePasswordname(); })
+        .then(() => {console.log('Success');  this.takeConfirmPasswordname(); })
         .catch((reason: any) => console.log(reason));
        }
        
