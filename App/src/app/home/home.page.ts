@@ -30,8 +30,4 @@ export class HomePage implements OnInit {
    
 }
 
-finish() {
-    this.router.navigateByUrl('/user-account');
-}
-
 }

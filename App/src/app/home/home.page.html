@@ -8,18 +8,7 @@
 <ion-content center text-center >
 
     <ion-slides pager="true" *ngIf="!authenticationService.isAuthenticated()">
-        <ion-slide class="step-one">
-            <ion-img src="/assets/app_icon.png"></ion-img>
-            <h1>Heading</h1>
-            <p>Text</p>
-        </ion-slide>
-    
-        <ion-slide class="step-two">
-            <ion-img src="/assets/app_icon.png"></ion-img>
-            <h1>Heading</h1>
-            <p>Text</p>
-        </ion-slide>
-    
+      
         <ion-slide class="step-three">
             <ion-img src="/assets/app_icon.png"></ion-img>
             <h1>Heading</h1>
@@ -27,6 +16,7 @@
     
             <ion-button shape="round" expand="block" color="secondary" (click)="finish()">FINISH TUTORIAL!</ion-button>
         </ion-slide>
+        
     </ion-slides>
   
 

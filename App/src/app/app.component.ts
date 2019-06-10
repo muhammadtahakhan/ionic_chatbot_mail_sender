@@ -120,7 +120,7 @@ export class AppComponent {
           console.log('auth status', res);
           if(!res){
             // this.router.navigate(['user-account']);
-            this.router.navigate(['']);
+            this.router.navigate(['welcome']);
                         
           }else{
             this.router.navigate(['']);

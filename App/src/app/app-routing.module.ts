@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'inbox', loadChildren: './inbox/inbox.module#InboxPageModule' },
   { path: 'outbox', loadChildren: './outbox/outbox.module#OutboxPageModule' },
   { path: 'senditem', loadChildren: './senditem/senditem.module#SenditemPageModule' },
-  { path: 'contact', loadChildren: './contact/contact.module#ContactPageModule' },
+  { path: 'contact', loadChildren: './contact/contact.module#ContactPageModule' },  { path: 'welcome', loadChildren: './welcome/welcome.module#WelcomePageModule' },
+
 
 ];
 @NgModule({
