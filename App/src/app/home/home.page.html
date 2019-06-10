@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="authenticationService.isAuthenticated()">
   <ion-toolbar>
     <!-- <ion-title>EE - MAIL</ion-title> -->
     <ion-menu-button></ion-menu-button>
@@ -6,9 +6,31 @@
 </ion-header>
 
 <ion-content center text-center >
+
+    <ion-slides pager="true" *ngIf="!authenticationService.isAuthenticated()">
+        <ion-slide class="step-one">
+            <ion-img src="/assets/slides/step1.svg"></ion-img>
+            <h1>Heading</h1>
+            <p>Text</p>
+        </ion-slide>
+    
+        <ion-slide class="step-two">
+            <ion-img src="/assets/slides/step2.svg"></ion-img>
+            <h1>Heading</h1>
+            <p>Text</p>
+        </ion-slide>
+    
+        <ion-slide class="step-three">
+            <ion-img src="/assets/slides/step3.svg"></ion-img>
+            <h1>Heading</h1>
+            <p>Text</p>
+    
+            <ion-button (click)="finish()">FINISH TUTORIAL!</ion-button>
+        </ion-slide>
+    </ion-slides>
   
 
-  <ion-grid>
+  <ion-grid *ngIf="authenticationService.isAuthenticated()">
       <ion-row style="height:200px"></ion-row>
       <ion-row></ion-row>
       <ion-row></ion-row>

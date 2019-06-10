@@ -1,4 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +10,10 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 export class HomePage implements OnInit {
   @ViewChild('box') box: ElementRef;
 
-  constructor() { }
+  constructor(private router: Router, public authenticationService:AuthenticationService,) { }
 
   ngOnInit() {
-   
+   console.log('is', this.authenticationService.isAuthenticated());
   }
   ngAfterViewInit(){
     setTimeout(() => {
@@ -26,6 +28,10 @@ export class HomePage implements OnInit {
     this.box.nativeElement.classList.add('pulse');
     this.box.nativeElement.classList.add('delay-5s');
    
+}
+
+finish() {
+    this.router.navigateByUrl('/user-account');
 }
 
 }
