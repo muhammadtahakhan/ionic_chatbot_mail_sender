@@ -371,7 +371,7 @@ class AuthController extends BaseController
                 'message' => 'Unauthorized'
             ], 400);
         $user = $request->user();
-        $userData  = User::where('user_id', Auth::id())->with('role.privleges')->first();
+        $userData  = User::where('user_id', Auth::id())->first();
 
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
@@ -402,7 +402,7 @@ class AuthController extends BaseController
             ], 400);
 
         $user = $request->user();
-        $userData  = User::where('user_id', Auth::id())->with('role.privleges')->first();
+        $userData  = User::where('user_id', Auth::id())->first();
 
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
