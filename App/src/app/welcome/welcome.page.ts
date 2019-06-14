@@ -18,10 +18,15 @@ export class WelcomePage implements OnInit {
 
   ngOnInit() {
 
-    this.tts.speak('this is blind peopels app')
+  
+  }
+
+  ionViewDidEnter(){
+    this.tts.speak('Welcome, this is blind peopels app')
     .then(() => {console.log('Success');  this.finish(); })
     .catch((reason: any) => console.log(reason));
   }
+
 
   
 finish() {

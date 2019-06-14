@@ -5,6 +5,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { AuthenticationService } from '../services/authentication.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  loading = false;
 
   user : FormGroup;
 
@@ -87,7 +89,7 @@ takePass(){
     if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks'){
       this.login();
     }else{
-      this.user.get('password').setValue(this.user.get('password').value+matches[0]);
+      this.user.get('password').setValue((this.user.get('password').value+matches[0]).replace(/\s+/g, '') );
       this.tts.speak('say next work')
       .then(() => {console.log('Success');  this.takePass(); })
       .catch((reason: any) => console.log(reason));
@@ -128,8 +130,12 @@ goBack(){
   }
 
   sayfinalWord(){
-
-  this.authenticationService.login(this.user.value).subscribe(
+  this.loading = true;
+  this.authenticationService.login(this.user.value)
+  .pipe(
+    finalize(() => this.loading = false),
+  )
+  .subscribe(
     res=>{ console.log(res) },
     error => { console.log(error) },
     ()=>{}

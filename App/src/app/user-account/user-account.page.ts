@@ -18,7 +18,7 @@ export class UserAccountPage implements OnInit {
 
   ionViewDidEnter() {
 
-    this.tts.speak('well come, say login to login , or say signup for signup')
+    this.tts.speak('say login to login , or say signup for signup')
     .then(() => {console.log('Success');  this.takeRoute();})
     .catch((reason: any) => console.log(reason));
 

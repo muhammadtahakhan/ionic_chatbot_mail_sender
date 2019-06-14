@@ -41,7 +41,8 @@ export class SignupPage implements OnInit {
   }
 
   start(){
-    this.tts.speak('Please spell your First Name, once done call next for spell password')
+    this.user.reset();
+    this.tts.speak('Please spell your First Name, once done call next for next field')
     .then(() => {console.log('Success'); this.takeFirstname();  })
     .catch((reason: any) => console.log(reason));
   }
@@ -56,6 +57,9 @@ export class SignupPage implements OnInit {
         if(matches[0]=='back'){
         this.goBack();
         }
+        else if(matches[0]=='reset'){
+          this.start()
+        }
        else if(matches[0]=='next'){
         this.tts.speak('Please spell email address')
         .then(() => { console.log('Success');  this.takeuseremail(); })
@@ -63,14 +67,14 @@ export class SignupPage implements OnInit {
        
        }else{
 
-        this.user.get('name').setValue( this.user.get('name').value+matches[0]);
+        this.user.get('name').setValue( this.user.get('name').value||''+matches[0]);
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeFirstname(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => {console.log('error:', onerror)}
+      (onerror) => {console.log('error:', onerror); this.start(); }
     )
 
   }
@@ -86,21 +90,24 @@ export class SignupPage implements OnInit {
         if(matches[0]=='back'){
         this.goBack();
         }
-       if(matches[0]=='next'){
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else if(matches[0]=='next'){
         this.tts.speak('Please spell username')
         .then(() => { console.log('Success');  this.takeusername(); })
         .catch((reason: any) => console.log(reason));
        
        }else{
 
-        this.user.get('email').setValue( this.user.get('email').value+matches[0]);
+        this.user.get('email').setValue( (this.user.get('email').value+matches[0]).replace(/\s+/g, ''));
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeuseremail(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => console.log('error:', onerror)
+      (onerror) => {console.log('error:', onerror); this.start(); }
     ) 
 
   }
@@ -116,21 +123,24 @@ export class SignupPage implements OnInit {
         if(matches[0]=='back'){
         this.goBack();
         }
-       if(matches[0]=='next'){
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else  if(matches[0]=='next'){
         this.tts.speak('Please spell password')
         .then(() => { console.log('Success');  this.takePassword(); })
         .catch((reason: any) => console.log(reason));
        
        }else{
 
-        this.user.get('username').setValue( this.user.get('username').value+matches[0]);
+        this.user.get('username').setValue( (this.user.get('username').value+matches[0]).replace(/\s+/g, '') );
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeusername(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => console.log('error:', onerror)
+      (onerror) => {console.log('error:', onerror); this.start(); }
     ) 
 
   }
@@ -147,7 +157,10 @@ export class SignupPage implements OnInit {
         if(matches[0]=='back'){
         this.goBack();
         }
-       if(matches[0]=='next'){
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else if(matches[0]=='next'){
         this.tts.speak('Please spell password again')
         .then(() => { console.log('Success');  this.takeConfirmPasswordname(); })
         .catch((reason: any) => console.log(reason));
@@ -161,7 +174,7 @@ export class SignupPage implements OnInit {
        }
        
       },
-      (onerror) => console.log('error:', onerror)
+      (onerror) => {console.log('error:', onerror); this.start(); }
     ) 
 
   }
@@ -175,7 +188,10 @@ export class SignupPage implements OnInit {
         if(matches[0]=='back'){
         this.goBack();
         }
-       if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='next'){
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='next'){
         this.tts.speak('Thanks')
         .then(() => { console.log('Success'); this.signup(); })
         .catch((reason: any) => console.log(reason));
@@ -189,7 +205,7 @@ export class SignupPage implements OnInit {
        }
        
       },
-      (onerror) => console.log('error:', onerror)
+      (onerror) => {console.log('error:', onerror); this.start(); }
     ) 
 
 
