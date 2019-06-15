@@ -243,7 +243,13 @@ export class SignupPage implements OnInit {
 
     this.authenticationService.signup(this.user.value).subscribe(
       res=>{ console.log(res) },
-      error => { console.log(error) },
+      error => { 
+        console.log(error) 
+        this.tts.speak(error.message)
+        .then(() => { this.start(); })
+        .catch((reason: any) => console.log(reason));
+      
+      },
       ()=>{}
     );
 
