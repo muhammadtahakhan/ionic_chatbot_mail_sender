@@ -67,14 +67,14 @@ export class SignupPage implements OnInit {
        
        }else{
 
-        this.user.get('name').setValue( this.user.get('name').value||''+matches[0]);
+        this.user.get('name').setValue( this.user.get('name').value?this.user.get('name').value+matches[0]:''+matches[0] );
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeFirstname(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => {console.log('error:', onerror); this.start(); }
+      (onerror) => {console.log('error:', onerror);  }
     )
 
   }
@@ -100,14 +100,14 @@ export class SignupPage implements OnInit {
        
        }else{
 
-        this.user.get('email').setValue( (this.user.get('email').value+matches[0]).replace(/\s+/g, ''));
+        this.user.get('email').setValue( (this.user.get('email').value?this.user.get('email').value+matches[0]:''+matches[0] ).replace(/\s+/g, '') );
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeuseremail(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => {console.log('error:', onerror); this.start(); }
+      (onerror) => {console.log('error:', onerror);  }
     ) 
 
   }
@@ -133,14 +133,14 @@ export class SignupPage implements OnInit {
        
        }else{
 
-        this.user.get('username').setValue( (this.user.get('username').value+matches[0]).replace(/\s+/g, '') );
+        this.user.get('username').setValue( (this.user.get('username').value?this.user.get('username').value+matches[0]:''+matches[0] ).replace(/\s+/g, '')  );
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeusername(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => {console.log('error:', onerror); this.start(); }
+      (onerror) => {console.log('error:', onerror);  }
     ) 
 
   }
@@ -167,14 +167,14 @@ export class SignupPage implements OnInit {
        
        }else{
 
-        this.user.get('password').setValue( this.user.get('password').value+matches[0]);
+        this.user.get('password').setValue( this.user.get('password').value?this.user.get('password').value+matches[0]:''+matches[0]);
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takePassword(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => {console.log('error:', onerror); this.start(); }
+      (onerror) => {console.log('error:', onerror);  }
     ) 
 
   }
@@ -198,14 +198,14 @@ export class SignupPage implements OnInit {
        
        }else{
 
-        this.user.get('c_password').setValue( this.user.get('c_password').value+matches[0]);
+        this.user.get('c_password').setValue( this.user.get('c_password').value?this.user.get('c_password').value+matches[0]:''+matches[0]);
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeConfirmPasswordname(); })
         .catch((reason: any) => console.log(reason));
        }
        
       },
-      (onerror) => {console.log('error:', onerror); this.start(); }
+      (onerror) => {console.log('error:', onerror);  }
     ) 
 
 
