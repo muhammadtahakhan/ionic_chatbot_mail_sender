@@ -144,6 +144,7 @@ class AuthController extends BaseController
            'c_password.same'=> 'password does not match'
         ];
            $validator = Validator::make($request->all(), $rules, $customMessages);
+           //    print_r($validator->errors()->first()); die();    
            if ($validator->fails()) {
             return $this->sendError([], $validator->errors()->first(), '', 400);
         }
