@@ -86,7 +86,7 @@ takePass(){
         this.router.navigate(['user-account']);
       }
      
-    if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks'){
+    if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='login'){
       this.login();
     }else{
       this.user.get('password').setValue((this.user.get('password').value+matches[0]).replace(/\s+/g, '') );

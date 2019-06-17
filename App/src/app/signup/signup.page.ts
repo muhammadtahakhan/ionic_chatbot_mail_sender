@@ -192,7 +192,7 @@ export class SignupPage implements OnInit {
         else if(matches[0]=='reset'){
           this.start()
         }
-        else if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='next'){
+        else if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='next' || matches[0]=='sign up' || matches[0]=='signup'){
         this.tts.speak('Thanks, signup is processing')
         .then(() => { console.log('Success'); this.signup(); })
         .catch((reason: any) => console.log(reason));
