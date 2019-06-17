@@ -5,6 +5,7 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { AuthenticationService } from '../services/authentication.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-
+  loading = false;
   user : FormGroup;
   constructor( private router: Router,  
                 private speechRecognition: SpeechRecognition, 
@@ -192,7 +193,7 @@ export class SignupPage implements OnInit {
           this.start()
         }
         else if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='next'){
-        this.tts.speak('Thanks')
+        this.tts.speak('Thanks, signup is processing')
         .then(() => { console.log('Success'); this.signup(); })
         .catch((reason: any) => console.log(reason));
        
@@ -240,12 +241,20 @@ export class SignupPage implements OnInit {
   }
 
   finishSignup(){
-
-    this.authenticationService.signup(this.user.value).subscribe(
-      res=>{ console.log(res) },
+    this.loading = true;
+    this.authenticationService.signup(this.user.value).pipe(
+      finalize(() => this.loading = false),
+    ).subscribe(
+      res=>{
+        
+        this.tts.speak('Signup successfull, plz login')
+        .then(() => { console.log('Success');   this.router.navigate(['login']); })
+        .catch((reason: any) => console.log(reason));
+        
+        },
       error => { 
         console.log(error) 
-        this.tts.speak(error.message)
+        this.tts.speak(error.error.message)
         .then(() => { this.start(); })
         .catch((reason: any) => console.log(reason));
       

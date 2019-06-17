@@ -136,7 +136,7 @@ class AuthController extends BaseController
             'username' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required',
-            // 'c_password' => 'required|same:password'
+            'c_password' => 'required|same:password'
             
            ];
            $customMessages = ['required' => 'The :attribute field can not be blank.', 
