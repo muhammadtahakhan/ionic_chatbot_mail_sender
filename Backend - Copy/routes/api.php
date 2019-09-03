@@ -110,8 +110,6 @@ Route::group(['middleware' => ['auth:api']], function($router) {
     Route::put('privilege', 'API\PrivilegeController@update');
     Route::delete('privilege', 'API\PrivilegeController@delete');
 
-    Route::get('my_emials', 'API\EmailController@get_email');
-
 
    
 });
