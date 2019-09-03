@@ -134,7 +134,8 @@ export class AppComponent {
  
 logout(){
   this.menu.close();
-  this.authenticationService.logout();
+  setTimeout(()=>{this.authenticationService.logout(); }, 1000);
+  // this.authenticationService.logout();
 }
 
 goTo(url){

@@ -18,6 +18,7 @@ import { IonicGestureConfig } from './services/ionic-gesture-config.service'
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { HTTP } from '@ionic-native/http/ngx';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     HttpClientModule
   ],
   providers: [
+    HTTP,
     StatusBar,
     SplashScreen,
     SpeechRecognition,

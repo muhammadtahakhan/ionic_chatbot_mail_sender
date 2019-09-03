@@ -22,7 +22,7 @@ export class WelcomePage implements OnInit {
   }
 
   ionViewDidEnter(){
-    this.tts.speak('Welcome, this is blind peopels app')
+    this.tts.speak('Welcome, this is blind peoples app, navigation through voice')
     .then(() => {console.log('Success');  this.finish(); })
     .catch((reason: any) => console.log(reason));
   }

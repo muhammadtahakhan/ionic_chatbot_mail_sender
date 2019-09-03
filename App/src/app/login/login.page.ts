@@ -6,6 +6,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { AuthenticationService } from '../services/authentication.service';
 import { finalize } from 'rxjs/operators';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +18,10 @@ export class LoginPage implements OnInit {
 
   user : FormGroup;
 
- currentInput = 'user name'
+  currentInput = 'user name'
 
 
-  constructor(public authenticationService:AuthenticationService,  private router: Router,  private speechRecognition: SpeechRecognition, 
+  constructor(private http: HTTP, public authenticationService:AuthenticationService,  private router: Router,  private speechRecognition: SpeechRecognition, 
     private faio: FingerprintAIO,
     private tts: TextToSpeech) { 
 
@@ -33,6 +34,11 @@ export class LoginPage implements OnInit {
     }
 
   ngOnInit() {
+    console.log('ngOnInit', this.authenticationService.isAuthenticated())
+    if( this.authenticationService.isAuthenticated() ){
+      this.authenticationService.logout();
+    }
+   
     
     }
 
@@ -125,19 +131,20 @@ goBack(){
 
 
 
-    }).catch((error: any) =>{this.sayfinalWord(); console.log(error)} );
+    }).catch((error: any) =>{this.sayfinalWord(); console.log('finger', error)} );
     
   }
 
   sayfinalWord(){
   this.loading = true;
+ 
   this.authenticationService.login(this.user.value)
   .pipe(
     finalize(() => this.loading = false),
   )
   .subscribe(
     res=>{ console.log(res) },
-    error => { console.log(error) },
+    error => { console.log(error);  },
     ()=>{}
   );
 
@@ -145,6 +152,8 @@ goBack(){
     this.tts.speak('Thanks, You will be login soon')
     .then(() => {console.log('Success'); })
     .catch((reason: any) => console.log(reason));
+
+
   }
 
 

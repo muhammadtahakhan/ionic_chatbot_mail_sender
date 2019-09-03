@@ -1,10 +1,12 @@
 import { Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { BaseService } from './baseService';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
+import { from } from 'rxjs';
+import { HTTP } from '@ionic-native/http/ngx';
  
 const TOKEN_KEY = 'auth-token';
  
@@ -15,7 +17,7 @@ export class AuthenticationService extends BaseService {
  
   authenticationState = new BehaviorSubject(false);
  
-  constructor(private storage: Storage, private plt: Platform, private http: HttpClient) { 
+  constructor(private storage: Storage, private plt: Platform, private http: HttpClient, private httpioinc: HTTP) { 
     super();
     this.plt.ready().then(() => {
       this.checkToken();
@@ -23,7 +25,7 @@ export class AuthenticationService extends BaseService {
   }
  
   checkToken() {
-    this.storage.get(TOKEN_KEY).then(res => {
+   this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         this.authenticationState.next(true);
       }
@@ -31,6 +33,8 @@ export class AuthenticationService extends BaseService {
   }
  
   login(user) {
+    
+
     return  this.http.post(this.url+'auth/login', user).pipe(
       tap((res:any) => { 
         if(res.success){
@@ -41,9 +45,7 @@ export class AuthenticationService extends BaseService {
       
       }),
     )
-    // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
-    //   this.authenticationState.next(true);
-    // });
+   
   }
  
   logout() {
