@@ -365,8 +365,9 @@ class AuthController extends BaseController
             // 'remember_me' => 'boolean'
         ]);
         $credentials = request(['username', 'password']);
-        $credentials['active'] = 1;
+        // $credentials['active'] = 1;
         $credentials['deleted_at'] = null;
+       
         if(!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
