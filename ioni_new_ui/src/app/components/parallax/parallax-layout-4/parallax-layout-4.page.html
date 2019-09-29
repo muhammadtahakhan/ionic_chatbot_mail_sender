@@ -1,0 +1,43 @@
+
+<ion-content scrollEvents="true" parallax-header *ngIf="data != null">
+  <div background-size class="header-image"
+    [ngStyle]="{'background-image': 'url(' + data.headerImage + ')'}">
+  </div>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding">
+        <ion-item lines="none">
+          <ion-label class="ion-text-center">
+            <div icon *ngFor="let item of data.iconsStars;let i = index"
+              (click)="onRatesFunc(data.iconsStars, i, $event)">
+              <i icon-medium *ngIf="item.isActive" class="icon {{item.iconActive}}"></i>
+              <i icon-medium *ngIf="!item.isActive" class="icon {{item.iconInactive}}"></i>
+            </div>
+            <div clearfix></div>
+            <div span-small class="ion-text-center" class="ion-margin-bottom">{{data.reviews}}</div>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label text-wrap slot="start">
+            <h1 text-size-xl>{{data.title}}</h1>
+          </ion-label>
+          <i icon-small slot="end" class="icon {{data.iconLike}}" (click)="onLikeFunc(data, $event)"></i>
+          <i icon-small slot="end" class="icon {{data.iconFavorite}}" (click)="onFavoriteFunc(data, $event)"></i>
+          <i icon-small slot="end" class="icon {{data.iconShare}}" (click)="onShareFunc(data, $event)"></i>
+        </ion-item>
+        <!--Info-->
+        <div padding-start *ngFor="let item of data.items;let i = index" (click)="onItemClickFunc(item, $event)">
+          <span span-small font-bold>{{item.name}}</span>
+          <span span-small>{{item.value}}</span>
+        </div>
+        <!-- Description-->
+        <div text-wrap padding-start>
+          <p text-size-p>{{data.description}}</p>
+          <p text-size-p>{{data.description3}}</p>
+          <p text-size-p>{{data.description2}}</p>
+          <p text-size-p>{{data.description4}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,18 @@
+<!--Themes Time Line - Timeline With Avatar -->
+<ion-grid *ngIf="data != null">
+  <ion-row>
+    <ion-col size="11" offset="1">
+      <div item-thumbnail class="ion-margin-bottom"
+        *ngFor="let item of data.items" (click)="onItemClickFunc(item, $event)">
+        <span text-size-sm font-bold>{{item.time}}</span>
+        <ion-item class="ion-no-padding"  margin-top box-shadow lines="none">
+          
+          <ion-thumbnail slot="start">
+            <img [src]="item.avatar">
+          </ion-thumbnail>
+          <h2 text-size-xs text-wrap>{{item.title}}</h2>
+        </ion-item>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

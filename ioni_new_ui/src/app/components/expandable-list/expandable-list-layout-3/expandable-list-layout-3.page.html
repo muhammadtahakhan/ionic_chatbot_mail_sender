@@ -1,0 +1,40 @@
+<!-- EXPANDABLE --COMPONENT 3 -->
+<ion-grid class="ion-no-padding">
+  <ion-row *ngIf="data != null">
+    <ion-col size="12" class="ion-no-padding" no-margin>
+      <ion-list>
+        <ion-list-header class="ion-text-center" padding-horizontal background-size
+        [ngStyle]="{'background-image': 'url(' + data.headerImage + ')'}">
+          <ion-label text-size-xs>{{data.title}}</ion-label>
+        </ion-list-header>
+        <ul no-margin class="ion-no-padding" class="collapsible">
+          <li *ngFor="let group of data.items" margin-top>
+            <!-- Expandable Full image with CTA Header-->
+            <div class="collapsible-header" (click)="toggleGroup(group)">
+              <ion-item no-margin class="ion-no-padding" lines="none" background-size 
+              [ngStyle]="{'background-image': 'url(' + group.backgroundImage + ')'}">
+                
+                <ion-label lines="none" class="ion-text-center">
+                  <!-- Icon -->
+                  <i icon-small class="icon {{group.icon}}"></i>
+                  <!-- Title -->
+                  <h2 text-size-xs>{{group.title}}</h2>
+                </ion-label>
+              </ion-item>
+            </div>
+            <!-- Expandable Full image with CTA Body -->
+            <div class="item-accordion" [ngClass]="{'active': group.show }" [hidden]="!group.show">
+              <ion-item transparent  class="ion-no-padding" class="ion-text-center" lines="none"
+              *ngFor="let item of group.items" (click)="onItemClickFunc(item, $event)">
+                
+                <ion-label>
+                  <h2 text-size-xs>{{item}}</h2>
+                </ion-label>
+              </ion-item>
+            </div>
+          </li>
+        </ul>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>

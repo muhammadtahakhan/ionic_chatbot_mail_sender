@@ -1,0 +1,37 @@
+<!-- DRAGEN AND DROP --COMPONENT 1 -->
+<ion-grid class="ion-no-padding" *ngIf="data != null">
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <ion-list>
+        <ion-list-header padding-left>
+          <ion-item transparent lines="none" class="ion-no-padding">
+            <!-- Header Title -->
+            <ion-label>
+              <h1 text-size-xl text-nowrap no-margin>{{data.title}}</h1>
+              <!-- Header Subtitle -->
+              <h2 text-size-xs text-nowrap no-margin>{{data.description}}</h2>
+            </ion-label>
+            <!-- Header Durution -->
+            <span slot="end" span-medium>{{data.duration}}</span>
+            <!-- Header Icon -->
+            <i slot="end" icon-medium class="icon {{data.icon}}"></i>
+          </ion-item>
+        </ion-list-header>
+        <ion-reorder-group disabled="false" (ionItemReorder)="ionItemReorder($event)">
+          <ion-item lines="none" 
+            *ngFor="let item of data.items" (click)="onItemClickFunc(item, $event)">
+            
+            <i icon-medium slot="start" class="icon {{item.leftIcon}}"></i>
+            <ion-label>
+              <!-- Content Title -->
+              <h2 text-size-lg>{{item.title}}</h2>
+              <!-- Content Subtitle -->
+              <h3 text-size-sm>{{item.author}}</h3>
+            </ion-label>
+            <ion-reorder></ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>

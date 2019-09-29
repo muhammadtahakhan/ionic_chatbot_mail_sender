@@ -1,0 +1,48 @@
+<!-- DRAGEN AND DROP --COMPONENT 2 -->
+<ion-grid class="ion-no-padding" *ngIf="data != null">
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <ion-list>
+        <!--Header-->
+        <ion-list-header background-size
+        [ngStyle]="{'background-image': 'url(' + data.headerImage + ')'}" *ngIf="data.headerImage != null">
+          <ion-item full lines="none">
+            <!-- Title and Subtitle -->
+            <ion-label>
+              <h1 text-size-xl text-wrap>{{data.title}}</h1>
+              <h2 text-size-xs no-margin text-wrap>{{data.description}}</h2>
+            </ion-label>
+            <div slot="end" text-right>
+              <!--Header Button Price---->
+              <span span-medium>{{data.price}}</span>
+              <!--Header Button Procead---->
+              <ion-button button-round class="ion-margin-bottom" expand="full" shape="round" fill="outline"
+              (click)="onProceedFunc(data, $event)">
+                {{data.buttonText}}
+              </ion-button>
+            </div>
+          </ion-item>
+        </ion-list-header>
+        <!-- Content -->
+        <ion-reorder-group disabled="false" (ionItemReorder)="ionItemReorder($event)">
+          <ion-item lines="full" class="ion-no-padding" *ngFor="let item of data.items" 
+          (click)="onItemClickFunc(item, $event)">
+            
+            <!-- Avatar -->
+            <ion-thumbnail slot="start">
+              <img [src]="item.image">
+            </ion-thumbnail>
+            <ion-label padding-end>
+              <h2 text-wrap>{{item.title}}</h2>
+              <h3 text-wrap class="ion-margin-bottom">{{item.shipping}}</h3>
+              <div span-small text-right margin-top>{{item.oldPrice}}</div>
+              <div span-medium text-size-md text-right>{{item.newPrice}}</div>
+              <h3 text-size-sm padding-left>{{item.seller}}</h3>
+            </ion-label>
+            <ion-reorder></ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>

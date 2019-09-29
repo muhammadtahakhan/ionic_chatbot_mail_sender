@@ -1,0 +1,9 @@
+<!--Theme Fade in + Ken Burns-->
+<ion-grid class="ion-no-padding">
+  <ion-row background-size [ngStyle]="{'background-image': 'url(' + data.backgroundImage + ')'}">
+      <div animation>
+        <img logo [src]="data.logo" />
+        <h1 text-size-lg font-bold splash-title>{{data.title}}</h1>
+      </div>
+  </ion-row>
+</ion-grid>

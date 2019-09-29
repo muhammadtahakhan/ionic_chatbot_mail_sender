@@ -1,0 +1,18 @@
+<!--Themes Time Line - Timeline With Cards  -->
+<ion-grid *ngIf="data != null">
+  <ion-row>
+    <ion-col size="11" offset="1">
+      <ion-card 
+      *ngFor="let item of data.items; let i= index" (click)="onItemClickFunc(item, $event)">
+        
+        <ion-item lines="none" transparent>
+          <ion-label>
+            <span text-size-sm>{{item.time}}</span>
+            <h2 text-size-md>{{item.title}}</h2>
+          </ion-label>
+        </ion-item>
+        <img [src]="item.image">
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,38 @@
+<ion-app>
+  <ion-split-pane when="md">
+    <ion-menu>
+      <!-- Settings Toolbar -->
+      <ion-header background-size
+      [ngStyle]="{'background-image': 'url(' + headerMenuItem.background + ')'}">
+          <ion-item transparent class="ion-no-padding" lines="none">
+            <ion-label style="margin: 10px" class="">
+                <img class="ion-margin-bottom" [src]="headerMenuItem.image">
+                <div clearfix></div>
+                {{headerMenuItem.title}}
+            </ion-label>
+          </ion-item>
+      </ion-header>
+      <!-- Content -->
+      <ion-content>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-no-padding">
+            <ion-col size="12" class="ion-no-padding">
+              <!-- Menu List -->
+              <ion-list class="ion-no-padding">
+                <ion-menu-toggle translate auto-hide="false" *ngFor="let p of appPages">
+                  <ion-item lines="none" [routerDirection]="'root'" (click)="openPage(p)">
+                    <i icon-small slot="start" class="icon {{p.icon}}"></i>
+                    <ion-label>
+                      <h1 text-size-xs>{{p.title}}</h1>
+                    </ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

@@ -1,0 +1,18 @@
+<!-- GOOGLE CARD --COMPONENT 3 -->
+<ion-grid no-padding *ngIf="data != null">
+  <ion-row>
+    <ion-col size="12" size-md="6" *ngFor="let item of data.items">
+      <ion-card box-shadow padding class="ion-text-center"  (click)="onItemClickFunc(item, $event)">      
+        <div images>
+          <ion-img images-filter [src]="item.image"></ion-img>
+        </div>
+        <ion-card-content>
+          <!-- Card Title -->
+          <h2 text-size-xs>{{item.title}}</h2>
+          <!-- Card Subtitle -->
+          <p text-size-sm padding-top>{{item.subtitle}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,28 @@
+<!-- ALERT --COMPONENT 3 -->
+<ion-grid no-padding>
+  <ion-row *ngIf="data != null">
+    <ion-col size="12" size-md="6" *ngFor="let item of data.items"
+    (click)="presentAlert(item, $event)">
+      <!-- Card -->
+      <ion-card padding box-shadow>        
+        <img [src]="item.image" />
+        <ion-card-content padding-top padding-bottom transparent>
+          <span text-size-sm margin-top>{{item.time}}</span>
+          <h2 text-size-xs padding-top>{{item.title}}</h2>
+          <p text-size-p>{{item.description}}</p>
+          <div clearfix></div>
+          <ion-button button-icon fill="clear">
+            <ion-icon icon-small slot="start" [name]="item.iconLike"
+            (click)="onLikeFunc(item, $event)"></ion-icon>
+            {{item.numberLike}}
+          </ion-button>
+          <ion-button button-icon fill="clear">
+            <ion-icon icon-small slot="start" [name]="item.iconComment"
+            (click)="onCommentFunc(item, $event)"></ion-icon>
+            {{item.numberCommnet}}
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

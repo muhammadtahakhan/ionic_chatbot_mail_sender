@@ -1,0 +1,24 @@
+<!-- FORMS --COMPONENT 4 -->
+<ion-grid class="ion-no-padding" *ngIf="data != null">
+  <ion-row class="ion-no-padding">
+    <ion-col size="12" class="ion-no-padding">
+      <agm-map [latitude]="data.map.lat" [longitude]="data.map.lng" [zoom]="data.map.zoom"
+          [mapTypeControl]="data.map.mapTypeControl" [streetViewControl]="data.map.streetViewControl">
+          <agm-marker [latitude]="data.map.lat" [longitude]="data.map.lng">
+          </agm-marker>
+      </agm-map>
+    </ion-col>
+    <ion-col size="12" padding textarea>
+      <ion-item class="ion-no-padding" transparent input>
+        <ion-label text-size-sm position="floating">{{data.descriptionPlaceholder}}</ion-label>
+        <ion-textarea rows="100%" cols="1" [(ngModel)]="item.description"></ion-textarea>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-button text-wrap expand="full" button-round
+      margin-top shape="round" fill="outline" (click)="onSubmitFunc($event)">
+        {{data.btnSubmit}}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

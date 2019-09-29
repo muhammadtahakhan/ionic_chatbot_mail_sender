@@ -1,0 +1,21 @@
+<!-- Theme Image Sub-Gallery for Category 1 -->
+<ion-grid class="ion-no-padding" *ngIf="data != null">
+  <ion-row>
+    <ion-col class="ion-no-padding" size="6" size-md="4" *ngFor="let item of data.items;let i = index">
+      <ion-card no-margin background-size class="ion-no-padding"
+        [ngStyle]="{'background-image': 'url(' + item.image + ')'}"
+        (click)="onItemClickFunc(item, i, $event)">
+        <!-- Card Content -->
+        <ion-card-content transparent class="ion-no-padding">
+          <ion-item transparent lines="none">
+            <ion-label class="ion-float-left">
+              <h2 text-size-lg>{{item.title}}</h2>
+            </ion-label>
+            <i class="icon" icon-small slot="end" (click)="onFavoriteFunc(item, $event)"
+              [ngClass]="{'icon-heart': item.favorite, 'icon-heart-outline': !item.favorite}"></i>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

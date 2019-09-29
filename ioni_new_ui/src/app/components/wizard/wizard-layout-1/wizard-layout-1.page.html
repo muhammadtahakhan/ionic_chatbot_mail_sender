@@ -1,0 +1,27 @@
+<!--  Theme Form - Form + Write Comment -->
+<ion-content>
+  <ion-slides #wizardSlider pager="true" *ngIf="data != null" (ionSlideDidChange)="ionSlideDidChange($event)"
+    (ionSlideReachStart)="ionSlideReachStart($event)" (ionSlideReachEnd)="ionSlideReachEnd($event)">
+    <ion-slide *ngFor="let item of data.items">
+      <ion-card no-box-shadow>
+        <i icon-large class="icon {{item.iconSlider}}"></i>
+        <div clearfix></div>
+        <h1 text-size-lg>{{item.title}}</h1>
+        <div clearfix></div>
+        <p text-size-xs>{{item.description}}</p>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <!--Button section-->
+  <div *ngIf="data != null">
+    <ion-button fill="clear" float-start (click)="onPreviousFunc()" *ngIf="prev">
+      {{data.btnPrev}}
+    </ion-button>
+    <ion-button fill="clear" float-end (click)="onNextFunc()" *ngIf="next">
+      {{data.btnNext}}
+    </ion-button>
+    <ion-button fill="clear" float-end (click)="onFinishFunc()" *ngIf="!next">
+      {{data.btnFinish}}
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,21 @@
+<!--Theme Category 1 (Animals)-->
+<ion-grid class="ion-no-padding" *ngIf="data != null">
+  <ion-row>
+    <ion-col class="ion-no-padding" size="6" size-md="4" *ngFor="let group of data.items; let i = index">
+      <ion-card no-margin  background-size (click)="onItemClickFunc(group, i, $event)"
+        [ngStyle]="{'background-image': 'url(' + group.image + ')'}">
+          
+          <ion-card-content>
+            <ion-item class="ion-no-padding" transparent lines="none">
+              <ion-label>
+                <h3 text-size-sm>{{group.items.length}} image(s)</h3>
+                <h2 text-size-xs text-wrap>{{group.title}}</h2>
+              </ion-label>
+              <i icon-small class="icon" slot="end" (click)="onFavoriteFunc(group, $event)"
+                [ngClass]="{'icon-heart': group.favorite, 'icon-heart-outline': !group.favorite}"></i>
+            </ion-item>
+          </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

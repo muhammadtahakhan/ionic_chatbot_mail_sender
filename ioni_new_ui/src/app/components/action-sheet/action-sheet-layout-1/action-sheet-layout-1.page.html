@@ -1,0 +1,38 @@
+<!-- ACTION SHEET --COMPONENT 1-->
+<ion-content parallax-header (ionScroll)="logScrolling($event)" [scrollEvents]="true">
+  <!-- Parallax Big Image -->
+  <div background-size class="header-image"
+  [ngStyle]="{'background-image': 'url(' + data.headerImage + ')'}">
+    <!-- Share Button --->
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="presentActionSheet(data, $event)">
+        <ion-icon icon-medium [name]="data.shareIcon"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <!--Content-->
+  <ion-grid class="ion-no-padding" *ngIf="data != null && data.items != null">
+    <ion-row>
+      <ion-col class="ion-no-padding" size="12" *ngFor="let item of data.items"
+      (click)="onItemClickFunc(item, $event)">
+        <ion-item lines="none" *ngFor="let item of data.items">
+          <ion-label>
+            <span text-size-sm class="ion-text-uppercase">{{item.category}}</span>
+            <!-- Parallax Title -->
+            <h1 text-size-xl text-capitalize>{{item.title}}</h1>
+            <!-- Parallax Subtitle -->
+            <h3 text-wrap text-size-sm>{{item.subtitle}}</h3>
+          </ion-label>
+          <span span-small text-size-lg font-bold slot="end"
+          (click)="onProceedFunc(item, $event)">
+            {{item.button}}
+          </span>
+        </ion-item>
+        <!--Content With Text-->
+        <ion-item lines="none" *ngFor="let productDescription of item.productDescriptions">
+          <p text-size-p text-wrap>{{productDescription.description}}</p>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
