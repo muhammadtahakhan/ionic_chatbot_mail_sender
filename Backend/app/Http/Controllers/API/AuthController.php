@@ -159,10 +159,10 @@ class AuthController extends BaseController
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'activation_token' => '',
-            'active' => true,
+            // 'active' => true,
             // 'activation_token' => str_random(60),
             // 'active' => false,
-            'role_id' => 1// @$request->role_id
+            // 'role_id' => 1// @$request->role_id
         ]);
             DB::transaction(function() use ($user)
             {
