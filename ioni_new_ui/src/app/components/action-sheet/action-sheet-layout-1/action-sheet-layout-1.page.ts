@@ -35,7 +35,7 @@ export class ActionSheetLayout1Page implements OnChanges {
     this.onProceed.emit(item);
   }
 
-  async presentActionSheet(item) {
+  async presentActionSheet(item, event) {
     if (event) {
       event.stopPropagation();
     }

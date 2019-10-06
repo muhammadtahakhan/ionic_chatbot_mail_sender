@@ -14,7 +14,9 @@ import { NavController } from '@ionic/angular';
 })
 export class AppComponent {
   public appPages = [];
-  headerMenuItem = {}
+  headerMenuItem: any = {'background': 'assets/imgs/background/16.jpg',
+  'image': 'assets/imgs/logo/login-3.png',
+  'title': 'Eye Electronic Mail'};
   isEnabledRTL: boolean = false;
 
   constructor(

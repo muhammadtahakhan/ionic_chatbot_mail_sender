@@ -20,7 +20,7 @@ export class IntroPage {
         });
     }
 
-     closeModal() {
+     closeModal(event) {
          localStorage.setItem("SHOW_START_WIZARD", 'true');
         this.modalController.dismiss();
     }

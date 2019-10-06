@@ -13,7 +13,7 @@ import { ToastService } from 'src/app/services/toast-service';
 })
 export class ItemDetailsSwipeToDismissPage {
 
-    data = {};
+    data = {'headerTitle': ''};
     type: string;
 
     constructor(

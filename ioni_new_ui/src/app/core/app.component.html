@@ -3,12 +3,12 @@
     <ion-menu>
       <!-- Settings Toolbar -->
       <ion-header background-size
-      [ngStyle]="{'background-image': 'url(' + headerMenuItem.background + ')'}">
+      [ngStyle]="{'background-image': 'url(' + headerMenuItem?.background + ')'}">
           <ion-item transparent class="ion-no-padding" lines="none">
             <ion-label style="margin: 10px" class="">
-                <img class="ion-margin-bottom" [src]="headerMenuItem.image">
+                <img class="ion-margin-bottom" [src]="headerMenuItem?.image">
                 <div clearfix></div>
-                {{headerMenuItem.title}}
+                {{headerMenuItem?.title}}
             </ion-label>
           </ion-item>
       </ion-header>
@@ -23,7 +23,7 @@
                   <ion-item lines="none" [routerDirection]="'root'" (click)="openPage(p)">
                     <i icon-small slot="start" class="icon {{p.icon}}"></i>
                     <ion-label>
-                      <h1 text-size-xs>{{p.title}}</h1>
+                      <h1 text-size-xs>{{p?.title}}</h1>
                     </ion-label>
                   </ion-item>
                 </ion-menu-toggle>

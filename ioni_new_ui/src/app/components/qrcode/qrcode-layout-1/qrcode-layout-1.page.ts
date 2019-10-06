@@ -8,7 +8,7 @@ import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-sca
 })
 export class QrcodeLayout1Page {
 
-  scannedData: {};
+  scannedData =  {format: '', text: ''};
 
   barcodeScannerOptions: BarcodeScannerOptions = {
     showTorchButton: true,

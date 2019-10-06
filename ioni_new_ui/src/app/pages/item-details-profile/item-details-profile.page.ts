@@ -13,7 +13,7 @@ import { ToastService } from 'src/app/services/toast-service';
 })
 export class ItemDetailsProfilePage {
 
-    data = {};
+    data = {'toolbarTitle': ''};
     type: string;
 
     constructor(

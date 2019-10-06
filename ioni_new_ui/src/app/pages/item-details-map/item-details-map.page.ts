@@ -14,7 +14,7 @@ import { ToastService } from 'src/app/services/toast-service';
 })
 export class ItemDetailsMapPage {
 
-    data = {};
+    data = {toolbarTitle: '', };
     type: string;
 
     constructor(

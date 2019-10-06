@@ -7,7 +7,7 @@ import { FilterPipe } from './search-bar/FilterPipe';
 import { ParallaxHeader } from './parallax/parallax-header';
 import { AgmCoreModule } from '@agm/core';
 
-import { LoginLayout1Page } from './login/login-layout-1/login-layout-1.page';
+// import { LoginLayout1Page } from './login/login-layout-1/login-layout-1.page';
 import { LoginLayout2Page } from './login/login-layout-2/login-layout-2.page';
 
 import { RegisterLayout1Page } from './register/register-layout-1/register-layout-1.page';
@@ -125,9 +125,9 @@ import { ImageGalleryLayout3Page } from './image-gallery/image-gallery-layout-3/
 
 import { FullImageGalleryLayout1Page } from './full-image-gallery/full-image-gallery-layout-1/full-image-gallery-layout-1.page';
 
-import { TabLayout1PageModule } from './tab/tab-layout-1/tab-layout-1.module';
-import { TabLayout2PageModule } from './tab/tab-layout-2/tab-layout-2.module';
-import { TabLayout3PageModule } from './tab/tab-layout-3/tab-layout-3.module';
+// import { TabLayout1PageModule } from './tab/tab-layout-1/tab-layout-1.module';
+// import { TabLayout2PageModule } from './tab/tab-layout-2/tab-layout-2.module';
+// import { TabLayout3PageModule } from './tab/tab-layout-3/tab-layout-3.module';
 
 
 @NgModule({
@@ -135,13 +135,15 @@ import { TabLayout3PageModule } from './tab/tab-layout-3/tab-layout-3.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    TabLayout1PageModule,
-    TabLayout2PageModule,
-    TabLayout3PageModule,
+    // TabLayout1PageModule,
+    // TabLayout2PageModule,
+    // TabLayout3PageModule,
     AgmCoreModule.forRoot({ apiKey: '' })
   ],
   declarations: [
-    FilterPipe, ParallaxHeader, LoginLayout1Page, LoginLayout2Page,
+    FilterPipe, ParallaxHeader, 
+    // LoginLayout1Page,
+    LoginLayout2Page,
     RegisterLayout1Page, RegisterLayout2Page,
     ForgotPasswordLayout1Page, ForgotPasswordLayout2Page,
     NewPasswordLayout1Page, NewPasswordLayout2Page,
@@ -172,7 +174,9 @@ import { TabLayout3PageModule } from './tab/tab-layout-3/tab-layout-3.module';
     FullImageGalleryLayout1Page
   ],
   exports: [
-    FilterPipe, ParallaxHeader, LoginLayout1Page, LoginLayout2Page,
+    FilterPipe, ParallaxHeader, 
+    // LoginLayout1Page,
+    LoginLayout2Page,
     RegisterLayout1Page, RegisterLayout2Page,
     ForgotPasswordLayout1Page, ForgotPasswordLayout2Page,
     NewPasswordLayout1Page, NewPasswordLayout2Page,

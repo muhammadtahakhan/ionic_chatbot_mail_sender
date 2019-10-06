@@ -21,10 +21,12 @@ export class ItemDetailsLoginPage {
         private service: LoginService,
         private toastCtrl: ToastService,
         private route: ActivatedRoute) {
+
         this.type = this.route.snapshot.paramMap.get('type');
         this.service.load(service.getAllThemes()[this.type]).subscribe(d => {
             this.data = d;
         });
+        console.log( this.type, this.data);
     }
 
     isType(item) {
