@@ -19,6 +19,11 @@ const routes: Routes = [
   },
 
   {
+    path: 'register',
+    loadChildren: '../pages/register/register.module#RegisterPageModule'
+  },
+
+  {
     path: 'splash-screens/:type',
     loadChildren: '../pages/item-details-splash-screen/item-details-splash-screen.module#ItemDetailsSplashScreenPageModule'
   },

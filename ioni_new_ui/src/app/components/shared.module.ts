@@ -141,7 +141,7 @@ import { FullImageGalleryLayout1Page } from './full-image-gallery/full-image-gal
     AgmCoreModule.forRoot({ apiKey: '' })
   ],
   declarations: [
-    FilterPipe, ParallaxHeader, 
+    FilterPipe, ParallaxHeader,
     // LoginLayout1Page,
     LoginLayout2Page,
     RegisterLayout1Page, RegisterLayout2Page,

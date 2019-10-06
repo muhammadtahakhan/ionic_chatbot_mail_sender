@@ -45,6 +45,15 @@ export class MenuService implements IService {
         'singlePage': false
       },
       {
+        'url': 'register',
+        'title': 'Register',
+        'theme': 'parallax',
+        'icon': 'icon-format-line-spacing',
+        'listView': false,
+        'component': '',
+        'singlePage': false
+      },
+      {
         'url': 'swipe-to-dismiss/0',
         'title': 'Outox',
         'theme': 'parallax',

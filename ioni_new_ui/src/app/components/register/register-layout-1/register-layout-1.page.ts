@@ -6,8 +6,8 @@ import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core
   styleUrls: ['register-layout-1.page.scss'],
 })
 export class RegisterLayout1Page implements OnChanges {
-  @Input() data: any;
 
+  
   @Output() onRegister = new EventEmitter();
   @Output() onSkip = new EventEmitter();
 
@@ -27,13 +27,17 @@ export class RegisterLayout1Page implements OnChanges {
     'email': ''
   };
 
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnChanges(changes: { [propKey: string]: any }) {
-    this.data = changes['data'].currentValue;
+    // this.data = changes['data'].currentValue;
+    // console.log(this.data, changes);
   }
 
   onRegisterFunc(): void {
+    console.log(event);
     if (event) {
       event.stopPropagation();
     }
@@ -43,12 +47,13 @@ export class RegisterLayout1Page implements OnChanges {
   }
 
   onSkipFunc(): void {
+    
     if (event) {
       event.stopPropagation();
     }
-    if (this.validate()) {
+
       this.onSkip.emit(this.item);
-    }
+
   }
 
   validate(): boolean {
