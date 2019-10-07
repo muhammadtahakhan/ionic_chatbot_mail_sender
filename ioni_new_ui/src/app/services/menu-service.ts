@@ -72,7 +72,7 @@ export class MenuService implements IService {
       //   'singlePage': true
       // },
       {
-        'url': 'login/1',
+        'url': 'login',
         'title': 'Login Pages',
         'theme': 'login',
         'icon': 'icon-lock-open-outline',
@@ -81,7 +81,7 @@ export class MenuService implements IService {
         'singlePage': false
       },
       {
-        'url': 'login/1',
+        'url': 'login',
         'title': 'Register Pages',
         'theme': 'register',
         'icon': 'icon-comment-account',

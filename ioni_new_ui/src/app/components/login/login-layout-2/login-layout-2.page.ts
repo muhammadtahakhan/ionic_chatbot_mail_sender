@@ -6,7 +6,7 @@ import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core
   styleUrls: ['login-layout-2.page.scss'],
 })
 export class LoginLayout2Page implements OnChanges {
-  @Input() data: any;
+  
 
   @Output() onLogin = new EventEmitter();
   @Output() onRegister = new EventEmitter();
@@ -27,7 +27,7 @@ export class LoginLayout2Page implements OnChanges {
   constructor() { }
 
   ngOnChanges(changes: { [propKey: string]: any }) {
-    this.data = changes['data'].currentValue;
+
   }
 
   onLoginFunc(): void {

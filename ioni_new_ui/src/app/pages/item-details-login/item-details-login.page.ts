@@ -23,10 +23,11 @@ export class ItemDetailsLoginPage {
         private route: ActivatedRoute) {
 
         this.type = this.route.snapshot.paramMap.get('type');
-        this.service.load(service.getAllThemes()[this.type]).subscribe(d => {
-            this.data = d;
-        });
-        console.log( this.type, this.data);
+        // this.service.load(service.getAllThemes()[this.type]).subscribe(d => {
+        //     this.data = d;
+        //     console.log(this.data);
+        // });
+
     }
 
     isType(item) {
@@ -39,9 +40,11 @@ export class ItemDetailsLoginPage {
     }
     onRegister(params): void {
         this.toastCtrl.presentToast('onRegister:' + JSON.stringify(params));
+        this.navCtrl.navigateForward('register');
     }
     onSkip(): void {
         this.toastCtrl.presentToast('onSkip');
+        this.navCtrl.navigateForward('register');
     }
     onFacebook(params): void {
         this.toastCtrl.presentToast('onFacebook:' + JSON.stringify(params));
