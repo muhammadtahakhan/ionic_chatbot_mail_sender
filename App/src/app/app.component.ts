@@ -21,7 +21,7 @@ interface IWindow extends Window {
 export class AppComponent {
 
   selectedPath = '';
- 
+
   pages = [
    {title:'inbox', url:'inbox', count:10, icon: 'mail'},
    {title:'Outbox', url:'outbox', count:0, icon: 'cloud-upload'},
