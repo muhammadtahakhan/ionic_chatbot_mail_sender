@@ -24,7 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
-
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +41,10 @@ import { IonicStorageModule } from '@ionic/storage';
     AppRoutingModule
   ],
   providers: [
+    SpeechRecognition,
+    TextToSpeech,
+    FingerprintAIO,
+    NativeStorage,
     StatusBar, BarcodeScanner,
     SplashScreen, ToastService, LoadingService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

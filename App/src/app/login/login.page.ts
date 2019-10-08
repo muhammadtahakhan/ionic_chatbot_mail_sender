@@ -16,9 +16,9 @@ import { HTTP } from '@ionic-native/http/ngx';
 export class LoginPage implements OnInit {
   loading = false;
 
-  user : FormGroup;
+  user: FormGroup;
 
-  currentInput = 'user name'
+  currentInput = 'user name';
 
 
   constructor(private http: HTTP, public authenticationService:AuthenticationService,  private router: Router,  private speechRecognition: SpeechRecognition, 

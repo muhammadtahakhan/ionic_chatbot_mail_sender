@@ -44,7 +44,11 @@
     "ionicons": "^4.5.8",
     "phonegap-plugin-barcodescanner": "^8.0.1",
     "rxjs": "~6.3.3",
-    "zone.js": "~0.8.29"
+    "zone.js": "~0.8.29",
+    "@ionic-native/speech-recognition": "^5.6.0",
+    "@ionic-native/text-to-speech": "^5.6.0",
+    "@ionic-native/fingerprint-aio": "^5.6.1",
+    "@ionic-native/native-storage": "^5.6.1"
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.12.3",
