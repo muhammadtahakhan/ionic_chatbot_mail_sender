@@ -124,6 +124,7 @@ import { ImageGalleryLayout2Page } from './image-gallery/image-gallery-layout-2/
 import { ImageGalleryLayout3Page } from './image-gallery/image-gallery-layout-3/image-gallery-layout-3.page';
 
 import { FullImageGalleryLayout1Page } from './full-image-gallery/full-image-gallery-layout-1/full-image-gallery-layout-1.page';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 // import { TabLayout1PageModule } from './tab/tab-layout-1/tab-layout-1.module';
 // import { TabLayout2PageModule } from './tab/tab-layout-2/tab-layout-2.module';
@@ -142,6 +143,7 @@ import { FullImageGalleryLayout1Page } from './full-image-gallery/full-image-gal
   ],
   declarations: [
     FilterPipe, ParallaxHeader,
+    SpinnerComponent,
     // LoginLayout1Page,
     LoginLayout2Page,
     RegisterLayout1Page, RegisterLayout2Page,
@@ -174,7 +176,8 @@ import { FullImageGalleryLayout1Page } from './full-image-gallery/full-image-gal
     FullImageGalleryLayout1Page
   ],
   exports: [
-    FilterPipe, ParallaxHeader, 
+    FilterPipe, ParallaxHeader,
+    SpinnerComponent,
     // LoginLayout1Page,
     LoginLayout2Page,
     RegisterLayout1Page, RegisterLayout2Page,

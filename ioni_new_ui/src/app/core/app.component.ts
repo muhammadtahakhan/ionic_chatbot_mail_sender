@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MenuService } from '../services/menu-service';
 import { NavController } from '@ionic/angular';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +27,9 @@ export class AppComponent {
     private statusBar: StatusBar,
     private menuService: MenuService,
     private exportService: ExportService,
-    private navController: NavController
+    public authenticationService: AuthenticationService,
+    private navController: NavController,
+    private router: Router,
   ) {
     this.isEnabledRTL = localStorage.getItem('isEnabledRTL') == "true";
     // console.log(JSON.stringify(exportService.export()));
@@ -41,9 +45,29 @@ export class AppComponent {
       document.body.removeAttribute('class');
       document.body.classList.add('blue-gradient-3');
       //this.splashScreen.hide();
+      this.platform.ready().then(() => {
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+        this.authenticationService.logout();
+        this.authenticationService.authenticationState.subscribe(
+          res=>{
+
+            console.log('auth status', res);
+            if(!res){
+              // this.router.navigate(['user-account']);
+              this.router.navigate(['login']);
+
+            }else{
+              this.router.navigate(['home']);
+            }
+          }
+        )
+
+          });
       this.setRTL();
     });
   }
+ 
   setRTL() {
     document.getElementsByTagName('html')[0]
             .setAttribute('dir', this.isEnabledRTL  ? 'rtl': 'ltr');

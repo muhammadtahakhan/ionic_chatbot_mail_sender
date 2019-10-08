@@ -25,6 +25,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
