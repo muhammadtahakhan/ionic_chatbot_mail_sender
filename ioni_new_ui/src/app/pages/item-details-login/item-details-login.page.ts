@@ -22,17 +22,18 @@ export class ItemDetailsLoginPage implements OnInit {
     data = {};
     type: string;
     loading = false;
-    user = {};
+    user = {password: '', username: ''};
 
     constructor(
         public http: HttpClient,
         public navCtrl: NavController,
         private service: LoginService,
         private toastCtrl: ToastService,
-        public authenticationService:AuthenticationService,
+        public authenticationService: AuthenticationService,
         private route: ActivatedRoute,
         private faio: FingerprintAIO,
-        private tts: TextToSpeech
+        private tts: TextToSpeech,
+        private speechRecognition: SpeechRecognition
         ) {
 
         this.type = this.route.snapshot.paramMap.get('type');
@@ -48,13 +49,80 @@ export class ItemDetailsLoginPage implements OnInit {
         if( this.authenticationService.isAuthenticated() ){
           this.authenticationService.logout();
         }
-       
-        
+
+
         }
 
     isType(item) {
         return item === parseInt(this.type, 10);
     }
+
+    takeUser(){
+   
+        this.speechRecognition.startListening()
+        .subscribe(
+    
+          (matches: Array<string>) => {
+            console.log(matches);
+            if(matches[0]=='back'){
+            // this.goBack();
+            }
+           if(matches[0]=='next'){
+            this.tts.speak('Please spell your password')
+            .then(() => { console.log('Success');  this.takePass(); })
+            .catch((reason: any) => console.log(reason));
+
+           }else{
+            this.user.username = this.user.username+matches[0];
+            // this.user.get('username').setValue( this.user.get('username').value+matches[0]);
+            this.tts.speak('say next work')
+            .then(() => {console.log('Success');  this.takeUser(); })
+            .catch((reason: any) => console.log(reason));
+           }
+
+          },
+          (onerror) => console.log('error:', onerror)
+        )
+      }
+
+      takePass(){
+
+        this.speechRecognition.startListening()
+        .subscribe(
+
+          (matches: Array<string>) => {
+            console.log(matches);
+            if(matches[0]=='back'){
+            //   this.router.navigate(['user-account']);
+            }
+
+          if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='login'){
+            this.onLogin(this.user);
+          }else{
+              this.user.password = (this.user.password+matches[0]).replace(/\s+/g, '');
+            // this.user.get('password').setValue((this.user.get('password').value+matches[0]).replace(/\s+/g, '') );
+            this.tts.speak('say next work')
+            .then(() => {console.log('Success');  this.takePass(); })
+            .catch((reason: any) => console.log(reason));
+         
+          }
+            
+            
+          },
+          (onerror) => console.log('error:', onerror)
+        )
+      }
+      
+      
+    ionViewDidEnter(){
+        this.start();
+      }
+    
+      start(){
+        this.tts.speak('Please spell your username, once done call next for spell password')
+        .then(() => {console.log('Success'); this.takeUser();  })
+        .catch((reason: any) => console.log(reason));
+      }
 
     // events
     onLogin(params): void {
@@ -104,7 +172,7 @@ export class ItemDetailsLoginPage implements OnInit {
         this.toastCtrl.presentToast('onRegister:' + JSON.stringify(params));
         this.navCtrl.navigateForward('register');
     }
-    onSkip(): void {
+    onSkip(event): void {
         this.toastCtrl.presentToast('onSkip');
         this.navCtrl.navigateForward('register');
     }

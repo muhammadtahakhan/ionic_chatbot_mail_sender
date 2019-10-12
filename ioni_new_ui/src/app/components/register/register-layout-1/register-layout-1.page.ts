@@ -11,13 +11,13 @@ export class RegisterLayout1Page implements OnChanges {
   @Output() onRegister = new EventEmitter();
   @Output() onSkip = new EventEmitter();
 
-  private isEmailValid = true;
-  private isUsernameValid = true;
-  private isPasswordValid = true;
-  private isCityValid = true;
-  private isCountryValid = true;
+  public isEmailValid = true;
+  public isUsernameValid = true;
+  public isPasswordValid = true;
+  public isCityValid = true;
+  public isCountryValid = true;
 
-  private regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  public regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   item = {
     'username': '',

@@ -16,8 +16,8 @@ export class LoginLayout2Page implements OnChanges {
   @Output() onGoogle = new EventEmitter();
   @Output() onPinterest = new EventEmitter();
 
-  private isUsernameValid = true;
-  private isPasswordValid = true;
+  public isUsernameValid = true;
+  public isPasswordValid = true;
 
   item = {
     'username': '',

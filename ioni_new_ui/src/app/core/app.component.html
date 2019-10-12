@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane when="md">
-    <ion-menu>
+    <ion-menu *ngIf="authenticationService.isAuthenticated()">
       <!-- Settings Toolbar -->
       <ion-header background-size
       [ngStyle]="{'background-image': 'url(' + headerMenuItem?.background + ')'}">

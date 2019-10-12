@@ -39,7 +39,7 @@ export class RegisterPage implements OnInit {
     }
 
 
-    onSkip(): void {
+    onSkip(event): void {
         this.toastCtrl.presentToast('Navigated to login');
         this.navCtrl.navigateForward('login');
     }

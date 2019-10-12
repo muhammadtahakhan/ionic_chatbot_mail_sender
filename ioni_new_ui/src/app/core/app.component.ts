@@ -30,6 +30,7 @@ export class AppComponent {
     public authenticationService: AuthenticationService,
     private navController: NavController,
     private router: Router,
+    
   ) {
     this.isEnabledRTL = localStorage.getItem('isEnabledRTL') == "true";
     // console.log(JSON.stringify(exportService.export()));

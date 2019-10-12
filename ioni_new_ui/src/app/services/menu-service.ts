@@ -44,15 +44,15 @@ export class MenuService implements IService {
         'component': '',
         'singlePage': false
       },
-      {
-        'url': 'register',
-        'title': 'Register',
-        'theme': 'parallax',
-        'icon': 'icon-format-line-spacing',
-        'listView': false,
-        'component': '',
-        'singlePage': false
-      },
+      // {
+      //   'url': 'register',
+      //   'title': 'Register',
+      //   'theme': 'parallax',
+      //   'icon': 'icon-format-line-spacing',
+      //   'listView': false,
+      //   'component': '',
+      //   'singlePage': false
+      // },
       {
         'url': 'swipe-to-dismiss/0',
         'title': 'Outox',
@@ -71,24 +71,24 @@ export class MenuService implements IService {
       //   'component': '',
       //   'singlePage': true
       // },
-      {
-        'url': 'login',
-        'title': 'Login Pages',
-        'theme': 'login',
-        'icon': 'icon-lock-open-outline',
-        'listView': false,
-        'component': '',
-        'singlePage': false
-      },
-      {
-        'url': 'login',
-        'title': 'Register Pages',
-        'theme': 'register',
-        'icon': 'icon-comment-account',
-        'listView': false,
-        'component': '',
-        'singlePage': false
-      },
+      // {
+      //   'url': 'login',
+      //   'title': 'Login Pages',
+      //   'theme': 'login',
+      //   'icon': 'icon-lock-open-outline',
+      //   'listView': false,
+      //   'component': '',
+      //   'singlePage': false
+      // },
+      // {
+      //   'url': 'login',
+      //   'title': 'Register Pages',
+      //   'theme': 'register',
+      //   'icon': 'icon-comment-account',
+      //   'listView': false,
+      //   'component': '',
+      //   'singlePage': false
+      // },
       // {
       //   'url': 'items/forgetPassword',
       //   'title': 'Forgot Password Pages',
