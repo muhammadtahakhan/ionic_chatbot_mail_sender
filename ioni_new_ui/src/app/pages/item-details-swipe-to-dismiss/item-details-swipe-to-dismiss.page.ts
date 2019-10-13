@@ -23,6 +23,7 @@ export class ItemDetailsSwipeToDismissPage {
         private route: ActivatedRoute) {
         this.type = this.route.snapshot.paramMap.get('type');
         this.service.load(service.getAllThemes()[this.type]).subscribe(d => {
+            console.log(d);
             this.data = d;
         });
     }
