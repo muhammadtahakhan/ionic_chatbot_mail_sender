@@ -19,10 +19,10 @@ const routes: Routes = [
   //   loadChildren: './pages/item-details-splash-screen/item-details-splash-screen.module#ItemDetailsSplashScreenPageModule'
   // },
 
-  // {
-  //   path: 'profile/:type',
-  //   loadChildren: './pages/item-details-profile/item-details-profile.module#ItemDetailsProfilePageModule'
-  // },
+  {
+    path: 'profile/:type',
+    loadChildren: './pages/item-details-profile/item-details-profile.module#ItemDetailsProfilePageModule'
+  },
 
   {
     path: 'swipe-to-dismiss/:type',

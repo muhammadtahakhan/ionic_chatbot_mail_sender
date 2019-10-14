@@ -38,15 +38,15 @@ export class MenuService implements IService {
         'singlePage': false
       },
      
-      {
-        'url': 'splash-screens/2',
-        'title': 'Splash Screen',
-        'theme': 'splashScreens',
-        'icon': 'icon-logout',
-        'listView': false,
-        'component': '',
-        'singlePage': false
-      },
+      // {
+      //   'url': 'splash-screens/2',
+      //   'title': 'Splash Screen',
+      //   'theme': 'splashScreens',
+      //   'icon': 'icon-logout',
+      //   'listView': false,
+      //   'component': '',
+      //   'singlePage': false
+      // },
     
       {
         'url': 'profile/4',
@@ -57,6 +57,24 @@ export class MenuService implements IService {
         'component': '',
         'singlePage': false
       },
+      //   {
+      //   'url': 'login',
+      //   'title': 'Login Pages',
+      //   'theme': 'login',
+      //   'icon': 'icon-lock-open-outline',
+      //   'listView': false,
+      //   'component': '',
+      //   'singlePage': false
+      // },
+      //  {
+      //   'url': 'register',
+      //   'title': 'Register',
+      //   'theme': 'parallax',
+      //   'icon': 'icon-format-line-spacing',
+      //   'listView': false,
+      //   'component': '',
+      //   'singlePage': false
+      // },
          ];
   }
 

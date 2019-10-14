@@ -70,8 +70,8 @@ import { RegisterLayout2Page } from './register/register-layout-2/register-layou
 // import { ProfileLayout1Page } from './profile/profile-layout-1/profile-layout-1.page';
 // import { ProfileLayout2Page } from './profile/profile-layout-2/profile-layout-2.page';
 // import { ProfileLayout3Page } from './profile/profile-layout-3/profile-layout-3.page';
-// import { ProfileLayout4Page } from './profile/profile-layout-4/profile-layout-4.page';
-// import { ProfileLayout5Page } from './profile/profile-layout-5/profile-layout-5.page';
+import { ProfileLayout4Page } from './profile/profile-layout-4/profile-layout-4.page';
+import { ProfileLayout5Page } from './profile/profile-layout-5/profile-layout-5.page';
 
 // import { RangeLayout1Page } from './range/range-layout-1/range-layout-1.page';
 // import { RangeLayout2Page } from './range/range-layout-2/range-layout-2.page';
@@ -164,7 +164,9 @@ import { SpinnerPage } from './spinner/spinner.page';
     // SpinnerPage, MapLayout1Page, MapLayout2Page, MapLayout3Page,
     // QrcodeLayout1Page, QrcodeLayout2Page,
     // TimeLineLayout1Page, TimeLineLayout2Page, TimeLineLayout3Page,
-    // ProfileLayout1Page, ProfileLayout2Page, ProfileLayout3Page, ProfileLayout4Page, ProfileLayout5Page,
+    // ProfileLayout1Page, ProfileLayout2Page, ProfileLayout3Page, 
+    ProfileLayout4Page,
+    ProfileLayout5Page,
     // RangeLayout1Page, RangeLayout2Page, RangeLayout3Page, RangeLayout4Page,
     // SelectLayout1Page, SelectLayout2Page, SelectLayout3Page,
     // SelectLayout4Page, SelectLayout5Page, SelectLayout6Page,
@@ -201,7 +203,9 @@ import { SpinnerPage } from './spinner/spinner.page';
     // SpinnerPage, MapLayout1Page, MapLayout2Page, MapLayout3Page,
     // QrcodeLayout1Page, QrcodeLayout2Page,
     // TimeLineLayout1Page, TimeLineLayout2Page, TimeLineLayout3Page,
-    // ProfileLayout1Page, ProfileLayout2Page, ProfileLayout3Page, ProfileLayout4Page, ProfileLayout5Page,
+    // ProfileLayout1Page, ProfileLayout2Page, ProfileLayout3Page, 
+    ProfileLayout4Page,
+    ProfileLayout5Page,
     // RangeLayout1Page, RangeLayout2Page, RangeLayout3Page, RangeLayout4Page,
     // SelectLayout1Page, SelectLayout2Page, SelectLayout3Page,
     // SelectLayout4Page, SelectLayout5Page, SelectLayout6Page,

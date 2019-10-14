@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './services/authentication.service';
 import { NavController } from '@ionic/angular';
 import { MenuService } from './services/menu-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     public authenticationService: AuthenticationService,
     private navController: NavController,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private router: Router,
   ) {
     this.isEnabledRTL = localStorage.getItem('isEnabledRTL') === 'true';
     this.initializeApp();
@@ -37,6 +39,26 @@ export class AppComponent {
       this.statusBar.backgroundColorByHexString('#0091D2');
       document.body.removeAttribute('class');
       document.body.classList.add('blue-gradient-3');
+        this.platform.ready().then(() => {
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+        this.authenticationService.logout();
+        this.authenticationService.authenticationState.subscribe(
+          res=>{
+
+            console.log('auth status', res);
+            if(!res){
+              // this.router.navigate(['user-account']);
+              this.router.navigate(['login']);
+
+            }else{
+              this.router.navigate(['home']);
+            }
+          }
+        )
+
+          });
+      this.setRTL();
 
     });
   }
