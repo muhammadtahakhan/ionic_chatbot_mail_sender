@@ -10,6 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule],
   providers: [
+    SpeechRecognition,
+    TextToSpeech,
+    FingerprintAIO,
+    NativeStorage,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
