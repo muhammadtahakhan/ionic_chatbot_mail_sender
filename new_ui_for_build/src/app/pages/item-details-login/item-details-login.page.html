@@ -1,25 +1,11 @@
 <ion-app>
-  <!-- PAGE 1-->
-  <!-- <cs-login-layout-1
-    *ngIf="isType(0)"
-    [data]="data"
-    (onLogin)="onLogin($event)"
-    (onRegister)="onRegister($event)"
-    (onSkip)="onSkip($event)"
-    (onFacebook)="onFacebook($event)"
-    (onTwitter)="onTwitter($event)"
-    (onGoogle)="onGoogle($event)"
-    (onPinterest)="onPinterest($event)">
-  </cs-login-layout-1> -->
-  <app-spinner *ngIf="loading"></app-spinner>
+ 
+  <app-spinner ></app-spinner>
+  
   <!-- PAGE 2-->
   <cs-login-layout-2
-    
-    
     (onLogin)="onLogin($event)"
-   
-    (onSkip)="onSkip($event)"
-   >
+   (onSkip)="onSkip($event)">
   </cs-login-layout-2>
 
 </ion-app>

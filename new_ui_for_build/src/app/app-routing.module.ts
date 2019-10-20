@@ -28,6 +28,7 @@ const routes: Routes = [
     path: 'swipe-to-dismiss/:type',
     loadChildren: './pages/item-details-swipe-to-dismiss/item-details-swipe-to-dismiss.module#ItemDetailsSwipeToDismissPageModule'
   },
+  { path: 'compose-email', loadChildren: './pages/compose/compose.module#ComposePageModule' },
 ];
 
 @NgModule({

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "item-details-swipe-to-dismiss.page.scss"
+    ],
+    "names": [],
+    "file": "item-details-swipe-to-dismiss.page.css"
+}

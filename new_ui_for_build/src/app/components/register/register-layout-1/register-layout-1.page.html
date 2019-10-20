@@ -25,6 +25,15 @@
         </ion-input>
         <ion-icon *ngIf="!isPasswordValid" icon-small name="remove-circle"></ion-icon>
       </ion-item>
+       <!---Input field password-->
+       <ion-item class="ion-no-padding" input>
+          <ion-label text-size-xs position="floating">Confirm Password</ion-label>
+          <ion-input required type="password"
+            [(ngModel)]="item.c_password">
+          </ion-input>
+          <ion-icon *ngIf="!isCPasswordValid" icon-small name="remove-circle"></ion-icon>
+        </ion-item>
+       
       <!---Input field email-->
       <ion-item class="ion-no-padding" input>
         <ion-label text-size-xs position="floating">Email</ion-label>
@@ -34,24 +43,16 @@
         </ion-input>
         <ion-icon *ngIf="!isEmailValid" icon-small name="remove-circle"></ion-icon>
       </ion-item>
-      <!---Input field country-->
+      <!---Input field name-->
       <ion-item class="ion-no-padding" input>
-        <ion-label text-size-xs position="floating">Country</ion-label>
+        <ion-label text-size-xs position="floating">Name</ion-label>
         <ion-input required type="text"
           pattern="[a-zA-Z ]*" required
-          [(ngModel)]="item.country">
+          [(ngModel)]="item.name">
         </ion-input>
-        <ion-icon *ngIf="!isCountryValid" icon-small name="remove-circle"></ion-icon>
+        <ion-icon *ngIf="!isNameValid" icon-small name="remove-circle"></ion-icon>
       </ion-item>
-      <!---Input field city-->
-      <ion-item class="ion-no-padding" input>
-        <ion-label text-size-xs position="floating">City</ion-label>
-        <ion-input required type="text"
-          pattern="[a-zA-Z ]*" required
-          [(ngModel)]="item.city">
-        </ion-input>
-        <ion-icon *ngIf="!isCityValid" icon-small name="remove-circle"></ion-icon>
-      </ion-item>
+     
       <!---Register button-->
       <ion-button button-round float-end margin-top
         fill="outline" shape="round" (click)="onRegisterFunc()">Register

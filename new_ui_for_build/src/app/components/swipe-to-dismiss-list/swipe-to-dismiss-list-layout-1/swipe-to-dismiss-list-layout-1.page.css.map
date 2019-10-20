@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA;0DAC0D;AAE1D,AAAA,gBAAgB,CAAC;EACf,YAAY,CAAA,qCAAC;CAUd;;AAXD,AAGE,gBAHc,EAGd,AAAA,YAAC,AAAA;AAHH,gBAAgB,EAId,AAAA,YAAC,AAAA,EAAc;EACb,KAAK,EAAE,4BAA4B;CACpC;;AANH,AAQE,gBARc,EAQd,AAAA,WAAC,AAAA,EAAa;EACZ,KAAK,EAAE,qCAAqC;CAC7C",
+    "sources": [
+        "swipe-to-dismiss-list-layout-1.page.scss"
+    ],
+    "names": [],
+    "file": "swipe-to-dismiss-list-layout-1.page.css"
+}

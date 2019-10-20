@@ -127,7 +127,7 @@ import { SwipeToDismissListLayout1Page } from './swipe-to-dismiss-list/swipe-to-
 
 // import { FullImageGalleryLayout1Page } from './full-image-gallery/full-image-gallery-layout-1/full-image-gallery-layout-1.page';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { SpinnerPage } from './spinner/spinner.page';
+// import { SpinnerPage } from './spinner/spinner.page';
 
 // import { TabLayout1PageModule } from './tab/tab-layout-1/tab-layout-1.module';
 // import { TabLayout2PageModule } from './tab/tab-layout-2/tab-layout-2.module';
@@ -147,7 +147,7 @@ import { SpinnerPage } from './spinner/spinner.page';
   declarations: [
     // FilterPipe, ParallaxHeader,
     SpinnerComponent,
-    SpinnerPage,
+    // SpinnerPage,
     // LoginLayout1Page,
     LoginLayout2Page,
     RegisterLayout1Page, RegisterLayout2Page,
@@ -186,7 +186,7 @@ import { SpinnerPage } from './spinner/spinner.page';
   exports: [
     // FilterPipe, ParallaxHeader,
     SpinnerComponent,
-    SpinnerPage,
+    // SpinnerPage,
     // LoginLayout1Page,
     LoginLayout2Page,
     RegisterLayout1Page, RegisterLayout2Page,

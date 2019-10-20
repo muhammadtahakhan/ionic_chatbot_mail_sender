@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/login-service';
 import { ToastService } from 'src/app/services/toast-service';
 import { ActivatedRoute } from '@angular/router';
 import { RegisterService } from 'src/app/services/register-service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -33,6 +34,7 @@ export class RegisterPage implements OnInit {
         public navCtrl: NavController,
         private service: RegisterService,
         private toastCtrl: ToastService,
+        public authenticationService: AuthenticationService,
         private route: ActivatedRoute) {
         this.type = this.route.snapshot.paramMap.get('type');
        
@@ -47,6 +49,14 @@ export class RegisterPage implements OnInit {
 
     // events
     onRegister(params): void {
+        console.log(params);
+        this.authenticationService.signup(params).subscribe(
+            res => { console.log('-->', params);
+            this.navCtrl.navigateForward('login');
+             },
+            error => {},
+            () => { }
+        );
         this.toastCtrl.presentToast('onRegister:' + JSON.stringify(params));
     }
 

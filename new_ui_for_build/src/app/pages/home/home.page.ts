@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 // import { HomeService } from './../../services/home-service';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 // import { IntroPage } from '../intro-page/intro-page.page';
 
 @Component({
@@ -21,6 +22,7 @@ export class HomePage {
   "background": "assets/imgs/background/8.jpg"};
 
   constructor(
+    private router: Router,
     // private homeService:HomeService,
     public modalController: ModalController) {
       // this.item = this.homeService.getData();
@@ -35,4 +37,8 @@ export class HomePage {
   //   let modal = await this.modalController.create({component: IntroPage});
   //    return await modal.present();
   // }
+
+  goTo(url){
+    this.router.navigate([url]);
+  }
 }

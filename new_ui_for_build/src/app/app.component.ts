@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController, PopoverController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './services/authentication.service';
 import { NavController } from '@ionic/angular';
 import { MenuService } from './services/menu-service';
 import { Router } from '@angular/router';
+import { SplashScreenLayout1Page } from './components/splash-screen/splash-screen-layout-1/splash-screen-layout-1.page'
 
 @Component({
   selector: 'app-root',
@@ -27,21 +28,31 @@ export class AppComponent {
     private navController: NavController,
     private menuService: MenuService,
     private router: Router,
+    public modalCtrl: PopoverController
   ) {
     this.isEnabledRTL = localStorage.getItem('isEnabledRTL') === 'true';
     this.initializeApp();
     this.appPages = this.menuService.getAllThemes()
   }
 
-  initializeApp() {
+  async showSplash(){
+    const splash = await this.modalCtrl.create({component: SplashScreenLayout1Page});
+    await splash.present();
+  }
+
+   initializeApp() {
+    // this.showSplash();
     this.platform.ready().then(() => {
+     
       this.statusBar.overlaysWebView(false);
       this.statusBar.backgroundColorByHexString('#0091D2');
       document.body.removeAttribute('class');
       document.body.classList.add('blue-gradient-3');
+        // tslint:disable-next-line: align
         this.platform.ready().then(() => {
         this.statusBar.styleDefault();
         this.splashScreen.hide();
+       
         this.authenticationService.logout();
         this.authenticationService.authenticationState.subscribe(
           res=>{
@@ -70,5 +81,9 @@ export class AppComponent {
 
   openPage(page) {
     this.navController.navigateRoot([page.url], {});
+  }
+  
+  goTo(url){
+    this.router.navigate([url]);
   }
 }

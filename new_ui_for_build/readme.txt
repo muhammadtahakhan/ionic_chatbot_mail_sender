@@ -1,0 +1,1 @@
+https://dev.to/niranjankala/create-ionic-4-release-build-for-android-4700

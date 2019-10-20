@@ -1,0 +1,80 @@
+/* SETTINGS RTL STYLE
+=======================================================
+=======================================================*/
+html[dir=rtl] {
+  /* SETTINGS INPUT FIELD
+      =======================================================*/
+  /* SETTINGS COMMENTS WITH TIMELINE
+      =======================================================*/
+  /* SETTINGS CARD
+    =======================================================*/
+  /* SETTINGS TABS
+    =======================================================*/
+  /* SETTINGS TIMELINE
+    =======================================================*/
+}
+
+html[dir=rtl] cs-expandable-list-layout-1 [social-share] {
+  left: 8px;
+  right: unset !important;
+}
+
+html[dir=rtl] ion-item[input].item-has-value .label-floating, html[dir=rtl] ion-item[input].item-has-focus .label-floating,
+html[dir=rtl] .item-textarea.item-has-value .label-floating,
+html[dir=rtl] .item-textarea.item-has-focus .label-floating {
+  -webkit-transform: translateZ(0) scale(1) !important;
+          transform: translateZ(0) scale(1) !important;
+}
+
+html[dir=rtl] ion-item[input] ion-icon,
+html[dir=rtl] .item-textarea ion-icon {
+  left: 0;
+  right: unset;
+}
+
+html[dir=rtl] cs-comment-layout-2 ion-item:before {
+  left: unset;
+  right: 45px;
+}
+
+html[dir=rtl] cs-google-card-list-layout-1 ion-thumbnail {
+  margin: 0 0 0 10px !important;
+}
+
+html[dir=rtl] cs-google-card-list-layout-2 [title-card] {
+  left: auto !important;
+  right: 16px;
+}
+
+html[dir=rtl] ion-tabs app-tab1 h2 {
+  left: auto !important;
+  right: 16px;
+}
+
+html[dir=rtl] ion-tabs app-tab5 ion-list > ion-item::before {
+  left: auto !important;
+  right: 45px;
+}
+
+html[dir=rtl] cs-timeline-layout-1 ion-card:after,
+html[dir=rtl] cs-timeline-layout-3 ion-card:after {
+  right: -30px;
+  left: unset;
+}
+
+html[dir=rtl] cs-timeline-layout-1 ion-card:before,
+html[dir=rtl] cs-timeline-layout-3 ion-card:before {
+  right: -36px;
+  left: unset;
+}
+
+html[dir=rtl] cs-timeline-layout-2 [item-thumbnail]:after {
+  right: -30px;
+  left: unset;
+}
+
+html[dir=rtl] cs-timeline-layout-2 [item-thumbnail]:before {
+  right: -36px;
+  left: unset;
+}
+/*# sourceMappingURL=rtl.css.map */

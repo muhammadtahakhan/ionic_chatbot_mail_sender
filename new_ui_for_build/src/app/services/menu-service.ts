@@ -17,6 +17,16 @@ export class MenuService implements IService {
   //* Data Set for main menu
   getAllThemes = (): Array<any> => {
     return [
+
+      {
+        'url': 'compose-email',
+        'title': 'Compose Email',
+        'theme': 'parallax',
+        'icon': 'icon-format-line-spacing',
+        'listView': false,
+        'component': '',
+        'singlePage': false
+      },
     
       {
         'url': 'swipe-to-dismiss/0',

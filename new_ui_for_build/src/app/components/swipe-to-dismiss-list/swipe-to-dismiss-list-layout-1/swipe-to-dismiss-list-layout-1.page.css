@@ -1,0 +1,15 @@
+/* Style component 1
+========================================================*/
+ion-item-divider {
+  --background: var(--cs-background-accent, #0090d0);
+}
+
+ion-item-divider [text-size-xl],
+ion-item-divider [text-size-xs] {
+  color: var(--cs-text-primary, #fff);
+}
+
+ion-item-divider [span-medium] {
+  color: var(--cs-icon-color-primary, #00c0e8);
+}
+/*# sourceMappingURL=swipe-to-dismiss-list-layout-1.page.css.map */

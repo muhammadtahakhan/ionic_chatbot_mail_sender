@@ -1,0 +1,34 @@
+[background-size] {
+  height: 200px;
+  position: relative;
+  background-color: var(--cs-text-primary, #ffffff);
+  background-blend-mode: luminosity;
+}
+
+[background-size]::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: var(--cs-mode-image);
+  background: var(--cs-gradient-linear);
+}
+
+[background-size] ion-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  --color: var(--cs-text-primary, #ffffff);
+}
+
+[background-size] ion-item img {
+  width: 50px;
+}
+/*# sourceMappingURL=app.component.css.map */

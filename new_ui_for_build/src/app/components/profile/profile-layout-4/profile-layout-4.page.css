@@ -1,0 +1,30 @@
+/* Settings Card
+======================================*/
+ion-button .active {
+  color: var(--cs-icon-color-primary, #00c0e8) !important;
+}
+
+ion-card {
+  overflow: visible;
+}
+
+ion-card ion-avatar {
+  margin: -40px auto 0;
+}
+
+ion-card [social-share] {
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: center;
+}
+
+/* Settings Slider
+======================================*/
+ion-slides {
+  overflow: visible;
+}
+/*# sourceMappingURL=profile-layout-4.page.css.map */

@@ -18,7 +18,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 })
 export class ItemDetailsLoginPage implements OnInit {
-
+ 
     data = {};
     type: string;
     loading = false;
@@ -53,19 +53,30 @@ export class ItemDetailsLoginPage implements OnInit {
 
         }
 
+    ionViewDidEnter() {
+      console.log('ionViewDidEnter');
+      this.start();
+    }
+
+    start() {
+      this.toastCtrl.presentToast('start...');
+      this.tts.speak({text: 'Please spell your username, once done call next for spell password',
+        locale: 'en-GB'})
+      .then(() => {this.toastCtrl.presentToast('start... takeUser'); this.takeUser();  })
+      .catch((reason: any) => console.log(reason));
+    }
+
     isType(item) {
         return item === parseInt(this.type, 10);
     }
 
-    takeUser(){
-   
+    takeUser() {
+
         this.speechRecognition.startListening()
-        .subscribe(
-    
-          (matches: Array<string>) => {
+        .subscribe((matches: Array<string>) => {
             console.log(matches);
             if(matches[0]=='back'){
-            // this.goBack();
+            this.goBack();
             }
            if(matches[0]=='next'){
             this.tts.speak('Please spell your password')
@@ -93,7 +104,7 @@ export class ItemDetailsLoginPage implements OnInit {
           (matches: Array<string>) => {
             console.log(matches);
             if(matches[0]=='back'){
-            //   this.router.navigate(['user-account']);
+              this.goBack();
             }
 
           if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='login'){
@@ -112,17 +123,7 @@ export class ItemDetailsLoginPage implements OnInit {
           (onerror) => console.log('error:', onerror)
         )
       }
-      
-      
-    ionViewDidEnter(){
-        this.start();
-      }
-    
-      start(){
-        this.tts.speak('Please spell your username, once done call next for spell password')
-        .then(() => {console.log('Success'); this.takeUser();  })
-        .catch((reason: any) => console.log(reason));
-      }
+
 
     // events
     onLogin(params): void {
@@ -131,7 +132,6 @@ export class ItemDetailsLoginPage implements OnInit {
         // this.toastCtrl.presentToast('onLogin:' + JSON.stringify(params));
         this.faio.isAvailable()
         .then(isAvailable=>{
-    
     
           this.faio.show({
             clientId: 'Fingerprint-Demo',
@@ -142,8 +142,6 @@ export class ItemDetailsLoginPage implements OnInit {
         })
         .then((result: any) => {console.log(result); this.sayfinalWord(); })
         .catch((error: any) => console.log(error));
-    
-    
     
         }).catch((error: any) =>{this.sayfinalWord(); console.log('finger', error)} );
         
@@ -175,6 +173,10 @@ export class ItemDetailsLoginPage implements OnInit {
     onSkip(event): void {
         this.toastCtrl.presentToast('onSkip');
         this.navCtrl.navigateForward('register');
+    }
+
+    goBack() {
+      this.navCtrl.navigateBack(['home']);
     }
 
 }

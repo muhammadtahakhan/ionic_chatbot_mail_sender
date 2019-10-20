@@ -14,15 +14,26 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { SharedModule } from './components/shared.module';
+import { SplashScreenLayout1Page } from './components/splash-screen/splash-screen-layout-1/splash-screen-layout-1.page';
+import { SplashScreenLayout2Page } from './components/splash-screen/splash-screen-layout-2/splash-screen-layout-2.page';
+import { SplashScreenLayout3Page } from './components/splash-screen/splash-screen-layout-3/splash-screen-layout-3.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent,
+     SplashScreenLayout1Page,
+     SplashScreenLayout2Page,
+     SplashScreenLayout3Page],
+
   imports: [BrowserModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     HttpClientModule,
+
     AppRoutingModule],
+    entryComponents: [ SplashScreenLayout1Page,
+      SplashScreenLayout2Page,
+      SplashScreenLayout3Page],
   providers: [
     SpeechRecognition,
     TextToSpeech,
@@ -32,6 +43,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule {}
