@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { ToastService } from 'src/app/services/toast-service';
 
 @Component({
   selector: 'cs-login-layout-2',
@@ -6,15 +7,25 @@ import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core
   styleUrls: ['login-layout-2.page.scss'],
 })
 export class LoginLayout2Page implements OnChanges {
-  
+
 
   @Output() onLogin = new EventEmitter();
   @Output() onRegister = new EventEmitter();
   @Output() onSkip = new EventEmitter();
-  @Output() onFacebook = new EventEmitter();
-  @Output() onTwitter = new EventEmitter();
-  @Output() onGoogle = new EventEmitter();
-  @Output() onPinterest = new EventEmitter();
+
+  private _username : string;
+  private _password : string;
+  @Input()
+  set username(username: string) {
+    this.item.username = username;
+  }
+  get username(): string { return this._username; }
+
+  @Input()
+  set password(password: string) {
+    this.item.password = password;
+  }
+  get password(): string { return this._password; }
 
   public isUsernameValid = true;
   public isPasswordValid = true;
@@ -24,10 +35,10 @@ export class LoginLayout2Page implements OnChanges {
     'password': ''
   };
 
-  constructor() { }
+  constructor( private toastCtrl: ToastService) { }
 
   ngOnChanges(changes: { [propKey: string]: any }) {
-
+    this.toastCtrl.presentToast('cahange');
   }
 
   onLoginFunc(): void {
@@ -46,34 +57,6 @@ export class LoginLayout2Page implements OnChanges {
     if (this.validate()) {
       this.onRegister.emit(this.item);
     }
-  }
-
-  onFacebookFunc(): void {
-    if (event) {
-      event.stopPropagation();
-    }
-    this.onLogin.emit(this.item);
-  }
-
-  onTwitterFunc(): void {
-    if (event) {
-      event.stopPropagation();
-    }
-    this.onTwitter.emit(this.item);
-  }
-
-  onGoogleFunc(): void {
-    if (event) {
-      event.stopPropagation();
-    }
-    this.onGoogle.emit(this.item);
-  }
-
-  onPinterestFunc(): void {
-    if (event) {
-      event.stopPropagation();
-    }
-    this.onPinterest.emit(this.item);
   }
 
   onSkipFunc(): void {

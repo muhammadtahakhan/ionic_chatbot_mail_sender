@@ -1,9 +1,11 @@
 <ion-app>
  
   <app-spinner ></app-spinner>
-  
+
   <!-- PAGE 2-->
   <cs-login-layout-2
+  [username] = "username"
+  [password] = "password"
     (onLogin)="onLogin($event)"
    (onSkip)="onSkip($event)">
   </cs-login-layout-2>

@@ -18,11 +18,13 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 })
 export class ItemDetailsLoginPage implements OnInit {
- 
+
     data = {};
     type: string;
     loading = false;
     user = {password: '', username: ''};
+    username = 'userrname';
+    password = 'password';
 
     constructor(
         public http: HttpClient,
@@ -45,8 +47,8 @@ export class ItemDetailsLoginPage implements OnInit {
     }
 
     ngOnInit() {
-        console.log('ngOnInit', this.authenticationService.isAuthenticated())
-        if( this.authenticationService.isAuthenticated() ){
+        console.log('ngOnInit', this.authenticationService.isAuthenticated() )
+        if ( this.authenticationService.isAuthenticated() ) {
           this.authenticationService.logout();
         }
 
@@ -75,16 +77,19 @@ export class ItemDetailsLoginPage implements OnInit {
         this.speechRecognition.startListening()
         .subscribe((matches: Array<string>) => {
             console.log(matches);
-            if(matches[0]=='back'){
+            if ( matches[0] === 'back') {
             this.goBack();
             }
-           if(matches[0]=='next'){
+            if(matches[0] === 'register' || matches[0] === 'signup' || matches[0] === 'sign up') {
+              this.goRegiser();
+            }
+            if ( matches[0] === 'next') {
             this.tts.speak('Please spell your password')
             .then(() => { console.log('Success');  this.takePass(); })
             .catch((reason: any) => console.log(reason));
 
-           }else{
-            this.user.username = this.user.username+matches[0];
+           } else {
+            this.username = this.user.username = this.user.username + matches[0];
             // this.user.get('username').setValue( this.user.get('username').value+matches[0]);
             this.tts.speak('say next work')
             .then(() => {console.log('Success');  this.takeUser(); })
@@ -106,19 +111,22 @@ export class ItemDetailsLoginPage implements OnInit {
             if(matches[0]=='back'){
               this.goBack();
             }
+            if(matches[0]=='register' || matches[0]=='signup' || matches[0]=='sign up'){
+              this.goRegiser();
+            }
 
-          if(matches[0]=='submit' || matches[0]=='done' || matches[0]=='thanks' || matches[0]=='login'){
+            if ( matches[0] === 'submit' || matches[0] === 'done' || matches[0] === 'thanks' || matches[0] === 'login') {
             this.onLogin(this.user);
           }else{
-              this.user.password = (this.user.password+matches[0]).replace(/\s+/g, '');
+            this.password = this.user.password = (this.user.password+matches[0]).replace(/\s+/g, '');
             // this.user.get('password').setValue((this.user.get('password').value+matches[0]).replace(/\s+/g, '') );
             this.tts.speak('say next work')
             .then(() => {console.log('Success');  this.takePass(); })
             .catch((reason: any) => console.log(reason));
-         
+
           }
-            
-            
+
+
           },
           (onerror) => console.log('error:', onerror)
         )
@@ -132,7 +140,7 @@ export class ItemDetailsLoginPage implements OnInit {
         // this.toastCtrl.presentToast('onLogin:' + JSON.stringify(params));
         this.faio.isAvailable()
         .then(isAvailable=>{
-    
+
           this.faio.show({
             clientId: 'Fingerprint-Demo',
             clientSecret: 'password', //Only necessary for Android
@@ -142,26 +150,25 @@ export class ItemDetailsLoginPage implements OnInit {
         })
         .then((result: any) => {console.log(result); this.sayfinalWord(); })
         .catch((error: any) => console.log(error));
-    
+
         }).catch((error: any) =>{this.sayfinalWord(); console.log('finger', error)} );
-        
+
       }
-    
+
       sayfinalWord(){
       this.loading = true;
-     
       this.authenticationService.login(this.user)
       .pipe(
         finalize(() => this.loading = false),
       )
       .subscribe(
-        res=>{ console.log(res) },
+        res => { console.log(res); },
         error => { console.log(error);  },
-        ()=>{}
+        () => {}
       );
 
 
-        this.tts.speak('Thanks, You will be login soon')
+      this.tts.speak('Thanks, You will be login soon')
         .then(() => {console.log('Success'); })
         .catch((reason: any) => console.log(reason));
 
@@ -177,6 +184,10 @@ export class ItemDetailsLoginPage implements OnInit {
 
     goBack() {
       this.navCtrl.navigateBack(['home']);
+    }
+
+    goRegiser() {
+      this.navCtrl.navigateBack(['register']);
     }
 
 }
