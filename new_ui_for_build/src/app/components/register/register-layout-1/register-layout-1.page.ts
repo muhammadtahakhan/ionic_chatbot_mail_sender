@@ -11,6 +11,17 @@ export class RegisterLayout1Page implements OnChanges {
   @Output() onRegister = new EventEmitter();
   @Output() onSkip = new EventEmitter();
 
+  @Input()
+  set name(val) { this.item.name = val; }
+  @Input()
+  set email(val) { this.item.email = val; }
+  @Input()
+  set username(val) { this.item.username = val; }
+  @Input()
+  set password(val) { this.item.password = val; }
+  @Input()
+  set c_password(val) { this.item.c_password = val; }
+
   public isEmailValid = true;
   public isUsernameValid = true;
   public isPasswordValid = true;
@@ -18,20 +29,19 @@ export class RegisterLayout1Page implements OnChanges {
   public isNameValid = true;
 
 
+  // tslint:disable-next-line: max-line-length
   public regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   item = {
-    'email': '',
-    'username': '',
-    'password': '',
-    'c_password': '',
-    'name': '',
-    
-   
+    name: '',
+    email: '',
+    username: '',
+    password: '',
+    c_password: '',
   };
 
   constructor() {
-    
+
    }
 
   ngOnChanges(changes: { [propKey: string]: any }) {

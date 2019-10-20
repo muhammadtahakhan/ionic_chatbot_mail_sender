@@ -6,9 +6,28 @@
       <ion-button float-end margin-top button-clear fill="clear" shape="round" routerLink="/crisis-center" (click)="onSkipFunc()">Login</ion-button>
       <!---Logo-->
       <ion-img float-start src="assets/imgs/logo/login.png" ></ion-img>
+       <!--Form Title-->
+       <h1 text-size-xl>Register</h1>
       <div clearfix></div>
-      <!--Form Title-->
-      <h1 text-size-xl>Register</h1>
+        <!---Input field email-->
+        <ion-item class="ion-no-padding" input>
+          <ion-label text-size-xs position="floating">Email</ion-label>
+          <ion-input required type="email"
+            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            required [(ngModel)]="item.email">
+          </ion-input>
+          <ion-icon *ngIf="!isEmailValid" icon-small name="remove-circle"></ion-icon>
+        </ion-item>
+        <!---Input field name-->
+        <ion-item class="ion-no-padding" input>
+          <ion-label text-size-xs position="floating">Name</ion-label>
+          <ion-input required type="text"
+            pattern="[a-zA-Z ]*" required
+            [(ngModel)]="item.name">
+          </ion-input>
+          <ion-icon *ngIf="!isNameValid" icon-small name="remove-circle"></ion-icon>
+        </ion-item>
+     
       <!---Input field username-->
       <ion-item class="ion-no-padding" input>
         <ion-label text-size-xs position="floating">Username</ion-label>
@@ -34,25 +53,7 @@
           <ion-icon *ngIf="!isCPasswordValid" icon-small name="remove-circle"></ion-icon>
         </ion-item>
        
-      <!---Input field email-->
-      <ion-item class="ion-no-padding" input>
-        <ion-label text-size-xs position="floating">Email</ion-label>
-        <ion-input required type="email"
-          pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-          required [(ngModel)]="item.email">
-        </ion-input>
-        <ion-icon *ngIf="!isEmailValid" icon-small name="remove-circle"></ion-icon>
-      </ion-item>
-      <!---Input field name-->
-      <ion-item class="ion-no-padding" input>
-        <ion-label text-size-xs position="floating">Name</ion-label>
-        <ion-input required type="text"
-          pattern="[a-zA-Z ]*" required
-          [(ngModel)]="item.name">
-        </ion-input>
-        <ion-icon *ngIf="!isNameValid" icon-small name="remove-circle"></ion-icon>
-      </ion-item>
-     
+    
       <!---Register button-->
       <ion-button button-round float-end margin-top
         fill="outline" shape="round" (click)="onRegisterFunc()">Register

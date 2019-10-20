@@ -5,6 +5,10 @@ import { ToastService } from 'src/app/services/toast-service';
 import { ActivatedRoute } from '@angular/router';
 import { RegisterService } from 'src/app/services/register-service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -13,31 +17,38 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class RegisterPage implements OnInit {
 
-  data = {button: "Register",
-  city: "City",
-  cityPlaceholder: "Your City",
-  country: "Country",
-  countryPlaceholder: "Your Country",
-  email: "Email",
-  emailPlaceholder: "Your Email",
-  logo: "assets/imgs/logo/login.png",
-  password: "Password",
-  passwordPlaceholder: "Your Password",
-  register: "Register",
-  skip: "Skip",
-  toolbarTitle: "Register + logo 1",
-  username: "Username",
-  usernamePlaceholder: "Your Username"};
+  loading = false;
+
+  data = {button: 'Register',
+  city: 'City',
+  cityPlaceholder: 'Your City',
+  country: 'Country',
+  countryPlaceholder: 'Your Country',
+  email: 'Email',
+  emailPlaceholder: 'Your Email',
+  logo: 'assets/imgs/logo/login.png',
+  password: 'Password',
+  passwordPlaceholder: 'Your Password',
+  register: 'Register',
+  skip: 'Skip',
+  toolbarTitle: 'Register + logo 1',
+  username: 'Username',
+  usernamePlaceholder: 'Your Username'};
     type: string;
+
+ form = {name: '', username: '',  email: '', password: '', c_password: '' }
 
     constructor(
         public navCtrl: NavController,
         private service: RegisterService,
         private toastCtrl: ToastService,
         public authenticationService: AuthenticationService,
+        private speechRecognition: SpeechRecognition,
+        private faio: FingerprintAIO,
+        private tts: TextToSpeech,
         private route: ActivatedRoute) {
         this.type = this.route.snapshot.paramMap.get('type');
-       
+
     }
     ngOnInit() {
     }
@@ -65,6 +76,241 @@ export class RegisterPage implements OnInit {
         this.toastCtrl.presentToast('Navigated to login');
         this.navCtrl.navigateForward('login');
     }
+
+
+  ionViewDidEnter() {
+    this.start();
+  }
+
+  reset() {
+    this.form.name = 'name';
+    this.form.email = 'email';
+    this.form.username = 'username';
+    this.form.password = '';
+    this.form.c_password = '';
+  }
+
+  start(){
+    this.reset();
+    this.tts.speak('Please spell your First Name, once done call next for next field')
+    .then(() => {console.log('Success'); this.takeFirstname();  })
+    .catch((reason: any) => console.log(reason));
+  }
+
+  takeFirstname(){
+
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+       else if(matches[0]=='next'){
+        this.tts.speak('Please spell email address')
+        .then(() => { console.log('Success');  this.takeuseremail(); })
+        .catch((reason: any) => console.log(reason));
+       
+       }else{
+        this.form.name = this.form.name?this.form.name+matches[0]:''+matches[0]
+        // this.user.get('name').setValue( this.user.get('name').value?this.user.get('name').value+matches[0]:''+matches[0] );
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takeFirstname(); })
+        .catch((reason: any) => console.log(reason));
+       }
+       
+      },
+      (onerror) => {console.log('error:', onerror);  }
+    )
+
+  }
+
+  takeuseremail(){
+
+    
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else if(matches[0]=='next'){
+        this.tts.speak('Please spell username')
+        .then(() => { console.log('Success');  this.takeusername(); })
+        .catch((reason: any) => console.log(reason));
+       
+       }else{
+        this.form.email = this.form.email?this.form.email+matches[0]:''+matches[0]
+        // this.user.get('email').setValue( (this.user.get('email').value?this.user.get('email').value+matches[0]:''+matches[0] ).replace(/\s+/g, '') );
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takeuseremail(); })
+        .catch((reason: any) => console.log(reason));
+       }
+       
+      },
+      (onerror) => {console.log('error:', onerror);  }
+    ) 
+
+  }
+ 
+  takeusername(){
+    
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else  if(matches[0]=='next'){
+        this.tts.speak('Please spell password')
+        .then(() => { console.log('Success');  this.takePassword(); })
+        .catch((reason: any) => console.log(reason));
+       
+       }else{
+        this.form.username = this.form.username?this.form.username+matches[0]:''+matches[0]
+        // this.user.get('username').setValue( (this.user.get('username').value?this.user.get('username').value+matches[0]:''+matches[0] ).replace(/\s+/g, '')  );
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takeusername(); })
+        .catch((reason: any) => console.log(reason));
+       }
+       
+      },
+      (onerror) => {console.log('error:', onerror);  }
+    ) 
+
+  }
+
+  takePassword(){
+
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else if(matches[0]=='next'){
+        this.tts.speak('Please spell password again')
+        .then(() => { console.log('Success');  this.takeConfirmPasswordname(); })
+        .catch((reason: any) => console.log(reason));
+
+       } else {
+        this.form.password = this.form.password?this.form.password+matches[0]:''+matches[0]
+        // this.user.get('password').setValue( this.user.get('password').value?this.user.get('password').value+matches[0]:''+matches[0]);
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takePassword(); })
+        .catch((reason: any) => console.log(reason));
+       }
+
+      },
+      (onerror) => {console.log('error:', onerror);  }
+    ) 
+
+  }
+
+  takeConfirmPasswordname(){
+
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else if(matches[0] === 'submit' || matches[0] === 'done' || matches[0]=='thanks' || matches[0]=='next' || matches[0]=='sign up' || matches[0]=='signup'){
+        this.tts.speak('Thanks, signup is processing')
+        .then(() => { console.log('Success'); this.signup(); })
+        .catch((reason: any) => console.log(reason));
+       
+       }else{
+        this.form.c_password = this.form.c_password?this.form.c_password+matches[0]:''+matches[0]
+        // this.user.get('c_password').setValue( this.user.get('c_password').value?this.user.get('c_password').value+matches[0]:''+matches[0]);
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takeConfirmPasswordname(); })
+        .catch((reason: any) => console.log(reason));
+       }
+       
+      },
+      (onerror) => {console.log('error:', onerror);  }
+    ) 
+
+
+  }
+
+  signup(){
+
+
+    this.faio.isAvailable()
+    .then(isAvailable=>{
+
+
+      this.faio.show({
+        clientId: 'Fingerprint-Demo',
+        clientSecret: 'password', //Only necessary for Android
+        // disableBackup:true,  //Only for Android(optional)
+        // localizedFallbackTitle: 'Use Pin', //Only for iOS
+        // localizedReason: 'Please authenticate' //Only for iOS
+    })
+    .then((result: any) => { console.log(result); this.finishSignup(); })
+    .catch((error: any) => console.log(error));
+
+
+
+    }).catch((error: any) =>{ this.finishSignup(); console.log(error)} );
+
+  }
+
+  finishSignup(){
+    this.loading = true;
+    this.authenticationService.signup(this.form).pipe(
+      finalize(() => this.loading = false),
+    ).subscribe(
+      res => {
+
+        this.tts.speak('Signup successfull, plz login')
+        .then(() => { console.log('Success');   this.navCtrl.navigateBack(['login']); })
+        .catch((reason: any) => console.log(reason));
+
+        },
+      error => {
+        console.log(error);
+        this.tts.speak(error.error.message)
+        .then(() => { this.start(); })
+        .catch((reason: any) => console.log(reason));
+
+      },
+      () => { }
+    );
+
+  }
+
+  goBack() {
+
+    this.navCtrl.navigateBack(['login']);
+
+  }
 
 
 }
