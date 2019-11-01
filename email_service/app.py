@@ -4,6 +4,7 @@ import base64
 import os
 import email
 import json
+import mailparser
 
 
 app = Flask(__name__)
@@ -13,32 +14,39 @@ def hello():
     return "Hello World!"
 
 @app.route("/fetch_mail")
-def fetch():
-    mail = imaplib.IMAP4_SSL("imap.gmail.com", 993)
-    mail.login('muhammadtahakhan222@gmail.com', 'wglfquvpxfspafno')
-    mail.select('INBOX', False)
-    type, data = mail.search(None, 'ALL')
-    mail_ids = data[0]
-    id_list = mail_ids.split()
-    # return type(data)
-    # mytuple = ("python", "json", "mysql")
-    # return json.dumps(id_list)
-    # print(data[0][0])
-    items = []
-    for response_part in data:
-        item = {}
-        if isinstance(response_part, tuple):
-            msg = email.message_from_string(response_part[1].decode('utf-8'))
-            print(msg)
-            item['subject'] = msg['subject']
-            item['from'] = msg['from']
-            #item['body'] = mes['body']
-            items.append(item)
-    return {'datas': items}
-            # print ('From : ' + email_from + '\n')
-            # print ('Subject : ' + email_subject + '\n')
-            # print(msg.get_payload(decode=True))
-    
+def read_email_from_gmail():
+    try:
+        mail = imaplib.IMAP4_SSL("imap.gmail.com", 993)
+        mail.login('muhammadtahakhan222@gmail.com', 'wglfquvpxfspafno')
+        mail.list()
+        mail.select('inbox')
+        
+        type, data = mail.search(None, '(UNSEEN)')
+        mail_ids = data[0]
+
+        id_list = mail_ids.split()   
+        first_email_id = int(id_list[0])
+        latest_email_id = int(id_list[-1])
+        # print(id_list)
+      
+        # for i in reversed(range(first_email_id, latest_email_id)):
+        email = []
+        
+        for idx, i in enumerate(id_list):
+            # print('iiiii========================', i)
+            typ, data = mail.fetch(i, '(RFC822)' )
+            raw_email = data[0][1]
+            raw_email = str(raw_email, 'utf-8')
+            mail_data = mailparser.parse_from_string(raw_email)
+            data = {'subject':mail_data.subject, 'from':mail_data.from_}
+            email.insert(idx, data)
+            if idx == 10:
+                break
+           
+        return json.dumps(email) 
+    except Exception as e:
+        print (e)
+ 
 
 
 if __name__ == '__main__':

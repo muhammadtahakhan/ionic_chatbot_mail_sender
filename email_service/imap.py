@@ -45,33 +45,30 @@ def read_email_from_gmail():
         mail.login('muhammadtahakhan222@gmail.com', 'wglfquvpxfspafno')
         mail.list()
         mail.select('inbox')
-
-        type, data = mail.search(None, 'ALL')
+        
+        type, data = mail.search(None, '(UNSEEN)')
         mail_ids = data[0]
 
         id_list = mail_ids.split()   
         first_email_id = int(id_list[0])
         latest_email_id = int(id_list[-1])
-        # print(latest_email_id)
-        print( id_list[0] )
-        print('========================================')
+        print(id_list)
+      
         # for i in reversed(range(first_email_id, latest_email_id)):
-        for i in id_list:
-            print('iiiii========================')
-           
+        email = []
+        
+        for idx, i in enumerate(id_list):
+            # print('iiiii========================', i)
             typ, data = mail.fetch(i, '(RFC822)' )
-            print(typ)
             raw_email = data[0][1]
             raw_email = str(raw_email, 'utf-8')
-           
-            # data = email.message_from_string(raw_email)
-            # print(data["Subject"])
             mail_data = mailparser.parse_from_string(raw_email)
-            # print(mail_data)
-            # print ( json.dumps(mail.from_))
-            # sleep(1)
-            print ('From : ' , mail_data.from_ )
-            print ('Subject : ' , mail_data.subject )
+            data = {'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
+            email.insert(idx, data)
+            if idx == 10:
+                break
+           
+        print(email)
     except Exception as e:
         print (e)
 
