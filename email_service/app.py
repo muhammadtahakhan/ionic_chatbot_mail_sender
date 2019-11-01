@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 import imaplib
 import base64
 import os
@@ -16,13 +16,16 @@ def hello():
 @app.route("/fetch_mail")
 def read_email_from_gmail():
     try:
+        args = request.args
+       
         mail = imaplib.IMAP4_SSL("imap.gmail.com", 993)
-        mail.login('muhammadtahakhan222@gmail.com', 'wglfquvpxfspafno')
+        mail.login(args['email'], args['password'])
         mail.list()
         mail.select('inbox')
         
         type, data = mail.search(None, '(UNSEEN)')
         mail_ids = data[0]
+        
 
         id_list = mail_ids.split()   
         first_email_id = int(id_list[0])
@@ -38,14 +41,14 @@ def read_email_from_gmail():
             raw_email = data[0][1]
             raw_email = str(raw_email, 'utf-8')
             mail_data = mailparser.parse_from_string(raw_email)
-            data = {'subject':mail_data.subject, 'from':mail_data.from_}
+            data = {'id':mail_data.message_id, 'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
             email.insert(idx, data)
             if idx == 10:
                 break
            
-        return json.dumps(email) 
+        return jsonify(email) 
     except Exception as e:
-        print (e)
+        return jsonify({'success':'false', 'message':'some thing is wrong with login credentials'})
  
 
 

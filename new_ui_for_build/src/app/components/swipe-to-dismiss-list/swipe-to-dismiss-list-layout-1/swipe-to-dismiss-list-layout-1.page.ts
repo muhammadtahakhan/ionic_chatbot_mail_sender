@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input, ViewChild, OnChanges } from '@angular/core';
+import { ListViewSwipeToDismissService } from 'src/app/services/list-view-swipe-to-dismiss-service';
 
 @Component({
   selector: 'cs-swipe-to-dismiss-list-layout-1',
@@ -18,10 +19,16 @@ export class SwipeToDismissListLayout1Page implements OnChanges {
   @Output() onUndo = new EventEmitter();
   @Output() onDelete = new EventEmitter();
 
-  constructor() { }
+  constructor(public service:ListViewSwipeToDismissService) { }
 
   ngOnChanges(changes: { [propKey: string]: any }) {
     this.data = changes['data'].currentValue;
+    console.log('----->');
+    this.service.inbox().subscribe(
+      res =>{ console.log('res', res); },
+      error =>{},
+      ()=>{}
+    );
   }
 
   onUndoFunc = (event) => {

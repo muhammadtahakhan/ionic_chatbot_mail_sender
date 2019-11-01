@@ -111,6 +111,7 @@ Route::group(['middleware' => ['auth:api']], function($router) {
     Route::delete('privilege', 'API\PrivilegeController@delete');
 
     Route::get('my_emials', 'API\EmailController@get_email');
+    Route::get('inbox', 'API\EmailController@get_email');
 
 
    

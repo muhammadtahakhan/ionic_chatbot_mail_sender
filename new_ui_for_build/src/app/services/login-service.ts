@@ -46,15 +46,15 @@ export class LoginService implements IService {
         };
     }
 
-    //* Data Set for page 2
+    // * Data Set for page 2
     getDataForLayout2 = (): any => {
         return {
-            'headerTitle': 'Login + logo 2',
-            'background': 'assets/imgs/background/29.jpg',
-            'username': 'Username',
-            'password': 'Password',
-            'register': 'Register',
-            'btnFacebook': 'Facebook',
+            headerTitle: 'Login + logo 2',
+            background: 'assets/imgs/background/29.jpg',
+            username: 'Username',
+            password: 'Password',
+            register: 'Register',
+            btnFacebook: 'Facebook',
             'btnTwitter': 'Twitter',
             'btnGoogle': 'Google',
             'btnPinterest': 'Pinterest',

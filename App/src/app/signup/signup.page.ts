@@ -146,8 +146,6 @@ export class SignupPage implements OnInit {
 
   }
 
-
-
   takePassword(){
 
     this.speechRecognition.startListening()
@@ -179,6 +177,7 @@ export class SignupPage implements OnInit {
     ) 
 
   }
+
   takeConfirmPasswordname(){
 
     this.speechRecognition.startListening()
@@ -233,11 +232,6 @@ export class SignupPage implements OnInit {
 
     }).catch((error: any) =>{ this.finishSignup(); console.log(error)} );
 
-
-
-
-  
-
   }
 
   finishSignup(){
@@ -245,21 +239,21 @@ export class SignupPage implements OnInit {
     this.authenticationService.signup(this.user.value).pipe(
       finalize(() => this.loading = false),
     ).subscribe(
-      res=>{
-        
+      res => {
+
         this.tts.speak('Signup successfull, plz login')
         .then(() => { console.log('Success');   this.router.navigate(['login']); })
         .catch((reason: any) => console.log(reason));
-        
+
         },
-      error => { 
-        console.log(error) 
+      error => {
+        console.log(error);
         this.tts.speak(error.error.message)
         .then(() => { this.start(); })
         .catch((reason: any) => console.log(reason));
-      
+
       },
-      ()=>{}
+      () => { }
     );
 
   }

@@ -4,11 +4,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 // import { AppSettings } from './app-settings';
 import { LoadingService } from './loading-service';
+import { HttpClient } from '@angular/common/http';
+import { BaseService } from './baseService';
 
 @Injectable({ providedIn: 'root' })
-export class ListViewSwipeToDismissService implements IService {
+export class ListViewSwipeToDismissService  extends BaseService implements IService {
 
-    constructor(private loadingService: LoadingService) { }
+    constructor(private loadingService: LoadingService, private http: HttpClient) { 
+        super();
+    }
 
     getId = (): string => 'swipeToDismiss';
 
@@ -20,6 +24,10 @@ export class ListViewSwipeToDismissService implements IService {
             { 'url': 'swipe-to-dismiss/1', 'title': 'Products + CTA', 'theme': 'layout2' },
             { 'url': 'swipe-to-dismiss/2', 'title': 'Full with image + left swipe', 'theme': 'layout3' }
         ];
+    }
+
+    inbox = ():any=>{
+        return  this.http.get(this.url+'inbox')
     }
 
     getDataForTheme = (menuItem: any): Array<any> => {
