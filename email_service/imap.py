@@ -13,7 +13,7 @@ from time import sleep
 mail = imaplib.IMAP4_SSL("imap.gmail.com", 993)
 #print(mail)
 #mail.select( "INBOX" , False )
-mail.login('muhammadtahakhan222@gmail.com', 'wglfquvpxfspafno')
+mail.login('email', 'password')
 mail.select('INBOX', False)
 # print(mail)
 type, data = mail.search(None, 'ALL')
