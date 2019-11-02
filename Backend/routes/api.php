@@ -112,6 +112,7 @@ Route::group(['middleware' => ['auth:api']], function($router) {
 
     Route::get('my_emials', 'API\EmailController@get_email');
     Route::get('inbox', 'API\EmailController@get_email');
+    Route::get('send_email', 'API\EmailController@send_email');
 
 
    

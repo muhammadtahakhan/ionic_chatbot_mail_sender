@@ -29,8 +29,17 @@ export class MenuService implements IService {
       },
     
       {
-        'url': 'swipe-to-dismiss/0',
+        'url': 'inbox',
         'title': 'Inbox',
+        'theme': 'parallax',
+        'icon': 'icon-format-line-spacing',
+        'listView': false,
+        'component': '',
+        'singlePage': false
+      },
+      {
+        'url': 'outbox',
+        'title': 'Outbox',
         'theme': 'parallax',
         'icon': 'icon-format-line-spacing',
         'listView': false,
@@ -40,7 +49,7 @@ export class MenuService implements IService {
      
       {
         'url': 'swipe-to-dismiss/0',
-        'title': 'Outox',
+        'title': 'swipe-to-dismiss',
         'theme': 'parallax',
         'icon': 'icon-format-line-spacing',
         'listView': false,

@@ -23,12 +23,8 @@ export class SwipeToDismissListLayout1Page implements OnChanges {
 
   ngOnChanges(changes: { [propKey: string]: any }) {
     this.data = changes['data'].currentValue;
-    console.log('----->');
-    this.service.inbox().subscribe(
-      res =>{ console.log('res', res); },
-      error =>{},
-      ()=>{}
-    );
+    console.log('component', this.data);
+
   }
 
   onUndoFunc = (event) => {
@@ -77,5 +73,9 @@ export class SwipeToDismissListLayout1Page implements OnChanges {
       event.stopPropagation();
     }
     this.onShare.emit(item);
+  }
+
+  clickViewDetails(){
+    
   }
 }

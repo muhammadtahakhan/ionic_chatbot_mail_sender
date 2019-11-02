@@ -34,11 +34,11 @@ export class AuthenticationService extends BaseService {
 
   login(user) {
 
-    return  this.http.post(this.url+'auth/login', user).pipe(
-      tap((res:any) => { 
+    return  this.http.post(this.url + 'auth/login', user).pipe(
+      tap((res: any) => {
         if(res.success){
-          localStorage.setItem(TOKEN_KEY, 'Bearer '+res.data.token);
-        this.storage.set(TOKEN_KEY, 'Bearer '+res.data.token).then(() => {
+          localStorage.setItem(TOKEN_KEY, 'Bearer '+ res.data.token);
+          this.storage.set(TOKEN_KEY, 'Bearer ' + res.data.token).then(() => {
             this.authenticationState.next(true);
           });
         }

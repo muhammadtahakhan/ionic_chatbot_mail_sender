@@ -19,8 +19,9 @@
           <i icon-small slot="end" class="icon icon-heart" (click)="onFavoriteFunc(data, $event)"></i>
           <i icon-small slot="end" class="icon icon-share-variant" (click)="onShareFunc(data, $event)"></i> -->
         </ion-item-divider>
+       
         <!-- Content List -->
-        <ion-item-sliding #sliding (click)="onItemClickFunc(item, $event)" disabled="false" *ngFor="let item of data.items">
+        <ion-item-sliding #sliding (click)="onItemClickFunc(item, $event)" disabled="false" *ngFor="let item of data">
           <ion-item lines="none" >
             
             <!--Avatar -->
@@ -29,9 +30,9 @@
             </ion-avatar>
             <ion-label>
               <!-- Title -->
-              <h2 text-size-xs class="ion-text-wrap">{{item.title}}</h2>
+              <!-- <h2 text-size-xs class="ion-text-wrap">{{item.from[0]}}..</h2> -->
               <!-- Subtitle -->
-              <h3 text-size-sm class="ion-text-wrap" class="ion-text-uppercase">{{item.description}}</h3>
+              <h3 text-size-sm class="ion-text-wrap" class="ion-text-uppercase">{{item.subject}}..</h3>
             </ion-label>
             <!-- ShortDescription -->
             <span slot="end" span-small>{{item.shortDescription}}</span>

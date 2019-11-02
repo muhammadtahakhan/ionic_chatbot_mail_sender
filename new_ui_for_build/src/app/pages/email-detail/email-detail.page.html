@@ -1,0 +1,19 @@
+  <!-- Header -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title text-capitalize>Email </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!-- Content -->
+  <ion-content>
+
+<ion-content>
+  <h1>{{data?.subject}}</h1>
+  <h3>{{data?.from[0]}}</h3>
+
+  <div style="margin: 10px;" [innerHTML]="data.body"></div>
+
+</ion-content>
