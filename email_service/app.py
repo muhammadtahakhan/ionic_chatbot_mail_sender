@@ -5,6 +5,8 @@ import os
 import email
 import json
 import mailparser
+import smtplib
+
 
 
 app = Flask(__name__)
@@ -12,6 +14,22 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     return "Hello World!"
+@app.route("/send")
+def send_email():
+    try:
+        args = request.args
+        gmail_user = args['email']
+        gmail_password = args['password']
+        text = args['message']
+
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server.login(gmail_user, gmail_password)
+        server.sendmail(gmail_user, "nigakep833@dmailpro.net", text)
+        server.quit()
+        return 'sended'
+    except Exception as e:
+        return jsonify({'success':'false', 'message':'some thing is wrong with login credentials'})
+ 
 
 @app.route("/fetch_mail")
 def read_email_from_gmail():
