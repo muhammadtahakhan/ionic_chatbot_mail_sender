@@ -307,9 +307,7 @@ export class RegisterPage implements OnInit {
   }
 
   goBack() {
-
     this.navCtrl.navigateBack(['login']);
-
   }
 
 
