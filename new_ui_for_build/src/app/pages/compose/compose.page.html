@@ -11,20 +11,23 @@
 <ion-content>
     <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]='to'></ion-input>
       </ion-item>
       <ion-item>
           <ion-label position="floating">CC</ion-label>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]='cc'></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Subject</ion-label>
-            <ion-input></ion-input>
+            <ion-input [(ngModel)]='subject'></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-textarea rows="15" position="floating" placeholder="Enter Email Content here..."></ion-textarea>
+            <ion-textarea [(ngModel)]='message' rows="13" position="floating" placeholder="Enter Email Content here..."></ion-textarea>
           </ion-item>
-
+        
+            <ion-button expand="block" (click)="send()">Send</ion-button>
+        
+       
 </ion-content>
 </ion-app>

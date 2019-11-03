@@ -21,11 +21,23 @@ def send_email():
         gmail_user = args['email']
         gmail_password = args['password']
         text = args['message']
+        subject = args['subject']
         to = args['to']
 
+        # email_text = """\
+        # From: %s
+        # To: %s
+        # Subject: %s
+
+        # %s
+        # """ % (gmail_user, ", ".join(to), subject, text)
+
+        email_text = 'Subject: {}\n\n{}'.format(subject, text)
+
+        # return email_text
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.login(gmail_user, gmail_password)
-        server.sendmail(gmail_user, to, text)
+        server.sendmail(gmail_user, to, email_text)
         server.quit()
         return 'sended'
     except Exception as e:

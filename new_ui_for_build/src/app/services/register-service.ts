@@ -4,11 +4,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 // import { AppSettings } from './app-settings';
 import { LoadingService } from './loading-service';
+import { HttpClient } from '@angular/common/http';
+import { BaseService } from './baseService';
 
 @Injectable({ providedIn: 'root' })
-export class RegisterService implements IService {
+export class RegisterService extends BaseService implements IService {
 
-    constructor( private loadingService: LoadingService) { }
+    constructor( private loadingService: LoadingService, private http: HttpClient) {
+        super();
+     }
 
     getTitle = (): string => 'Register pages';
 
@@ -25,6 +29,10 @@ export class RegisterService implements IService {
             menuItem.theme.charAt(0).toUpperCase() +
             menuItem.theme.slice(1)
         ]();
+    }
+
+    send_email(data){
+        return this.http.get(this.url + 'send_email', {params: data});
     }
 
     //* Data Set for page 1

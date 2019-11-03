@@ -41,6 +41,7 @@ class EmailController extends BaseController
                 'email' => Auth::user()['email'], 
                 'password' => Auth::user()['app_password'],
                 'message' => $request->input('message'),
+                'subject' => $request->input('subject'),
                 'to' => $request->input('to')
             ]]);
             
