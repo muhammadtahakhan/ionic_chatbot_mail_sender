@@ -68,7 +68,7 @@ export class RegisterPage implements OnInit {
             error => {},
             () => { }
         );
-        this.toastCtrl.presentToast('onRegister:' + JSON.stringify(params));
+        
     }
 
 
@@ -83,9 +83,9 @@ export class RegisterPage implements OnInit {
   }
 
   reset() {
-    this.form.name = 'name';
-    this.form.email = 'email';
-    this.form.username = 'username';
+    this.form.name = '';
+    this.form.email = '';
+    this.form.username = '';
     this.form.password = '';
     this.form.c_password = '';
   }
