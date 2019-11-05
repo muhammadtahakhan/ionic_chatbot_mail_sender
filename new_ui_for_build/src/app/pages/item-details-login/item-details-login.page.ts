@@ -23,8 +23,8 @@ export class ItemDetailsLoginPage implements OnInit {
     type: string;
     loading = false;
     user = {password: '', username: ''};
-    username = 'userrname';
-    password = 'password';
+    username = '';
+    password = '';
 
     constructor(
         public http: HttpClient,

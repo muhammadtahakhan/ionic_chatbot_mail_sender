@@ -265,7 +265,6 @@ export class RegisterPage implements OnInit {
     this.faio.isAvailable()
     .then(isAvailable=>{
 
-
       this.faio.show({
         clientId: 'Fingerprint-Demo',
         clientSecret: 'password', //Only necessary for Android
