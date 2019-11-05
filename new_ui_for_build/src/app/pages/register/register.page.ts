@@ -60,15 +60,24 @@ export class RegisterPage implements OnInit {
 
     // events
     onRegister(params): void {
-        console.log(params);
-        this.authenticationService.signup(params).subscribe(
-            res => { console.log('-->', params);
-            this.navCtrl.navigateForward('login');
+      this.tts.speak('Registration is in process please wait.')
+      .then(() => {console.log('Success'); this.takeFirstname();  })
+      .catch((reason: any) => console.log(reason));
+      console.log(params);
+      this.authenticationService.signup(params).subscribe(
+            res => { 
+              this.tts.speak('Registration completed successfully.')
+                .then(() => {this.navCtrl.navigateForward('login');  })
+                .catch((reason: any) => console.log(reason));
              },
-            error => {},
+            error => {
+              this.tts.speak('some thing went wrong, please fill form again, thanks')
+                .then(() => {this.start();  })
+                .catch((reason: any) => console.log(reason));
+            },
             () => { }
         );
-        
+
     }
 
 
