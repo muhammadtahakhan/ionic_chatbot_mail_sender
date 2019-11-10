@@ -101,9 +101,42 @@ export class RegisterPage implements OnInit {
 
   start(){
     this.reset();
-    this.tts.speak('Please spell your First Name, once done call next for next field')
-    .then(() => {console.log('Success'); this.takeFirstname();  })
+    this.tts.speak('Please spell your email, once done call next for next field')
+    .then(() => {console.log('Success'); this.takeuseremail();  })
     .catch((reason: any) => console.log(reason));
+  }
+
+  takeuseremail() {
+
+
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+        else if(matches[0]=='reset'){
+          this.start()
+        }
+        else if(matches[0]=='next'){
+        this.tts.speak('Please spell name')
+        .then(() => { console.log('Success');  this.takeFirstname(); })
+        .catch((reason: any) => console.log(reason));
+       
+       }else{
+        this.form.email = this.form.email?this.form.email+matches[0]:''+matches[0]
+        // this.user.get('email').setValue( (this.user.get('email').value?this.user.get('email').value+matches[0]:''+matches[0] ).replace(/\s+/g, '') );
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takeuseremail(); })
+        .catch((reason: any) => console.log(reason));
+       }
+       
+      },
+      (onerror) => {console.log('error:', onerror);  }
+    ) 
+
   }
 
   takeFirstname(){
@@ -120,59 +153,28 @@ export class RegisterPage implements OnInit {
           this.start()
         }
        else if(matches[0]=='next'){
-        this.tts.speak('Please spell email address')
-        .then(() => { console.log('Success');  this.takeuseremail(); })
+        this.tts.speak('Please spell username')
+        .then(() => { console.log('Success');  this.takeusername(); })
         .catch((reason: any) => console.log(reason));
-       
-       }else{
-        this.form.name = this.form.name?this.form.name+matches[0]:''+matches[0]
+
+       } else {
+        this.form.name = this.form.name ? this.form.name + matches[0] : '' + matches[0];
         // this.user.get('name').setValue( this.user.get('name').value?this.user.get('name').value+matches[0]:''+matches[0] );
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeFirstname(); })
         .catch((reason: any) => console.log(reason));
        }
-       
+
       },
       (onerror) => {console.log('error:', onerror);  }
     )
 
   }
 
-  takeuseremail(){
-
-    
-    this.speechRecognition.startListening()
-    .subscribe(
-
-      (matches: Array<string>) => {
-        console.log(matches);
-        if(matches[0]=='back'){
-        this.goBack();
-        }
-        else if(matches[0]=='reset'){
-          this.start()
-        }
-        else if(matches[0]=='next'){
-        this.tts.speak('Please spell username')
-        .then(() => { console.log('Success');  this.takeusername(); })
-        .catch((reason: any) => console.log(reason));
-       
-       }else{
-        this.form.email = this.form.email?this.form.email+matches[0]:''+matches[0]
-        // this.user.get('email').setValue( (this.user.get('email').value?this.user.get('email').value+matches[0]:''+matches[0] ).replace(/\s+/g, '') );
-        this.tts.speak('say next work')
-        .then(() => {console.log('Success');  this.takeuseremail(); })
-        .catch((reason: any) => console.log(reason));
-       }
-       
-      },
-      (onerror) => {console.log('error:', onerror);  }
-    ) 
-
-  }
  
+
   takeusername(){
-    
+
     this.speechRecognition.startListening()
     .subscribe(
 

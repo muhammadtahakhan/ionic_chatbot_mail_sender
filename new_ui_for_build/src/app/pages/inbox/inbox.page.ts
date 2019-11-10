@@ -43,8 +43,9 @@ ngOnInit() {
 }
 
 read_count(){
-  this.tts.speak('there are '+ this.data.length +" unread email in your inbox, say one to read more description about first eamil, 2 fro sencodn and so on")
-  .then(() => {   })
+  // tslint:disable-next-line: max-line-length
+  this.tts.speak('there are ' + this.data.length + ' unread email in your inbox, say one to read more description about first eamil, 2 for sencond and so on')
+  .then(() => { this.read_mail();  })
   .catch((reason: any) => console.log(reason));
 }
 

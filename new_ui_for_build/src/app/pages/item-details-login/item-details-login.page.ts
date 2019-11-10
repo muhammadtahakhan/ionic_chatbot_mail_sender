@@ -163,7 +163,9 @@ export class ItemDetailsLoginPage implements OnInit {
       )
       .subscribe(
         res => { console.log(res); },
-        error => { console.log(error);  },
+        error => {  this.tts.speak('opps something went wrong, please fill form again ')
+        .then(() => {console.log('Success'); this.start(); })
+        .catch((reason: any) => console.log(reason));  },
         () => {}
       );
 

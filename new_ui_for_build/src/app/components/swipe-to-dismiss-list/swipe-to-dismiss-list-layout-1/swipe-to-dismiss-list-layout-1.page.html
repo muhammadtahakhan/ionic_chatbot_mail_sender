@@ -4,21 +4,7 @@
     <ion-col size="12" class="ion-no-padding">
       <ion-list #dynamicList>
         <!-- Header List -->
-        <ion-item-divider transparent lines="none" padding-horizontal lines="none">
-          <!--Header Icon-->
-          <!-- <i icon-large slot="start" class="icon {{data.iconPlay}}"></i> -->
-          <ion-label>
-            <!--Header Title-->
-            <h1 text-size-xl>Inbox</h1>
-            <!--Header Subitle-->
-            <!-- <h2 text-size-xs>{{data.description}}</h2> -->
-            <!--Header ShortDescription-->
-            <!-- <span span-medium>{{data.shortDescription}}</span> -->
-          </ion-label>
-          <!-- <i icon-small slot="end" class="icon icon-thumb-up" (click)="onLikeFunc(data, $event)"></i>
-          <i icon-small slot="end" class="icon icon-heart" (click)="onFavoriteFunc(data, $event)"></i>
-          <i icon-small slot="end" class="icon icon-share-variant" (click)="onShareFunc(data, $event)"></i> -->
-        </ion-item-divider>
+       
        
         <!-- Content List -->
         <ion-item-sliding #sliding (click)="onItemClickFunc(item, $event)" disabled="false" *ngFor="let item of data">

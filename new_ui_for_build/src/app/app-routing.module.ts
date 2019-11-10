@@ -24,14 +24,15 @@ const routes: Routes = [
     loadChildren: './pages/item-details-profile/item-details-profile.module#ItemDetailsProfilePageModule'
   },
 
-  {
-    path: 'swipe-to-dismiss/:type',
-    loadChildren: './pages/item-details-swipe-to-dismiss/item-details-swipe-to-dismiss.module#ItemDetailsSwipeToDismissPageModule'
-  },
+  // {
+  //   path: 'swipe-to-dismiss/:type',
+  //   loadChildren: './pages/item-details-swipe-to-dismiss/item-details-swipe-to-dismiss.module#ItemDetailsSwipeToDismissPageModule'
+  // },
   { path: 'compose-email', loadChildren: './pages/compose/compose.module#ComposePageModule' },
   { path: 'inbox', loadChildren: './pages/inbox/inbox.module#InboxPageModule' },
   { path: 'outbox', loadChildren: './pages/outbox/outbox.module#OutboxPageModule' },
   { path: 'email-detail', loadChildren: './pages/email-detail/email-detail.module#EmailDetailPageModule' },
+  { path: 'setting', loadChildren: './pages/setting/setting.module#SettingPageModule' },
 ];
 
 @NgModule({

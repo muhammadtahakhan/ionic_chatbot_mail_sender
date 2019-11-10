@@ -2,7 +2,7 @@
   <ion-split-pane contentId="menu-content" when="md">
     <ion-menu 
     contentId="menu-content"
-    
+    *ngIf="authenticationService.authenticationState.value"
     >
       <!-- Settings Toolbar -->
       <ion-header background-size
@@ -11,7 +11,7 @@
             <ion-label style="margin: 10px" class="">
                 <img class="ion-margin-bottom" [src]="headerMenuItem?.image">
                 <div clearfix></div>
-                {{headerMenuItem?.title}}
+                {{headerMenuItem?.title}} -> {{authenticationService.authenticationState.value}}
             </ion-label>
           </ion-item>
       </ion-header>
@@ -21,8 +21,8 @@
           <ion-row class="ion-no-padding">
             <ion-col size="12" class="ion-no-padding">
               <!-- Menu List -->
-              <ion-list class="ion-no-padding">
-                <ion-menu-toggle translate auto-hide="false" *ngFor="let p of appPages">
+              <ion-list class="ion-no-padding" >
+                <ion-menu-toggle  translate auto-hide="false" *ngFor="let p of appPages">
                   <ion-item lines="none" [routerDirection]="'root'" (click)="openPage(p)">
                     <i icon-small slot="start" class="icon {{p.icon}}"></i>
                     <ion-label>
