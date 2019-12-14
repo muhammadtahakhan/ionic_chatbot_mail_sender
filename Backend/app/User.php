@@ -30,7 +30,7 @@ class User extends Authenticatable
         'name',
         'username', 'address', 'phone', 'phone2',
         'avatar','description',
-        'email', 'password', 'active', 
+        'email', 'password', 'active', 'app_password',
         'activation_token', 'role_id',
         'company_name', 'company_phone', 'user_type'
     ];

@@ -114,6 +114,7 @@ Route::group(['middleware' => ['auth:api']], function($router) {
     Route::get('inbox', 'API\EmailController@get_email');
     Route::get('outbox', 'API\EmailController@outbox');
     Route::get('send_email', 'API\EmailController@send_email');
+    Route::post('setting', 'API\EmailController@setting');
 
 
    

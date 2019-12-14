@@ -1,5 +1,5 @@
 // import { AppSettings } from './../../services/app-settings';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { HomeService } from './../../services/home-service';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
   styleUrls: ['home.page.scss'],
   // providers: [HomeService]
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
   item = { "toolbarTitle": "Eye Electronic Mail",
   "title": "Eye Electronic Mail",
@@ -33,8 +33,13 @@ export class HomePage {
     public modalController: ModalController) {
   }
 
+  ngOnInit() {
+  this.start();
+
+  }
+
   start() {
-    this.tts.speak({text: 'you are at home, what you want, to check your inbox say "inbox" or send email say "new email" ',
+    this.tts.speak({text: 'you are at home, what you want, to check your inbox say "inbox" or send email say "new email" or outbox ',
     locale: 'en-GB'})
   .then(() => {this.toastCtrl.presentToast('start... takeUser'); this.getdirection();  })
   .catch((reason: any) => console.log(reason));
@@ -51,9 +56,12 @@ export class HomePage {
         }
 
         if ( matches[0] === 'inbox') {
-        this.tts.speak('Please spell your password')
-        .then(() => { this.goTo('inbox'); })
-        .catch((reason: any) => console.log(reason));
+          this.goTo('inbox');
+
+
+       } else if ( matches[0] === 'outbox') {
+        this.goTo('outbox');
+
 
        } else {
 

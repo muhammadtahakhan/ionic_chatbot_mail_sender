@@ -7,6 +7,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Http\Controllers\Controller;
 use App\models\Privilege;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class EmailController extends BaseController
 {
@@ -46,6 +47,28 @@ class EmailController extends BaseController
             // print_r(json_decode($content)); die();
            
             return response()->json(['success' => true, 'data' => json_decode($content)], $this->successStatus);
+           
+        } catch(\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
+
+    public function setting(Request $request) {
+        try {
+            
+            // $user = new User([
+            //     'name' => $request->name,
+            //     'email' => $request->email,
+            //     'app_password' => $request->app_password,
+              
+            // ]);
+            $user = User::find(Auth::id());
+            if($request->name) $user->name = $request->name;
+            if($request->email) $user->email = $request->email;
+            if($request->app_password) $user->app_password = $request->app_password;
+            $user->save();
+
+            return response()->json(['success' => true, 'data' => ''], $this->successStatus);
            
         } catch(\Exception $e) {
             return $this->sendError($e->getMessage(), []);

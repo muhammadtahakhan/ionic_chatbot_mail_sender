@@ -39,11 +39,7 @@ export class ItemDetailsLoginPage implements OnInit {
         ) {
 
         this.type = this.route.snapshot.paramMap.get('type');
-        // this.service.load(service.getAllThemes()[this.type]).subscribe(d => {
-        //     this.data = d;
-        //     console.log(this.data);
-        // });
-
+      
     }
 
     ngOnInit() {
