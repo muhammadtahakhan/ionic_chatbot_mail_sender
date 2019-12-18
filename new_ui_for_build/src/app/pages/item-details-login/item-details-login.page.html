@@ -3,11 +3,60 @@
   <app-spinner ></app-spinner>
 
   <!-- PAGE 2-->
-  <cs-login-layout-2
+  <!-- <cs-login-layout-2
   [username] = "username"
   [password] = "password"
     (onLogin)="onLogin($event)"
    (onSkip)="onSkip($event)">
-  </cs-login-layout-2>
+  </cs-login-layout-2> -->
+
+  <!-- lOGIN FROMA --COMPONENT 2 -->
+<ion-page class="ion-page">
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title text-uppercase>{{data.headerTitle}}</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+<ion-content transparent background-size [ngStyle]="{'background-image': 'url(assets/imgs/background/29.jpg)'}">
+<ion-grid padding >
+    <ion-row align-items-center>
+        <ion-col background-white margin-top margin-bottom border-radius box-shadow padding size="12" size-md="10" push-md="1">
+            <ion-button float-end fill="clear" button-clear (click)="onRegister()">Regiser</ion-button>
+            <div clearfix></div>
+            <!---Logo-->
+            <ion-img style="width: 30%; text-align: center;" margin-top src="assets/imgs/logo/login.png"></ion-img>
+            <!---Input field username-->
+            <ion-item no-padding transparent input>
+                <ion-label text-size-xs position="floating">username </ion-label>
+                <ion-input required type="text" [(ngModel)]="this.user.username"></ion-input>
+                <ion-icon *ngIf="!isUsernameValid" icon-small name="remove-circle"></ion-icon>
+            </ion-item>
+            <!---Input field password-->
+            <ion-item no-padding transparent input>
+                <ion-label text-size-xs position="floating">password</ion-label>
+                <ion-input required type="password" [(ngModel)]="password"></ion-input>
+                <ion-icon *ngIf="!isPasswordValid" icon-small name="remove-circle"></ion-icon>
+            </ion-item>
+            <!---Login button-->
+            <ion-button float-end button-clear margin-top fill="clear" (click)="sayfinalWord()">
+               login
+            </ion-button>
+            <!---Register button-->
+            <!-- <ion-button float-end button-clear margin-top fill="clear" (click)="onRegisterFunc()">
+                regiser
+            </ion-button> -->
+            <div clearfix></div>
+            <!---Share Section-->
+            
+          </ion-col>
+        <!---End Share Section-->
+    </ion-row>
+</ion-grid>
+</ion-content>
+</ion-page>
+
 
 </ion-app>

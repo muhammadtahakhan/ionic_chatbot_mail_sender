@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { LoginService } from 'src/app/services/login-service';
 import { ToastService } from 'src/app/services/toast-service';
@@ -46,6 +46,7 @@ export class RegisterPage implements OnInit {
         private speechRecognition: SpeechRecognition,
         private faio: FingerprintAIO,
         private tts: TextToSpeech,
+        private ref: ChangeDetectorRef,
         private route: ActivatedRoute) {
         this.type = this.route.snapshot.paramMap.get('type');
 
@@ -117,7 +118,10 @@ export class RegisterPage implements OnInit {
         this.goBack();
         }
         else if(matches[0]=='reset'){
-          this.start()
+          this.form.email = '';
+          this.tts.speak('email is null now, start again')
+          .then(() => {console.log('Success');  this.takeuseremail(); })
+          .catch((reason: any) => console.log(reason));
         }
         else if(matches[0]=='next'){
         this.tts.speak('Please spell name')
@@ -126,13 +130,15 @@ export class RegisterPage implements OnInit {
        
        }else{
         this.form.email = this.form.email?this.form.email+matches[0]:''+matches[0];
+        this.form.email = this.form.email.replace(/ +/g, "");
         this.form = Object.assign({}, this.form);
+        this.ref.detectChanges();
         // this.user.get('email').setValue( (this.user.get('email').value?this.user.get('email').value+matches[0]:''+matches[0] ).replace(/\s+/g, '') );
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeuseremail(); })
         .catch((reason: any) => console.log(reason));
        }
-       
+       this.ref.detectChanges();
       },
       (onerror) => {console.log('error:', onerror);  }
     ) 
@@ -150,7 +156,10 @@ export class RegisterPage implements OnInit {
         this.goBack();
         }
         else if(matches[0]=='reset'){
-          this.start()
+          this.form.name = '';
+          this.tts.speak('First name is null now, start again')
+          .then(() => {console.log('Success');  this.takeFirstname(); })
+          .catch((reason: any) => console.log(reason));
         }
        else if(matches[0]=='next'){
         this.tts.speak('Please spell username')
@@ -165,7 +174,7 @@ export class RegisterPage implements OnInit {
         .then(() => {console.log('Success');  this.takeFirstname(); })
         .catch((reason: any) => console.log(reason));
        }
-
+       this.ref.detectChanges();
       },
       (onerror) => {console.log('error:', onerror);  }
     )
@@ -185,7 +194,10 @@ export class RegisterPage implements OnInit {
         this.goBack();
         }
         else if(matches[0]=='reset'){
-          this.start()
+          this.form.username = '';
+          this.tts.speak('username is null now, start again')
+          .then(() => {console.log('Success');  this.takeusername(); })
+          .catch((reason: any) => console.log(reason));
         }
         else  if(matches[0]=='next'){
         this.tts.speak('Please spell password')
@@ -194,13 +206,14 @@ export class RegisterPage implements OnInit {
        
        }else{
         this.form.username = this.form.username?this.form.username+matches[0]:''+matches[0]
+        this.form.username = this.form.username.replace(/ +/g, "");
         this.form = Object.assign({}, this.form);
         // this.user.get('username').setValue( (this.user.get('username').value?this.user.get('username').value+matches[0]:''+matches[0] ).replace(/\s+/g, '')  );
         this.tts.speak('say next work')
         .then(() => {console.log('Success');  this.takeusername(); })
         .catch((reason: any) => console.log(reason));
        }
-       
+       this.ref.detectChanges();
       },
       (onerror) => {console.log('error:', onerror);  }
     ) 
@@ -218,7 +231,10 @@ export class RegisterPage implements OnInit {
         this.goBack();
         }
         else if(matches[0]=='reset'){
-          this.start()
+          this.form.password = '';
+          this.tts.speak('password is null now, start again')
+          .then(() => {console.log('Success');  this.takePassword(); })
+          .catch((reason: any) => console.log(reason));
         }
         else if(matches[0]=='next'){
         this.tts.speak('Please spell password again')
@@ -233,7 +249,7 @@ export class RegisterPage implements OnInit {
         .then(() => {console.log('Success');  this.takePassword(); })
         .catch((reason: any) => console.log(reason));
        }
-
+       this.ref.detectChanges();
       },
       (onerror) => {console.log('error:', onerror);  }
     ) 
@@ -251,7 +267,10 @@ export class RegisterPage implements OnInit {
         this.goBack();
         }
         else if(matches[0]=='reset'){
-          this.start()
+          this.form.c_password = '';
+          this.tts.speak('confirm password is null now, start again')
+          .then(() => {console.log('Success');  this.takeConfirmPasswordname(); })
+          .catch((reason: any) => console.log(reason));
         }
         else if(matches[0] === 'submit' || matches[0] === 'done' || matches[0]=='thanks' || matches[0]=='next' || matches[0]=='sign up' || matches[0]=='signup'){
         this.tts.speak('Thanks, signup is processing')
@@ -266,7 +285,7 @@ export class RegisterPage implements OnInit {
         .then(() => {console.log('Success');  this.takeConfirmPasswordname(); })
         .catch((reason: any) => console.log(reason));
        }
-       
+       this.ref.detectChanges();
       },
       (onerror) => {console.log('error:', onerror);  }
     ) 

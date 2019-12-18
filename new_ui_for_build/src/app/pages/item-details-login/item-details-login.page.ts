@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
@@ -28,6 +28,9 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
     password = '';
     private alive = true;
 
+    public isUsernameValid = true;
+    public isPasswordValid = true;
+
     constructor(
         public http: HttpClient,
         public navCtrl: NavController,
@@ -37,7 +40,8 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
         private route: ActivatedRoute,
         private faio: FingerprintAIO,
         private tts: TextToSpeech,
-        private speechRecognition: SpeechRecognition
+        private speechRecognition: SpeechRecognition,
+        private ref: ChangeDetectorRef
         ) {
 
         this.type = this.route.snapshot.paramMap.get('type');
@@ -84,25 +88,30 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
             if ( matches[0] === 'back') {
             this.goBack();
             }
-            if (matches[0] === 'reset') {
+            else if (matches[0] === 'reset') {
               this.username = '';
+              this.user.username = '';
+              this.tts.speak('username is null now, start again')
+              .then(() => {console.log('Success');  this.takeUser(); })
+              .catch((reason: any) => console.log(reason));
             }
-            if(matches[0] === 'register' || matches[0] === 'signup' || matches[0] === 'sign up') {
-              this.goRegiser();
+            else if(matches[0] === 'register' || matches[0] === 'signup' || matches[0] === 'sign up') {
+              this.onRegister();
             }
-            if ( matches[0] === 'next') {
+            else if ( matches[0] === 'next') {
             this.tts.speak('Please spell your password')
             .then(() => { console.log('Success');  this.takePass(); })
             .catch((reason: any) => console.log(reason));
 
            } else {
-            this.username = this.user.username = this.user.username + matches[0];
+           this.username = this.user.username = this.user.username + matches[0];
+          
             // this.user.get('username').setValue( this.user.get('username').value+matches[0]);
             this.tts.speak('say next work')
             .then(() => {console.log('Success');  this.takeUser(); })
             .catch((reason: any) => console.log(reason));
            }
-
+           this.ref.detectChanges();
           },
           (onerror) => console.log('error:', onerror)
         )
@@ -118,21 +127,29 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
             if(matches[0]=='back'){
               this.goBack();
             }
-            if(matches[0]=='register' || matches[0]=='signup' || matches[0]=='sign up'){
-              this.goRegiser();
+           else if(matches[0]=='reset'){
+              this.user.password = '';
+              this.password = '';
+              this.tts.speak('password is null now, start again')
+              .then(() => {console.log('Success');  this.takePass(); })
+              .catch((reason: any) => console.log(reason));
+            }
+            else if(matches[0]=='register' || matches[0]=='signup' || matches[0]=='sign up'){
+              this.onRegister();
             }
 
-            if ( matches[0] === 'submit' || matches[0] === 'done' || matches[0] === 'thanks' || matches[0] === 'login') {
+            else  if( matches[0] === 'submit' || matches[0] === 'done' || matches[0] === 'thanks' || matches[0] === 'login') {
             this.onLogin(this.user);
           }else{
             this.password = this.user.password = (this.user.password+matches[0]).replace(/\s+/g, '');
+            this.ref.detectChanges();
             // this.user.get('password').setValue((this.user.get('password').value+matches[0]).replace(/\s+/g, '') );
             this.tts.speak('say next work')
             .then(() => {console.log('Success');  this.takePass(); })
             .catch((reason: any) => console.log(reason));
 
           }
-
+            this.ref.detectChanges();
 
           },
           (onerror) => console.log('error:', onerror)
@@ -183,7 +200,7 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
         .catch((reason: any) => console.log(reason));
 
     }
-    onRegister(params): void {
+    onRegister(params = {}): void {
         this.toastCtrl.presentToast('onRegister:' + JSON.stringify(params));
         this.navCtrl.navigateForward('register');
     }
