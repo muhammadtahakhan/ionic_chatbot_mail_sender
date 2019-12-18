@@ -21,7 +21,14 @@ export class EmailDetailPage implements OnInit {
 
     this.route.queryParams.subscribe(
       // tslint:disable-next-line: no-unused-expression
-      (res: data_type) => { this.data = res; },
+
+      (res: data_type) => {
+        this.data.from = res.from;
+        this.data.subject = res.subject;
+        const data = res.body.split('--- mail_boundary ---');
+        this.data.body = data[1];
+        console.log('-->', data);
+       },
       error => {},
       () => {}
     )

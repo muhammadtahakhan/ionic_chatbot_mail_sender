@@ -22,6 +22,9 @@ export class RegisterLayout1Page implements OnChanges {
   @Input()
   set c_password(val) { this.item.c_password = val; }
 
+  @Input()
+  set data(data) { this.item = Object.assign(this.item, data) ; }
+
   public isEmailValid = true;
   public isUsernameValid = true;
   public isPasswordValid = true;

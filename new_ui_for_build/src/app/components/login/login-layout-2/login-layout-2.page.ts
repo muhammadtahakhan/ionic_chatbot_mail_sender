@@ -1,10 +1,11 @@
-import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ToastService } from 'src/app/services/toast-service';
 
 @Component({
   selector: 'cs-login-layout-2',
   templateUrl: 'login-layout-2.page.html',
   styleUrls: ['login-layout-2.page.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class LoginLayout2Page implements OnChanges {
 

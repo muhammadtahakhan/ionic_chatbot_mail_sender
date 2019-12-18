@@ -46,17 +46,17 @@ export class MenuService implements IService {
         'component': '',
         'singlePage': false
       },
-     
-      {
-        'url': 'swipe-to-dismiss/0',
-        'title': 'swipe-to-dismiss',
-        'theme': 'parallax',
-        'icon': 'icon-format-line-spacing',
-        'listView': false,
-        'component': '',
-        'singlePage': false
-      },
-     
+
+      // {
+      //   'url': 'swipe-to-dismiss/0',
+      //   'title': 'swipe-to-dismiss',
+      //   'theme': 'parallax',
+      //   'icon': 'icon-format-line-spacing',
+      //   'listView': false,
+      //   'component': '',
+      //   'singlePage': false
+      // },
+
       // {
       //   'url': 'splash-screens/2',
       //   'title': 'Splash Screen',

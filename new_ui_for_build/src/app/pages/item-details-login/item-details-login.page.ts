@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
@@ -6,7 +6,7 @@ import { LoginService } from '../../services/login-service';
 import { ToastService } from 'src/app/services/toast-service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpClient } from '@angular/common/http';
-import { finalize } from 'rxjs/operators';
+import { finalize, takeWhile } from 'rxjs/operators';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
@@ -14,10 +14,11 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 @Component({
     templateUrl: 'item-details-login.page.html',
     styleUrls: ['item-details-login.page.scss'],
-    providers: [LoginService]
+    providers: [LoginService],
+    changeDetection: ChangeDetectionStrategy.Default,
 
 })
-export class ItemDetailsLoginPage implements OnInit {
+export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
 
     data = {};
     type: string;
@@ -25,6 +26,7 @@ export class ItemDetailsLoginPage implements OnInit {
     user = {password: '', username: ''};
     username = '';
     password = '';
+    private alive = true;
 
     constructor(
         public http: HttpClient,
@@ -51,6 +53,11 @@ export class ItemDetailsLoginPage implements OnInit {
 
         }
 
+    ngOnDestroy() {
+      console.log('[takeWhile] ngOnDestory');
+      this.alive = false;
+    }
+
     ionViewDidEnter() {
       console.log('ionViewDidEnter');
       this.start();
@@ -71,10 +78,14 @@ export class ItemDetailsLoginPage implements OnInit {
     takeUser() {
 
         this.speechRecognition.startListening()
+        .pipe(takeWhile(() => this.alive))
         .subscribe((matches: Array<string>) => {
             console.log(matches);
             if ( matches[0] === 'back') {
             this.goBack();
+            }
+            if (matches[0] === 'reset') {
+              this.username = '';
             }
             if(matches[0] === 'register' || matches[0] === 'signup' || matches[0] === 'sign up') {
               this.goRegiser();
@@ -100,8 +111,8 @@ export class ItemDetailsLoginPage implements OnInit {
       takePass(){
 
         this.speechRecognition.startListening()
+        .pipe(takeWhile(() => this.alive))
         .subscribe(
-
           (matches: Array<string>) => {
             console.log(matches);
             if(matches[0]=='back'){
@@ -157,6 +168,7 @@ export class ItemDetailsLoginPage implements OnInit {
       .pipe(
         finalize(() => this.loading = false),
       )
+      .pipe(takeWhile(() => this.alive))
       .subscribe(
         res => { console.log(res); },
         error => {  this.tts.speak('opps something went wrong, please fill form again ')
@@ -184,7 +196,7 @@ export class ItemDetailsLoginPage implements OnInit {
       this.navCtrl.navigateBack(['home']);
     }
 
-    goRegiser() {
+     mkkgoRegiser() {
       this.navCtrl.navigateBack(['register']);
     }
 

@@ -85,7 +85,8 @@ def read_email_from_gmail():
         mail.list()
         mail.select('inbox')
         
-        type, data = mail.search(None, '(UNSEEN)')
+        # type, data = mail.search(None, '(UNSEEN)')
+        type, data = mail.search(None, 'ALL')
         mail_ids = data[0]
         
 
