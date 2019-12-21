@@ -31,13 +31,13 @@
             <!---Input field username-->
             <ion-item no-padding transparent input>
                 <ion-label text-size-xs position="floating">username </ion-label>
-                <ion-input required type="text" [(ngModel)]="this.user.username"></ion-input>
+                <ion-input required type="text" [(ngModel)]="user.username"></ion-input>
                 <ion-icon *ngIf="!isUsernameValid" icon-small name="remove-circle"></ion-icon>
             </ion-item>
             <!---Input field password-->
             <ion-item no-padding transparent input>
                 <ion-label text-size-xs position="floating">password</ion-label>
-                <ion-input required type="password" [(ngModel)]="password"></ion-input>
+                <ion-input required type="password" [(ngModel)]="user.password"></ion-input>
                 <ion-icon *ngIf="!isPasswordValid" icon-small name="remove-circle"></ion-icon>
             </ion-item>
             <!---Login button-->
