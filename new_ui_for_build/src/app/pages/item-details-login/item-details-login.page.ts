@@ -68,6 +68,12 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
     }
 
     start() {
+   // Request permissions
+      this.speechRecognition.requestPermission()
+       .then(
+         () => console.log('Granted'),
+         () => console.log('Denied'));
+
       this.toastCtrl.presentToast('start...');
       this.tts.speak({text: 'Please spell your username, once done call next for spell password',
         locale: 'en-GB'})
