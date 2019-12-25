@@ -8,6 +8,7 @@ import { NavController } from '@ionic/angular';
 import { MenuService } from './services/menu-service';
 import { Router } from '@angular/router';
 import { SplashScreenLayout1Page } from './components/splash-screen/splash-screen-layout-1/splash-screen-layout-1.page'
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ export class AppComponent {
     private navController: NavController,
     private menuService: MenuService,
     private router: Router,
-    public modalCtrl: PopoverController
+    public modalCtrl: PopoverController,
+    private speechRecognition: SpeechRecognition
   ) {
     this.isEnabledRTL = localStorage.getItem('isEnabledRTL') === 'true';
     this.initializeApp();
@@ -43,7 +45,20 @@ export class AppComponent {
    initializeApp() {
     // this.showSplash();
     this.platform.ready().then(() => {
-     
+
+      this.speechRecognition.hasPermission()
+      .then((hasPermission: boolean) => {
+
+        if (!hasPermission) {
+        this.speechRecognition.requestPermission()
+          .then(
+            () => console.log('Granted'),
+            () => console.log('Denied')
+          );
+        }
+
+     });
+
       this.statusBar.overlaysWebView(false);
       this.statusBar.backgroundColorByHexString('#0091D2');
       document.body.removeAttribute('class');
