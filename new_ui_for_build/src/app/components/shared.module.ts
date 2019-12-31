@@ -127,6 +127,7 @@ import { SwipeToDismissListLayout1Page } from './swipe-to-dismiss-list/swipe-to-
 
 // import { FullImageGalleryLayout1Page } from './full-image-gallery/full-image-gallery-layout-1/full-image-gallery-layout-1.page';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { WizardLayout1Page } from './wizard-layout-1/wizard-layout-1.page';
 // import { SpinnerPage } from './spinner/spinner.page';
 
 // import { TabLayout1PageModule } from './tab/tab-layout-1/tab-layout-1.module';
@@ -159,7 +160,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     // FormsLayout1Page, FormsLayout2Page, FormsLayout3Page, FormsLayout4Page,
     // SplashScreenLayout1Page, SplashScreenLayout2Page, SplashScreenLayout3Page,
     // SearchBarLayout1Page, SearchBarLayout2Page, SearchBarLayout3Page,
-    // WizardLayout1Page, WizardLayout2Page, WizardLayout3Page, WizardLayout4Page,
+    WizardLayout1Page,
+    //  WizardLayout2Page, WizardLayout3Page, WizardLayout4Page,
     // ParallaxLayout1Page, ParallaxLayout2Page, ParallaxLayout3Page, ParallaxLayout4Page,
     // SpinnerPage, MapLayout1Page, MapLayout2Page, MapLayout3Page,
     // QrcodeLayout1Page, QrcodeLayout2Page,
@@ -198,7 +200,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     // FormsLayout1Page, FormsLayout2Page, FormsLayout3Page, FormsLayout4Page,
     // SplashScreenLayout1Page, SplashScreenLayout2Page, SplashScreenLayout3Page,
     // SearchBarLayout1Page, SearchBarLayout2Page, SearchBarLayout3Page,
-    // WizardLayout1Page, WizardLayout2Page, WizardLayout3Page, WizardLayout4Page,
+    WizardLayout1Page, 
+    // WizardLayout2Page, WizardLayout3Page, WizardLayout4Page,
     // ParallaxLayout1Page, ParallaxLayout2Page, ParallaxLayout3Page, ParallaxLayout4Page,
     // SpinnerPage, MapLayout1Page, MapLayout2Page, MapLayout3Page,
     // QrcodeLayout1Page, QrcodeLayout2Page,

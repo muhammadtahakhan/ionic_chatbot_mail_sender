@@ -1,9 +1,47 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>setting</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>
+  <!-- Header -->
+  <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title text-capitalize>Setting</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <!-- Content -->
+    <ion-content>
 
-<ion-content>
+<!-- FORMS --COMPONENT 3 -->
+<ion-grid padding>
+  <ion-row>
+     <!-- Full Name -->
+     <ion-col size="12">
+       <ion-item no-padding transparent input>
+         <ion-label text-size-sm position="floating">Name</ion-label>
+           <ion-input type="text" [(ngModel)]="item.name"></ion-input>
+        </ion-item>
+        <!-- Last Name -->
+        <ion-item no-padding transparent input>
+          <ion-label text-size-sm position="floating">Email</ion-label>
+           <ion-input type="text" [(ngModel)]="item.email"></ion-input>
+        </ion-item>
+
+        <ion-item no-padding transparent input>
+          <ion-label text-size-sm position="floating">App Password</ion-label>
+           <ion-input type="text" [(ngModel)]="item.app_password"></ion-input>
+        </ion-item>
+        
+     </ion-col>
+     <!-- Button Write Comment -->
+     <ion-col size="12" class="ion-text-end">
+        <ion-button margin-top shape="round" button-round
+           fill="outline" (click)="save()">
+          save
+        </ion-button>
+     </ion-col>
+  </ion-row>
+</ion-grid>
 
 </ion-content>
+</ion-app>
+

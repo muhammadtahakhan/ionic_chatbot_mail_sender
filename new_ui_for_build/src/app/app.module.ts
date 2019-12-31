@@ -22,6 +22,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent,
+    // WelcomePage,
      SplashScreenLayout1Page,
      SplashScreenLayout2Page,
      SplashScreenLayout3Page],
@@ -30,9 +31,10 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     HttpClientModule,
-
+    SharedModule,
     AppRoutingModule],
     entryComponents: [ SplashScreenLayout1Page,
+      // WelcomePage,
       SplashScreenLayout2Page,
       SplashScreenLayout3Page],
   providers: [

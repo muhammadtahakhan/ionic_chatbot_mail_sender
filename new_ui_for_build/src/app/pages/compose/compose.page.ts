@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { LoginService } from 'src/app/services/login-service';
 import { ToastService } from 'src/app/services/toast-service';
@@ -29,6 +29,7 @@ export class ComposePage implements OnInit {
     public authenticationService: AuthenticationService,
     private speechRecognition: SpeechRecognition,
     private faio: FingerprintAIO,
+    private ref: ChangeDetectorRef,
     private tts: TextToSpeech,
     private route: ActivatedRoute) {
 
@@ -75,11 +76,12 @@ taketoemail() {
 
      }  else {
       this.to = this.to ? this.to + matches[0] : '' + matches[0];
+      this.to = this.to.replace(/ +/g, "");
       this.tts.speak('say next work')
       .then(() => {console.log('Success');  this.taketoemail(); })
       .catch((reason: any) => console.log(reason));
      }
-
+      this.ref.detectChanges();
     },
     (onerror) => {console.log('error:', onerror);  }
   )
@@ -110,7 +112,7 @@ takeccemail() {
       .then(() => {console.log('Success');  this.takeccemail(); })
       .catch((reason: any) => console.log(reason));
      }
-
+      this.ref.detectChanges();
     },
     (onerror) => {console.log('error:', onerror);  }
   )
@@ -140,7 +142,7 @@ takesubject() {
       .then(() => {console.log('Success');  this.takesubject(); })
       .catch((reason: any) => console.log(reason));
      }
-
+      this.ref.detectChanges();
     },
     (onerror) => {console.log('error:', onerror);  }
   )
@@ -171,7 +173,7 @@ takemessage() {
       .then(() => {console.log('Success');  this.takemessage(); })
       .catch((reason: any) => console.log(reason));
      }
-
+     this.ref.detectChanges();
     },
     (onerror) => {console.log('error:', onerror);  }
   )

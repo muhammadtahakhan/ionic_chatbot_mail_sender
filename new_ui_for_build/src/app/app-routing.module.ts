@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)},
   {
     path: 'login',
@@ -33,6 +33,8 @@ const routes: Routes = [
   { path: 'outbox', loadChildren: './pages/outbox/outbox.module#OutboxPageModule' },
   { path: 'email-detail', loadChildren: './pages/email-detail/email-detail.module#EmailDetailPageModule' },
   { path: 'setting', loadChildren: './pages/setting/setting.module#SettingPageModule' },
+  { path: 'welcome', loadChildren: './pages/welcome/welcome.module#WelcomePageModule' },
+  
 ];
 
 @NgModule({

@@ -71,4 +71,12 @@ export class AuthenticationService extends BaseService {
     // });
   }
 
+  get_user_data() {
+    return this.http.get(this.url + 'setting');
+  }
+
+  save_user_data(data) {
+    return this.http.post(this.url + 'setting', data);
+  }
+
 }

@@ -39,7 +39,7 @@ export class HomePage implements OnInit {
   }
 
   start() {
-    this.tts.speak({text: 'you are at home, what you want, to check your inbox say "inbox" or send email say "new email" or outbox ',
+    this.tts.speak({text: 'you are at home, what you want, to check your inbox say "inbox" or send email say "new email" or outbox , or setting for setting',
     locale: 'en-GB'})
   .then(() => {this.toastCtrl.presentToast('start... takeUser'); this.getdirection();  })
   .catch((reason: any) => console.log(reason));
@@ -61,6 +61,10 @@ export class HomePage implements OnInit {
 
        } else if ( matches[0] === 'outbox') {
         this.goTo('outbox');
+
+
+       } else if ( matches[0].includes("setting")) {
+        this.goTo('setting');
 
 
        } else {

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { SplashScreenLayout1Page } from './components/splash-screen/splash-screen-layout-1/splash-screen-layout-1.page'
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -22,6 +23,7 @@ export class AppComponent {
   title: 'Eye Electronic Mail'};
   isEnabledRTL = false;
   constructor(
+    public modalController: ModalController,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -35,12 +37,15 @@ export class AppComponent {
     this.isEnabledRTL = localStorage.getItem('isEnabledRTL') === 'true';
     this.initializeApp();
     this.appPages = this.menuService.getAllThemes()
+    // this.openModal();
   }
 
   async showSplash(){
     const splash = await this.modalCtrl.create({component: SplashScreenLayout1Page});
     await splash.present();
   }
+
+
 
    initializeApp() {
     // this.showSplash();
@@ -75,7 +80,8 @@ export class AppComponent {
             console.log('auth status', res);
             if(!res){
               // this.router.navigate(['user-account']);
-              this.router.navigate(['login']);
+              this.router.navigate(['welcome']);
+              // this.router.navigate(['login']);
 
             }else{
               this.router.navigate(['home']);
@@ -101,4 +107,6 @@ export class AppComponent {
   goTo(url){
     this.router.navigate([url]);
   }
+
+ 
 }

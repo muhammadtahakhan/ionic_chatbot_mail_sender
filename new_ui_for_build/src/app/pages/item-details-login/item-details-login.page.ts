@@ -144,7 +144,8 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
               this.onRegister();
             }
 
-            else  if( matches[0] === 'submit' || matches[0] === 'done' || matches[0] === 'thanks' || matches[0] === 'login') {
+            // tslint:disable-next-line: max-line-length
+            else  if( matches[0] === 'next' || matches[0] === 'submit' || matches[0] === 'done' || matches[0] === 'thanks' || matches[0] === 'login') {
             this.onLogin(this.user);
           }else{
             this.password = this.user.password = (this.user.password+matches[0]).replace(/\s+/g, '');
