@@ -60,19 +60,32 @@ class EmailController extends BaseController
             //     'name' => $request->name,
             //     'email' => $request->email,
             //     'app_password' => $request->app_password,
-              
             // ]);
             $user = User::find(Auth::id());
             if($request->name) $user->name = $request->name;
             if($request->email) $user->email = $request->email;
             if($request->app_password) $user->app_password = $request->app_password;
-            $user->save();
+            $user = $user->save();
 
-            return response()->json(['success' => true, 'data' => ''], $this->successStatus);
+            return response()->json(['success' => true, 'data' => $user], $this->successStatus);
            
         } catch(\Exception $e) {
             return $this->sendError($e->getMessage(), []);
         }
+    }
+
+    public function get_setting(){
+
+        try {
+           
+            $user = User::find(Auth::id());
+           
+            return response()->json(['success' => true, 'data' => $user], $this->successStatus);
+           
+        } catch(\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+
     }
 
     public function send_email(Request $request) {
