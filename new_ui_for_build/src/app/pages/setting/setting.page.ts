@@ -239,15 +239,20 @@ export class SettingPage implements OnInit, OnDestroy {
   save() {
     this.tts.speak('please wait,  update in process')
     .then(() => {
-
-      this.authenticationService.save_user_data(this.item).subscribe(
-        res => { this.tts.speak('fields updated successfully').then(() => { this.goBack() }).catch((reason: any) => console.log(reason)); },
-        error => { this.tts.speak('some thing went worng, please try again').then(() => { this.goBack() }).catch((reason: any) => {}); },
-        () => {}
-      );
-
+      this.save_date();
+     
       })
-    .catch((reason: any) => console.log(reason));
+    .catch((reason: any) => {console.log(reason);  this.save_date();});
+
+
+  }
+
+  save_date(){
+    this.authenticationService.save_user_data(this.item).subscribe(
+      res => { this.tts.speak('fields updated successfully').then(() => { this.goBack() }).catch((reason: any) => console.log(reason)); },
+      error => { this.tts.speak('some thing went worng, please try again').then(() => { this.goBack() }).catch((reason: any) => {}); },
+      () => {}
+    );
 
 
   }
