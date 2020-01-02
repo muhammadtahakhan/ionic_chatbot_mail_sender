@@ -31,6 +31,7 @@ constructor(
 }
 
 ngOnInit() {
+  this.toastCtrl.presentToast('Please Wait to fetch emails');
   this.tts.speak('Please Wait to fetch emails')
   .then(() => {  })
   .catch((reason: any) => console.log(reason));

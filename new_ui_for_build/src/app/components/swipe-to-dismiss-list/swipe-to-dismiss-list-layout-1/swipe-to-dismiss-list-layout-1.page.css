@@ -12,4 +12,15 @@ ion-item-divider [text-size-xs] {
 ion-item-divider [span-medium] {
   color: var(--cs-icon-color-primary, #00c0e8);
 }
+
+.circle {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #fff;
+  line-height: 500px;
+  text-align: center;
+  background: #000
+}
 /*# sourceMappingURL=swipe-to-dismiss-list-layout-1.page.css.map */
