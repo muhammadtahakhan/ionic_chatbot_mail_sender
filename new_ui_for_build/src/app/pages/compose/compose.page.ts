@@ -184,21 +184,23 @@ send() {
    const data = {message: this.message, to: this.to, subject: this.subject};
    this.service.send_email(data).subscribe(
       res => {
+        this.toastCtrl.presentToast('email sended successfully');
         this.tts.speak('email sended successfully')
         .then(() => {this.goBack(); })
-        .catch((reason: any) => console.log(reason));
+        .catch((reason: any) => {console.log(reason); this.goBack();});
       },
       error => {
+        this.toastCtrl.presentToast('opps some thing went wrong tryagain');
         this.tts.speak('opps some thing went wrong tryagain')
         .then(() => {this.goBack(); })
-        .catch((reason: any) => console.log(reason));
+        .catch((reason: any) => {console.log(reason); this.goBack();});
       },
       () => {}
     );
   }
 
   goBack() {
-    this.navCtrl.navigateBack(['/home']);
+    this.navCtrl.navigateBack(['home']);
   }
 
 }

@@ -249,12 +249,14 @@ export class SettingPage implements OnInit, OnDestroy {
 
   save_date(){
     this.authenticationService.save_user_data(this.item).subscribe(
-      res => { this.tts.speak('fields updated successfully').then(() => { this.goBack() }).catch((reason: any) => console.log(reason)); },
-      error => { this.tts.speak('some thing went worng, please try again').then(() => { this.goBack() }).catch((reason: any) => {}); },
+      res => {
+        this.toastCtrl.presentToast('fields updated successfully');
+        this.tts.speak('fields updated successfully').then(() => { this.goBack() }).catch((reason: any) => {console.log(reason); this.goBack();}) },
+      (error) => { 
+        this.toastCtrl.presentToast('some thing went worng, please try again');
+        this.tts.speak('some thing went worng, please try again').then(() => {  }).catch((reason: any) => {}); },
       () => {}
-    );
-
-
+      );
   }
 
   goBack() {
