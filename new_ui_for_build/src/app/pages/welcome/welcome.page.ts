@@ -9,7 +9,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
   templateUrl: './welcome.page.html',
   styleUrls: ['./welcome.page.scss'],
 })
-export class WelcomePage implements  OnDestroy {
+export class WelcomePage implements OnInit, OnDestroy {
 
   private alive = true;
   data = {
@@ -49,11 +49,20 @@ export class WelcomePage implements  OnDestroy {
     this.alive = false;
   }
 
+  ngOnInit(){
+
+    setTimeout(() => {
+      this.start();
+    }, 2000);
+
+  }
+
   start(){
+    console.log('start-->')
     this.tts.speak({text: 'Welcome to blind peopels email client mobile application,',
         locale: 'en-GB'})
-      .then(() => {  })
-      .catch((reason: any) => console.log(reason));
+      .then(() => { this.navCtrl.navigateForward('login'); })
+      .catch((reason: any) => { this.navCtrl.navigateForward('login'); } );
   }
 
   take_route(){

@@ -9,9 +9,9 @@
       [ngStyle]="{'background-image': 'url(' + headerMenuItem?.background + ')'}">
           <ion-item transparent class="ion-no-padding" lines="none">
             <ion-label style="margin: 10px" class="">
-                <img class="ion-margin-bottom" [src]="headerMenuItem?.image">
+                <!-- <img class="ion-margin-bottom" [src]="headerMenuItem?.image"> -->
                 <div clearfix></div>
-                {{headerMenuItem?.title}} -> {{authenticationService.authenticationState.value}}
+                {{headerMenuItem?.title}}
             </ion-label>
           </ion-item>
       </ion-header>

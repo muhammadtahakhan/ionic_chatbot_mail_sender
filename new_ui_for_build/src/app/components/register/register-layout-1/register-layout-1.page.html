@@ -5,10 +5,21 @@
       <!---Skip button-->
       <ion-button float-end margin-top button-clear fill="clear" shape="round" routerLink="/crisis-center" (click)="onSkipFunc()">Login</ion-button>
       <!---Logo-->
-      <ion-img float-start src="assets/imgs/logo/login.png" ></ion-img>
+      <!-- <ion-img float-start src="assets/imgs/fyp_logo.jpg" ></ion-img> -->
        <!--Form Title-->
        <h1 text-size-xl>Register</h1>
       <div clearfix></div>
+
+         <!---Input field username-->
+         <ion-item class="ion-no-padding" input>
+          <ion-label text-size-xs position="floating">Name/Username</ion-label>
+          <ion-input required type="text"
+            [(ngModel)]="item.username">
+          </ion-input>
+          <ion-icon *ngIf="!isUsernameValid" icon-small name="remove-circle"></ion-icon>
+        </ion-item>
+
+
         <!---Input field email-->
         <ion-item class="ion-no-padding" input>
           <ion-label text-size-xs position="floating">Email</ion-label>
@@ -19,23 +30,17 @@
           <ion-icon *ngIf="!isEmailValid" icon-small name="remove-circle"></ion-icon>
         </ion-item>
         <!---Input field name-->
-        <ion-item class="ion-no-padding" input>
+        <!-- <ion-item class="ion-no-padding" input>
           <ion-label text-size-xs position="floating">Name</ion-label>
           <ion-input required type="text"
             pattern="[a-zA-Z ]*" required
             [(ngModel)]="item.name">
           </ion-input>
           <ion-icon *ngIf="!isNameValid" icon-small name="remove-circle"></ion-icon>
-        </ion-item>
-     
-      <!---Input field username-->
-      <ion-item class="ion-no-padding" input>
-        <ion-label text-size-xs position="floating">Username</ion-label>
-        <ion-input required type="text"
-          [(ngModel)]="item.username">
-        </ion-input>
-        <ion-icon *ngIf="!isUsernameValid" icon-small name="remove-circle"></ion-icon>
-      </ion-item>
+        </ion-item> -->
+
+           
+    
       <!---Input field password-->
       <ion-item class="ion-no-padding" input>
         <ion-label text-size-xs position="floating">Password</ion-label>

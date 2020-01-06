@@ -27,10 +27,10 @@
             <ion-button float-end fill="clear" button-clear (click)="onRegister()">Regiser</ion-button>
             <div clearfix></div>
             <!---Logo-->
-            <ion-img style="width: 30%; text-align: center;" margin-top src="assets/imgs/logo/login.png"></ion-img>
+            <ion-img style="width: 100%; text-align: center;" margin-top src="assets/imgs/fyp_logo.jpg"></ion-img>
             <!---Input field username-->
             <ion-item no-padding transparent input>
-                <ion-label text-size-xs position="floating">username </ion-label>
+                <ion-label text-size-xs position="floating">name/username </ion-label>
                 <ion-input required type="text" [(ngModel)]="user.username"></ion-input>
                 <ion-icon *ngIf="!isUsernameValid" icon-small name="remove-circle"></ion-icon>
             </ion-item>

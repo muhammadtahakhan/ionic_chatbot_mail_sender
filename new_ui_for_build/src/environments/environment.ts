@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // url : "http://localhost:8000/api/"
   // url : "http://192.168.8.104:8000/api/"
-  url : 'http://192.168.0.101:8000/api/'
+  url : 'http://192.168.0.103:8000/api/'
 };
 
 /*

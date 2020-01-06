@@ -67,15 +67,15 @@ export class MenuService implements IService {
       //   'singlePage': false
       // },
 
-      {
-        'url': 'profile/4',
-        'title': 'Profile',
-        'theme': 'profile',
-        'icon': 'icon-account-outline',
-        'listView': false,
-        'component': '',
-        'singlePage': false
-      },
+      // {
+      //   'url': 'profile/4',
+      //   'title': 'Profile',
+      //   'theme': 'profile',
+      //   'icon': 'icon-account-outline',
+      //   'listView': false,
+      //   'component': '',
+      //   'singlePage': false
+      // },
       {
         'url': 'setting',
         'title': 'Setting',
