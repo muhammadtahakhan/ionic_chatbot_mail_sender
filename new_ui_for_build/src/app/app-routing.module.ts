@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'email-detail', loadChildren: './pages/email-detail/email-detail.module#EmailDetailPageModule' },
   { path: 'setting', loadChildren: './pages/setting/setting.module#SettingPageModule' },
   { path: 'welcome', loadChildren: './pages/welcome/welcome.module#WelcomePageModule' },
+  { path: 'initial-route', loadChildren: './pages/initial-route/initial-route.module#InitialRoutePageModule' },
   
 ];
 

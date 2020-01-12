@@ -68,25 +68,25 @@ export class SettingPage implements OnInit, OnDestroy {
                   }
                   else if(matches[0].includes("email")) {
                     this.item.email = '';
-                    this.tts.speak('say new Email')
+                    this.tts.speak({text:'say new Email', rate: 0.80})
                     .then(() => {   this.set_email(); })
                     .catch((reason: any) => console.log(reason));
 
                   }else if(matches[0].includes("name")) {
                     this.item.name = '';
-                    this.tts.speak('say new name')
+                    this.tts.speak({text:'say new name',  rate: 0.80})
                     .then(() => {  this.set_name(); })
                     .catch((reason: any) => console.log(reason));
 
                   }else if(matches[0].includes("password")) {
                     this.item.app_password = '';
-                    this.tts.speak('say new applcation password')
+                    this.tts.speak({text:'say new applcation password',  rate: 0.80})
                     .then(() => {   this.set_app_password(); })
                     .catch((reason: any) => console.log(reason));
 
                   }else{
 
-                  this.tts.speak('unable to understand, please say again')
+                  this.tts.speak({text:'unable to understand, please say again',  rate: 0.80})
                   .then(() => { this.start(); })
                   .catch((reason: any) => console.log(reason));
 
@@ -110,20 +110,20 @@ export class SettingPage implements OnInit, OnDestroy {
           this.goBack();
         } else if(matches[0].includes("name")) {
           this.item.name = '';
-          this.tts.speak('say new name')
+          this.tts.speak({text:'say new name',  rate: 0.80})
           .then(() => {  this.set_name(); })
           .catch((reason: any) => console.log(reason));
          
         }else if(matches[0].includes("password")) {
           this.item.app_password = '';
-          this.tts.speak('say new password')
+          this.tts.speak({text:'say new password',  rate: 0.80})
           .then(() => { this.set_app_password(); })
           .catch((reason: any) => console.log(reason));
 
          
         }else if(matches[0].includes("reset")){
           this.item.email = '';
-          this.tts.speak('email field is null now start again')
+          this.tts.speak({text:'email field is null now start again',  rate: 0.80})
           .then(() => { this.set_email(); })
           .catch((reason: any) => console.log(reason));
 
@@ -132,7 +132,7 @@ export class SettingPage implements OnInit, OnDestroy {
         }
         else{
           this.item.email =  this.item.email + matches[0];
-          this.tts.speak('say next word')
+          this.tts.speak({text:'say next word',  rate: 0.80})
           .then(() => { this.set_email(); })
           .catch((reason: any) => console.log(reason));
         }
@@ -154,19 +154,19 @@ export class SettingPage implements OnInit, OnDestroy {
           this.goBack();
         } else if(matches[0].includes("email")) {
           this.item.email = '';
-          this.tts.speak('say new email')
+          this.tts.speak({text:'say new email',  rate: 0.80})
           .then(() => { this.set_email(); })
           .catch((reason: any) => console.log(reason));
           
         }else if(matches[0].includes("password")) {
           this.item.app_password = '';
-          this.tts.speak('say new password')
+          this.tts.speak({text:'say new password',  rate: 0.80})
           .then(() => {  this.set_app_password(); })
           .catch((reason: any) => console.log(reason));
          
         }else if(matches[0].includes("reset")){
           this.item.name = '';
-          this.tts.speak('name field is null now, start again')
+          this.tts.speak({text:'name field is null now, start again',  rate: 0.80})
           .then(() => { this.set_name(); })
           .catch((reason: any) => console.log(reason));
 
@@ -176,7 +176,7 @@ export class SettingPage implements OnInit, OnDestroy {
         }
         else{
           this.item.name =  this.item.name + matches[0];
-          this.tts.speak('say next word')
+          this.tts.speak({text:'say next word',  rate: 0.80})
           .then(() => { this.set_name(); })
           .catch((reason: any) => console.log(reason));
         }
@@ -199,20 +199,20 @@ export class SettingPage implements OnInit, OnDestroy {
           this.goBack();
         } else if(matches[0].includes("email")) {
           this.item.email = '';
-          this.tts.speak('say new email')
+          this.tts.speak({text:'say new email',  rate: 0.80})
           .then(() => {   this.set_email(); })
           .catch((reason: any) => console.log(reason));
 
         }else if(matches[0].includes("name")) {
           this.item.name = '';
-          this.tts.speak('say new email')
+          this.tts.speak({text: 'say new email',  rate: 0.80})
           .then(() => {   this.set_name(); })
           .catch((reason: any) => console.log(reason));
 
 
         }else if(matches[0].includes("reset")){
           this.item.app_password = '';
-          this.tts.speak('app_password field is null now start again')
+          this.tts.speak({text:'app_password field is null now start again',  rate: 0.80})
           .then(() => { this.set_app_password(); })
           .catch((reason: any) => console.log(reason));
 
@@ -222,7 +222,7 @@ export class SettingPage implements OnInit, OnDestroy {
         }
         else{
           this.item.app_password =  this.item.app_password + matches[0];
-          this.tts.speak('say next word')
+          this.tts.speak({text:'say next word',  rate: 0.80})
           .then(() => { this.set_app_password(); })
           .catch((reason: any) => console.log(reason));
         }
@@ -237,7 +237,7 @@ export class SettingPage implements OnInit, OnDestroy {
 
 
   save() {
-    this.tts.speak('please wait,  update in process')
+    this.tts.speak({text:'please wait,  update in process',  rate: 0.80})
     .then(() => {
       this.save_date();
      
@@ -251,16 +251,16 @@ export class SettingPage implements OnInit, OnDestroy {
     this.authenticationService.save_user_data(this.item).subscribe(
       res => {
         this.toastCtrl.presentToast('fields updated successfully');
-        this.tts.speak('fields updated successfully').then(() => { this.goBack() }).catch((reason: any) => {console.log(reason); this.goBack();}) },
+        this.tts.speak({text:'fields updated successfully', rate: 0.80}).then(() => { this.goBack() }).catch((reason: any) => {console.log(reason); this.goBack();}) },
       (error) => { 
         this.toastCtrl.presentToast('some thing went worng, please try again');
-        this.tts.speak('some thing went worng, please try again').then(() => {  }).catch((reason: any) => {}); },
+        this.tts.speak({text: 'some thing went worng, please try again',  rate: 0.80}).then(() => {  }).catch((reason: any) => {}); },
       () => {}
       );
   }
 
   goBack() {
-    this.navCtrl.navigateBack(['home']);
+    this.navCtrl.navigateForward(['home']);
   }
 
 }

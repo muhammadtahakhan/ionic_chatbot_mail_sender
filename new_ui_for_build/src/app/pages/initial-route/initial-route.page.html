@@ -1,0 +1,47 @@
+<ion-app>
+ 
+
+  <!-- lOGIN FROMA --COMPONENT 2 -->
+<ion-page class="ion-page">
+
+<ion-content transparent background-size [ngStyle]="{'background-image': 'url(assets/imgs/background/29.jpg)'}">
+<ion-grid padding >
+    <ion-row align-items-center>
+        <ion-col  margin-top margin-bottom border-radius box-shadow padding size="12" size-md="10" push-md="1">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div margin-top clearfix></div>
+            <!---Logo-->
+            <ion-img margin-top style="width: 100%; text-align: center;" margin-top src="assets/imgs/fyp_logo.jpg"></ion-img>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div margin-top clearfix></div>
+
+            <ion-button (click)="goLogin()" margin-top color="primary" expand="block" >Login</ion-button>
+
+            <ion-button (click)="goRegister()" margin-top color="secondary" expand="block" >Register</ion-button>
+
+            <!---Login button-->
+            <!-- <ion-button  float-end button-clear margin-top fill="clear">
+               login
+            </ion-button> -->
+            <!---Register button-->
+            <!-- <ion-button float-end button-clear margin-top fill="clear" >
+                regiser
+            </ion-button> -->
+            <div clearfix></div>
+            <!---Share Section-->
+            
+          </ion-col>
+        <!---End Share Section-->
+    </ion-row>
+</ion-grid>
+</ion-content>
+</ion-page>
+
+
+</ion-app>

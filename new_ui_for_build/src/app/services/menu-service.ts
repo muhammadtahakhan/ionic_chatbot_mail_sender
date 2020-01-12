@@ -110,7 +110,7 @@ export class MenuService implements IService {
     return {
       'background': 'assets/imgs/background/16.jpg',
       'image': 'assets/imgs/logo/login-3.png',
-      'title': 'Eye Electronic Mail'
+      'title': 'Voice basef email system for blinds'
     };
   }
 

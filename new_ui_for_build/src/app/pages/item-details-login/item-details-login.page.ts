@@ -76,7 +76,7 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
 
       this.toastCtrl.presentToast('start...');
       this.tts.speak({text: 'Please spell your username, once done call next for spell password',
-        locale: 'en-GB'})
+        locale: 'en-GB', rate: 0.80})
       .then(() => {this.toastCtrl.presentToast('start... takeUser'); this.takeUser();  })
       .catch((reason: any) => console.log(reason));
     }
@@ -217,11 +217,11 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
     }
 
     goBack() {
-      this.navCtrl.navigateBack(['home']);
+      this.navCtrl.navigateForward(['home']);
     }
 
      mkkgoRegiser() {
-      this.navCtrl.navigateBack(['register']);
+      this.navCtrl.navigateForward(['register']);
     }
 
 }

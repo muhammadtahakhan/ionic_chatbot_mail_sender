@@ -47,8 +47,17 @@ read_count(){
   // tslint:disable-next-line: max-line-length
   this.tts.speak('there are ' + this.data.length + ' unread email in your inbox, say one to read more description about first eamil, 2 for sencond and so on')
   .then(() => { this.read_mail();  })
-  .catch((reason: any) => console.log(reason));
+  .catch((reason: any) =>{}  );
 }
+
+again() {
+
+  this.tts.speak('Sorry come again, there are ' + this.data.length + ' unread email in your inbox, say one to read more description about first eamil, 2 for sencond and so on')
+  .then(() => { this.read_mail();  })
+  .catch((reason: any) => console.log(reason));
+
+}
+
 
 read_mail(){
   this.speechRecognition.startListening()
@@ -62,19 +71,19 @@ read_mail(){
         else if(matches[0]=='reset'){
           this.read_count();
         }
-        else if(matches[0]=='one' || matches[0]=='1' ){ this.read(1);  }
-        else if(matches[0]=='two' || matches[0]=='2'){ this.read(2);  }
-        else if(matches[0]=='three' || matches[0]=='3'){ this.read(3);  }
-        else if(matches[0]=='four' || matches[0]=='4'){ this.read(4);  }
-        else if(matches[0]=='five' || matches[0]=='5'){ this.read(5);  }
-        else if(matches[0]=='six' || matches[0]=='6'){ this.read(6);  }
-        else if(matches[0]=='seven' || matches[0]=='7'){ this.read(7);  }
-        else if(matches[0]=='eight' || matches[0]=='8'){ this.read(8);  }
-        else if(matches[0]=='nine' || matches[0]=='9'){ this.read(9);  }
-        else if(matches[0]=='ten' || matches[0]=='10'){ this.read(10);  }
-        else if(matches[0]=='eleven' || matches[0]=='11'){ this.read(11);  }
+        else if(matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first") ){ this.read(1);  }
+        else if(matches[0].includes('two') || matches[0]=='2' ||  matches[0].includes("second")){ this.read(2);  }
+        else if(matches[0].includes('three') || matches[0]=='3' ||  matches[0].includes("third")){ this.read(3);  }
+        else if(matches[0].includes('four') || matches[0]=='4' ||  matches[0].includes("fourth")){ this.read(4);  }
+        else if(matches[0].includes('five') || matches[0]=='5' ||  matches[0].includes("fifth")){ this.read(5);  }
+        else if(matches[0].includes('six') || matches[0]=='6' || matches[0].includes("sixth")){ this.read(6);  }
+        else if(matches[0].includes('seven') || matches[0]=='7' || matches[0].includes("seventh")){ this.read(7);  }
+        else if(matches[0].includes('eight') || matches[0]=='8' || matches[0].includes("eighth")){ this.read(8);  }
+        else if(matches[0].includes('nine') || matches[0]=='9' || matches[0].includes("ninth")){ this.read(9);  }
+        else if(matches[0].includes('ten') || matches[0]=='10' || matches[0].includes("tenth")){ this.read(10);  }
+        else if(matches[0].includes('eleven') || matches[0]=='11' || matches[0].includes("eleventh")){ this.read(11);  }
        else{
-        
+        this.again();
        }
        
       },
@@ -92,7 +101,7 @@ read(no){
 
 goBack() {
 
-  this.navCtrl.navigateBack(['/home']);
+  this.navCtrl.navigateForward(['/home']);
 
 }
 

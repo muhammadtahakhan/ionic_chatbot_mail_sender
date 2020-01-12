@@ -19,7 +19,7 @@ export class WelcomePage implements OnInit, OnDestroy {
  items:[
    {iconSlider: "icon-star-outline",
    title: "Welcome",
-   description: "This app for blind peopels"},
+   description: "Even without sight there is still vision"},
   //  {iconSlider: "icon-star-half",
   //  title: "For Developers",
   //  description: "Save hours of developing. Tons of funcional components."},
@@ -41,7 +41,8 @@ export class WelcomePage implements OnInit, OnDestroy {
    closeModal() {
       //  localStorage.setItem("SHOW_START_WIZARD", 'true');
       // this.modalController.dismiss();
-      this.navCtrl.navigateForward('login');
+      console.log('initial-route');
+      this.navCtrl.navigateForward('initial-route');
   }
 
   ngOnDestroy() {
@@ -60,9 +61,9 @@ export class WelcomePage implements OnInit, OnDestroy {
   start(){
     console.log('start-->')
     this.tts.speak({text: 'Welcome to blind peopels email client mobile application,',
-        locale: 'en-GB'})
-      .then(() => { this.navCtrl.navigateForward('login'); })
-      .catch((reason: any) => { this.navCtrl.navigateForward('login'); } );
+        locale: 'en-GB', rate: 0.80})
+      .then(() => { this.navCtrl.navigateForward('initial-route'); })
+      .catch((reason: any) => {  } );
   }
 
   take_route(){

@@ -91,7 +91,7 @@ read(no){
 
 goBack() {
 
-  this.navCtrl.navigateBack(['/home']);
+  this.navCtrl.navigateForward(['/home']);
 
 }
 

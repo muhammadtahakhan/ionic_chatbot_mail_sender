@@ -16,8 +16,8 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 })
 export class HomePage implements OnInit {
 
-  item = { "toolbarTitle": "Eye Electronic Mail",
-  "title": "Eye Electronic Mail",
+  item = { "toolbarTitle": " Voice basef email system for blinds",
+  "title": "Voice basef email system for blinds",
   "subtitle": "",
   "subtitle2": "",
   "link": "",

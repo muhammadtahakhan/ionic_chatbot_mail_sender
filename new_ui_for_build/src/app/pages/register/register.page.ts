@@ -322,7 +322,7 @@ export class RegisterPage implements OnInit {
       res => {
 
         this.tts.speak('Signup successfull, plz login')
-        .then(() => { console.log('Success');   this.navCtrl.navigateBack(['login']); })
+        .then(() => { console.log('Success');   this.navCtrl.navigateForward(['login']); })
         .catch((reason: any) => console.log(reason));
 
         },
@@ -339,7 +339,7 @@ export class RegisterPage implements OnInit {
   }
 
   goBack() {
-    this.navCtrl.navigateBack(['login']);
+    this.navCtrl.navigateForward(['login']);
   }
 
 
