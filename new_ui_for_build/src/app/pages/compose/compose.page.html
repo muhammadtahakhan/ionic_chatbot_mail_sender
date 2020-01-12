@@ -8,7 +8,7 @@
         </ion-toolbar>
       </ion-header>
 
-<ion-content>
+<ion-content (dblclick)="start()">
     <ion-item>
         <ion-label position="floating">Email</ion-label>
         <ion-input [(ngModel)]='to'></ion-input>

@@ -5,11 +5,11 @@
           <ion-buttons slot="start">
             <ion-back-button defaultHref="/home"></ion-back-button>
           </ion-buttons>
-          <ion-title text-capitalize>Send Items</ion-title>
+          <ion-title text-capitalize>Sent Items</ion-title>
         </ion-toolbar>
       </ion-header>
       <!-- Content -->
-      <ion-content>
+      <ion-content (dblclick)="read_count()">
     
         <!-- PAGE 1 -->
         <cs-swipe-to-dismiss-list-layout-1
