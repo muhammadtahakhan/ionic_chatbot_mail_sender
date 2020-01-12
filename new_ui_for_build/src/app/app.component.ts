@@ -108,5 +108,10 @@ export class AppComponent {
     this.router.navigate([url]);
   }
 
+  logout(){
+    this.authenticationService.logout();
+    // this.router.navigate(['login']);
+  }
+
  
 }

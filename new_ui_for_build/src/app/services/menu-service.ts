@@ -39,7 +39,7 @@ export class MenuService implements IService {
       },
       {
         'url': 'outbox',
-        'title': 'Outbox',
+        'title': 'Sent Items',
         'theme': 'parallax',
         'icon': 'icon-format-line-spacing',
         'listView': false,
