@@ -46,6 +46,15 @@ export class MenuService implements IService {
         'component': '',
         'singlePage': false
       },
+      {
+        'url': 'trash',
+        'title': 'trash Items',
+        'theme': 'parallax',
+        'icon': 'icon-format-line-spacing',
+        'listView': false,
+        'component': '',
+        'singlePage': false
+      },
 
       // {
       //   'url': 'swipe-to-dismiss/0',

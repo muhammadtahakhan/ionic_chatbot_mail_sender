@@ -1,0 +1,27 @@
+<ion-app>
+  <!-- Header -->
+  <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title text-capitalize>Trashed Items</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <!-- Content -->
+    <ion-content (dblclick)="read_count()">
+  
+      <!-- PAGE 1 -->
+      <cs-swipe-to-dismiss-list-layout-1
+        [data]="data"
+        (onShare)="onShare($event)"
+        (onFavorite)="onFavorite($event)"
+        (onLike)="onLike($event)"
+        (onUndo)="onUndo($event)"
+        (onDelete)="onDelete($event)"
+        (onItemClick)="onItemClick($event)">
+      </cs-swipe-to-dismiss-list-layout-1>
+  
+    </ion-content>
+  </ion-app>
+  

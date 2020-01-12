@@ -7,6 +7,7 @@ import { ToastService } from 'src/app/services/toast-service';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 // import { IntroPage } from '../intro-page/intro-page.page';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +30,7 @@ export class HomePage implements OnInit, AfterViewInit {
     private toastCtrl: ToastService,
     private tts: TextToSpeech,
     private speechRecognition: SpeechRecognition,
+    public authenticationService: AuthenticationService,
     // private homeService:HomeService,
     public modalController: ModalController) {
   }
@@ -72,6 +74,14 @@ export class HomePage implements OnInit, AfterViewInit {
 
        } else if ( matches[0] === 'outbox' || matches[0].includes('sent') ) {
         this.goTo('outbox');
+
+
+       }else if ( matches[0] === 'logout' || matches[0].includes('logout') ) {
+        this.authenticationService.logout();
+
+
+       }else if ( matches[0] === 'trash' || matches[0].includes('delete') || matches[0].includes('trash')) {
+        this.goTo('trash');
 
 
        } else if ( matches[0].includes("setting")) {

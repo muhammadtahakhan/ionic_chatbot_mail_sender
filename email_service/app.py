@@ -53,6 +53,46 @@ def outbox():
     except Exception as e:
         return jsonify({'success':'false', 'message':'some thing is wrong with login credentials'})
  
+@app.route("/trash")
+def trash():
+     try:
+        args = request.args
+        mail = imaplib.IMAP4_SSL("imap.gmail.com", 993)
+        mail.login(args['email'], args['password'])
+        mail.list()
+        print(mail.list())
+        # mail.select('Travel')
+        # mail.select('INBOX')
+        mail.select('"[Gmail]/Trash"')
+        type, data = mail.search(None, 'ALL')
+        mail_ids = data[0]
+        print(mail_ids)
+        
+        id_list = mail_ids.split()   
+        first_email_id = int(id_list[0])
+        latest_email_id = int(id_list[-1])
+        
+      
+        # for i in reversed(range(first_email_id, latest_email_id)):
+        email = []
+        
+        for idx, i in enumerate(id_list):
+            # print('iiiii========================', i)
+            typ, data = mail.fetch(i, '(RFC822)' )
+            raw_email = data[0][1]
+            raw_email = str(raw_email, 'utf-8')
+            mail_data = mailparser.parse_from_string(raw_email)
+            data = {'id':mail_data.message_id, 'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
+            email.insert(idx, data)
+            if idx == 10:
+                break
+           
+        return jsonify(email)
+
+     except Exception as e:
+        return jsonify({'success':'false', 'message':'some thing is wrong with login credentials'})
+
+
 @app.route("/send")
 def send_email():
     try:

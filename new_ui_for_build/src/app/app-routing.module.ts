@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'setting', loadChildren: './pages/setting/setting.module#SettingPageModule' },
   { path: 'welcome', loadChildren: './pages/welcome/welcome.module#WelcomePageModule' },
   { path: 'initial-route', loadChildren: './pages/initial-route/initial-route.module#InitialRoutePageModule' },
+  { path: 'trash', loadChildren: './pages/trash/trash.module#TrashPageModule' },
   
 ];
 

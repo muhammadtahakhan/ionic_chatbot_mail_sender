@@ -29,6 +29,7 @@ export class ListViewSwipeToDismissService  extends BaseService implements IServ
     inbox = (): any => this.http.get(this.url + 'inbox' );
 
     outbox = (): any => this.http.get(this.url + 'outbox' );
+    trash = (): any => this.http.get(this.url + 'trash' );
 
     getDataForTheme = (menuItem: any): Array<any> => {
         return this[
