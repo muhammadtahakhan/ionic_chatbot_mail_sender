@@ -1,5 +1,5 @@
 // import { AppSettings } from './../../services/app-settings';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 // import { HomeService } from './../../services/home-service';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -14,10 +14,10 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
   styleUrls: ['home.page.scss'],
   // providers: [HomeService]
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, AfterViewInit {
 
-  item = { "toolbarTitle": " Voice basef email system for blinds",
-  "title": "Voice basef email system for blinds",
+  item = { "toolbarTitle": " Voice base email system for blinds",
+  "title": "Voice base email system for blinds",
   "subtitle": "",
   "subtitle2": "",
   "link": "",
@@ -34,16 +34,27 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-  this.start();
+  
 
+  }
+
+  ngAfterViewInit(){
+    this.start();
   }
 
   start() {
     this.tts.speak({text: 'you are at home, what you want, to check your inbox say "inbox" or send email say "new email" or outbox , or setting for setting',
-    locale: 'en-GB'})
+    locale: 'en-GB', rate: 0.80})
   .then(() => {this.toastCtrl.presentToast('start... takeUser'); this.getdirection();  })
   .catch((reason: any) => console.log(reason));
 
+  }
+
+  again(){
+    this.tts.speak({text: 'sorry come again, you are at home, what you want, to check your inbox say "inbox" or send email say "new email" or outbox , or setting for setting',
+    locale: 'en-GB', rate: 0.80})
+  .then(() => {this.toastCtrl.presentToast('start... takeUser'); this.getdirection();  })
+  .catch((reason: any) => console.log(reason));
   }
 
   getdirection(){
@@ -51,15 +62,15 @@ export class HomePage implements OnInit {
     this.speechRecognition.startListening()
     .subscribe((matches: Array<string>) => {
         console.log(matches);
-        if ( matches[0] === 'new email') {
+        if ( matches[0].includes("new") || matches[0].includes("compose") ) {
           this.goTo('compose-email');
         }
 
-        if ( matches[0] === 'inbox') {
+        if ( matches[0].includes("inbox")) {
           this.goTo('inbox');
 
 
-       } else if ( matches[0] === 'outbox') {
+       } else if ( matches[0] === 'outbox' || matches[0].includes('sent') ) {
         this.goTo('outbox');
 
 
@@ -68,7 +79,7 @@ export class HomePage implements OnInit {
 
 
        } else {
-
+        this.again();
        }
 
       },

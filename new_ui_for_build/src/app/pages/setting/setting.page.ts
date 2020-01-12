@@ -127,7 +127,7 @@ export class SettingPage implements OnInit, OnDestroy {
           .then(() => { this.set_email(); })
           .catch((reason: any) => console.log(reason));
 
-        }else if(matches[0].includes("save") || matches[0].includes("update")){
+        }else if(matches[0].includes("done") || matches[0].includes("save") || matches[0].includes("update")){
           this.save();
         }
         else{
@@ -171,7 +171,7 @@ export class SettingPage implements OnInit, OnDestroy {
           .catch((reason: any) => console.log(reason));
 
         }
-        else if(matches[0].includes("save") || matches[0].includes("update")){
+        else if(matches[0].includes("done") || matches[0].includes("save") || matches[0].includes("update")){
           this.save();
         }
         else{
@@ -217,7 +217,7 @@ export class SettingPage implements OnInit, OnDestroy {
           .catch((reason: any) => console.log(reason));
 
         }
-        else if(matches[0].includes("save") || matches[0].includes("update")){
+        else if(matches[0].includes("done") || matches[0].includes("save") || matches[0].includes("update")){
           this.save();
         }
         else{

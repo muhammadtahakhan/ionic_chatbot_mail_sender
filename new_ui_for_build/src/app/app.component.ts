@@ -20,7 +20,7 @@ export class AppComponent {
   public appPages = [];
   headerMenuItem: any = {background: 'assets/imgs/background/16.jpg',
   image: 'assets/imgs/logo/login-3.png',
-  title: 'Voice basef email system for blinds'};
+  title: 'Voice base email system for blinds'};
   isEnabledRTL = false;
   constructor(
     public modalController: ModalController,
