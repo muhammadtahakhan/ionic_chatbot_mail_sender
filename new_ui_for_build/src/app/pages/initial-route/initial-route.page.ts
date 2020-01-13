@@ -36,6 +36,13 @@ export class InitialRoutePage implements AfterViewInit, OnInit, OnDestroy {
       .catch((reason: any) => {  } );
   }
 
+  again(){
+    this.tts.speak({text: 'sorry come again, what do you want , say login to login or say register to register',
+    locale: 'en-GB'})
+  .then(() => { this.take_route(); })
+  .catch((reason: any) => {  } );
+  }
+
   take_route(){
     this.speechRecognition.startListening()
     .pipe(takeWhile(() => this.alive))
@@ -44,8 +51,10 @@ export class InitialRoutePage implements AfterViewInit, OnInit, OnDestroy {
         console.log(matches);
         if ( matches[0].includes('login')) {
             this.navCtrl.navigateForward('login');
-        } else if (matches[0].includes('login')) {
+        } else if (matches[0].includes('register')) {
           this.navCtrl.navigateForward('register');
+        }else{
+
         }
       },
       error => { });

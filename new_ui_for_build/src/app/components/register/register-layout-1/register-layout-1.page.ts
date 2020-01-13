@@ -99,9 +99,9 @@ export class RegisterLayout1Page implements OnChanges {
       this.isCPasswordValid = false;
     }
 
-    if (!this.item.name || this.item.name.length === 0) {
-      this.isNameValid = false;
-    }
+    // if (!this.item.name || this.item.name.length === 0) {
+    //   this.isNameValid = false;
+    // }
 
 
     this.isEmailValid = this.regex.test(this.item.email);
@@ -109,7 +109,7 @@ export class RegisterLayout1Page implements OnChanges {
     return this.isEmailValid &&
       this.isPasswordValid &&
       this.isUsernameValid &&
-      this.isCPasswordValid &&
-      this.isNameValid;
+      this.isCPasswordValid;
+
   }
 }

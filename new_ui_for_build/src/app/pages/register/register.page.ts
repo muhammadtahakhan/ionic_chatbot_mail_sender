@@ -124,7 +124,7 @@ export class RegisterPage implements OnInit {
           .catch((reason: any) => console.log(reason));
         }
         else  if(matches[0]=='next'){
-        this.tts.speak('Please spell password')
+        this.tts.speak('Please spell Email address')
         .then(() => { console.log('Success');  this.takeuseremail(); })
         .catch((reason: any) => console.log(reason));
        
@@ -161,7 +161,14 @@ export class RegisterPage implements OnInit {
           .catch((reason: any) => console.log(reason));
         }
         else if(matches[0]=='next'){
-        this.tts.speak('Please spell name')
+          if(!this.validateEmail(this.form.email)){
+            this.tts.speak('invalid email address please, speal again again')
+            .then(() => { this.form.email = ''; this.ref.detectChanges();  this.takeuseremail(); })
+            .catch((reason: any) => console.log(reason));
+
+        }
+
+        this.tts.speak('Please spell password')
         .then(() => { console.log('Success');  this.takePassword(); })
         .catch((reason: any) => console.log(reason));
        
@@ -236,6 +243,7 @@ export class RegisterPage implements OnInit {
           .catch((reason: any) => console.log(reason));
         }
         else if(matches[0]=='next'){
+
         this.tts.speak('Please spell password again')
         .then(() => { console.log('Success');  this.takeConfirmPasswordname(); })
         .catch((reason: any) => console.log(reason));
@@ -337,6 +345,11 @@ export class RegisterPage implements OnInit {
     );
 
   }
+
+   validateEmail(email){
+          var re = /\S+@\S+\.\S+/;
+          return re.test(email);
+      }
 
   goBack() {
     this.navCtrl.navigateForward(['login']);

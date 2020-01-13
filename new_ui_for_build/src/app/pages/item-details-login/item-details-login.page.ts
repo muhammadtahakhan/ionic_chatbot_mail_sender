@@ -171,6 +171,9 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
         // this.toastCtrl.presentToast('onLogin:' + JSON.stringify(params));
         this.faio.isAvailable()
         .then(isAvailable=>{
+          this.tts.speak('please scan you finger')
+          .then(() => {console.log('Success'); })
+          .catch((reason: any) => console.log(reason));
 
           this.faio.show({
             clientId: 'Fingerprint-Demo',
@@ -195,9 +198,16 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
       .pipe(takeWhile(() => this.alive))
       .subscribe(
         res => { console.log(res); },
-        error => {  this.tts.speak('opps something went wrong, please fill form again ')
-        .then(() => {console.log('Success'); this.start(); })
-        .catch((reason: any) => console.log(reason));  },
+        error => {  
+          this.tts.speak('opps something went wrong, please fill form again ')
+              .then(() => {
+                this.username = '';
+                this.user.username = '';
+                this.user.password = '';
+                this.password = '';
+                this.ref.detectChanges();
+                this.start(); })
+              .catch((reason: any) => console.log(reason));  },
         () => {}
       );
 
