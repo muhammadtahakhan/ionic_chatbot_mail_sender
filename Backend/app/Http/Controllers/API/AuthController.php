@@ -93,14 +93,14 @@ class AuthController extends BaseController
 
     public function register(Request $request){
         $request->validate([
-            'name' => 'required|string',
+            // 'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed'
         ]);
         try {
 
         $user = new User([
-            'name' => $request->name,
+            'name' => '',
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'activation_token' => str_random(60),
