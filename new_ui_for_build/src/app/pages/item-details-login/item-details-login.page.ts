@@ -94,11 +94,24 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
             if ( matches[0] === 'back') {
             this.goBack();
             }
-            else if (matches[0] === 'reset') {
+            else if (matches[0].includes('reset') || matches[0].includes('remove')) {
               this.username = '';
               this.user.username = '';
+              this.ref.detectChanges();
               this.tts.speak('username is null now, start again')
               .then(() => {console.log('Success');  this.takeUser(); })
+              .catch((reason: any) => console.log(reason));
+            }
+            else if(matches[0].includes('reset') && ( matches[0].includes('hole') || matches[0].includes('whole') ) ){
+              this.tts.speak('whole form is null now atart again, Please spell your username,')
+              .then(() => {
+                this.user.password = '';
+                this.password = '';
+                this.username = '';
+                this.user.username = '';
+                this.ref.detectChanges();
+                this.takeUser()
+               })
               .catch((reason: any) => console.log(reason));
             }
             else if(matches[0] === 'register' || matches[0] === 'signup' || matches[0] === 'sign up') {
@@ -133,9 +146,22 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
             if(matches[0]=='back'){
               this.goBack();
             }
-           else if(matches[0]=='reset'){
+            else if(matches[0].includes('reset') && ( matches[0].includes('hole') || matches[0].includes('whole') ) ){
+              this.tts.speak('whole form is null now atart again, Please spell your username,')
+              .then(() => { 
+                this.user.password = '';
+                this.password = '';
+                this.username = '';
+                this.user.username = '';
+                this.ref.detectChanges();
+                this.takeUser();
+               })
+              .catch((reason: any) => console.log(reason));
+            }
+           else if(matches[0].includes('reset') || matches[0].includes('remove')){
               this.user.password = '';
               this.password = '';
+              this.ref.detectChanges();
               this.tts.speak('password is null now, start again')
               .then(() => {console.log('Success');  this.takePass(); })
               .catch((reason: any) => console.log(reason));

@@ -49,7 +49,7 @@ export class InitialRoutePage implements AfterViewInit, OnInit, OnDestroy {
     .subscribe(
       (matches: Array<string>) => {
         console.log(matches);
-        if ( matches[0].includes('login')) {
+        if ( matches[0].includes('login') || matches[0].includes('log in')) {
             this.navCtrl.navigateForward('login');
         } else if (matches[0].includes('register')) {
           this.navCtrl.navigateForward('register');
