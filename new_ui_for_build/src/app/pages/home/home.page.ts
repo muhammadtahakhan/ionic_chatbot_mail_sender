@@ -23,7 +23,7 @@ export class HomePage implements OnInit, AfterViewInit {
   "subtitle2": "",
   "link": "",
   "description": "For better understanding how our template works please read documentation.",
-  "background": "assets/imgs/background/8.jpg"};
+  "background": "assets/imgs/background/33.jpeg"};
 
   constructor(
     private router: Router,

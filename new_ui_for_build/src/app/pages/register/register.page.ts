@@ -332,6 +332,17 @@ export class RegisterPage implements OnInit {
   }
 
   signup(){
+    if(this.form.c_password != this.form.password){
+      this.tts.speak('password dose not  match, plz fill again')
+      .then(() => {
+        this.form.password = '';
+        this.form.c_password = '';
+        this.ref.detectChanges();
+        this.takePassword();
+
+       })
+      .catch((reason: any) => console.log(reason));
+    }
 
 
     this.faio.isAvailable()
