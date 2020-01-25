@@ -32,7 +32,7 @@ export class MenuService implements IService {
         'url': 'inbox',
         'title': 'Inbox',
         'theme': 'parallax',
-        'icon': 'icon-format-line-spacing',
+        'icon': 'icon-arrow-down',
         'listView': false,
         'component': '',
         'singlePage': false
@@ -41,7 +41,7 @@ export class MenuService implements IService {
         'url': 'outbox',
         'title': 'Sent Items',
         'theme': 'parallax',
-        'icon': 'icon-format-line-spacing',
+        'icon': 'icon-arrow-up',
         'listView': false,
         'component': '',
         'singlePage': false
@@ -50,7 +50,7 @@ export class MenuService implements IService {
         'url': 'trash',
         'title': 'trash Items',
         'theme': 'parallax',
-        'icon': 'icon-format-line-spacing',
+        'icon': 'icon-repeat',
         'listView': false,
         'component': '',
         'singlePage': false
@@ -89,7 +89,7 @@ export class MenuService implements IService {
         'url': 'setting',
         'title': 'Setting',
         'theme': 'Setting',
-        'icon': 'icon-account-outline',
+        'icon': 'icon-keyboard',
         'listView': false,
         'component': '',
         'singlePage': false
