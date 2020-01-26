@@ -311,9 +311,7 @@ export class RegisterPage implements OnInit {
           .catch((reason: any) => console.log(reason));
         }
         else if(matches[0] === 'submit' || matches[0] === 'done' || matches[0]=='thanks' || matches[0]=='next' || matches[0]=='sign up' || matches[0]=='signup'){
-        this.tts.speak('Thanks, signup is processing')
-        .then(() => { console.log('Success'); this.signup(); })
-        .catch((reason: any) => console.log(reason));
+          this.valdation();
        
        }else{
         this.form.c_password = this.form.c_password?this.form.c_password+matches[0]:''+matches[0]
@@ -331,7 +329,7 @@ export class RegisterPage implements OnInit {
 
   }
 
-  signup(){
+  valdation(){
     if(this.form.c_password != this.form.password){
       this.tts.speak('password dose not  match, plz fill again')
       .then(() => {
@@ -343,7 +341,21 @@ export class RegisterPage implements OnInit {
        })
       .catch((reason: any) => console.log(reason));
     }
+    // else if(){
 
+    // }
+    else{
+      this.tts.speak('Thanks, signup is processing')
+      .then(() => { console.log('Success'); this.signup(); })
+      .catch((reason: any) => console.log(reason));
+    }
+
+
+   
+  }
+
+  signup(){
+   
 
     this.faio.isAvailable()
     .then(isAvailable => {

@@ -48,7 +48,7 @@ export class MenuService implements IService {
       },
       {
         'url': 'trash',
-        'title': 'trash Items',
+        'title': 'Trash Items',
         'theme': 'parallax',
         'icon': 'icon-repeat',
         'listView': false,

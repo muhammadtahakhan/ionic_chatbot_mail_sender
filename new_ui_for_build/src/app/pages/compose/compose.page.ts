@@ -70,8 +70,8 @@ taketoemail() {
         this.start()
       }
      else if(matches[0] === 'next'){
-      this.tts.speak('Please spell carbon copy email address')
-      .then(() => { console.log('Success');  this.takeccemail(); })
+      this.tts.speak('Please spell subject')
+      .then(() => { console.log('Success');  this.takesubject(); })
       .catch((reason: any) => console.log(reason));
 
      }  else {
@@ -181,6 +181,11 @@ takemessage() {
 }
 
 send() {
+  this.toastCtrl.presentToast('please wait');
+  this.tts.speak('please wait sending in process')
+  .then(() => { })
+  .catch((reason: any) => {console.log(reason); });
+
    const data = {message: this.message, to: this.to, subject: this.subject};
    this.service.send_email(data).subscribe(
       res => {

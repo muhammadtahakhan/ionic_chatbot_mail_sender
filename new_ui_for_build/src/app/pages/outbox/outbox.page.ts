@@ -61,10 +61,10 @@ read_mail(){
 
       (matches: Array<string>) => {
         console.log(matches);
-        if(matches[0]=='back'){
+        if(matches[0].includes('back') || matches[0].includes('home')){
         this.goBack();
         }
-        else if(matches[0]=='reset'){
+        else if(matches[0].includes('reset') || matches[0].includes('again')){
           this.read_count();
         }
         else if(matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first") ){ this.read(1);  }

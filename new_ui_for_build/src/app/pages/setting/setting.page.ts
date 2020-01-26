@@ -66,6 +66,18 @@ export class SettingPage implements OnInit, OnDestroy {
                   if(matches[0]=='back'){
                     this.goBack();
                   }
+                  else if(matches[0].includes('reset') && ( matches[0].includes('hole') || matches[0].includes('whole'))){
+                    this.item.email = '';
+                    this.item.name = '';
+                    this.item.app_password = '';
+                    this.ref.detectChanges();
+                    this.tts.speak({text:'all form is reset now ',  rate: 0.80})
+                    .then(() => { this.start(); })
+                    .catch((reason: any) => console.log(reason));
+                  }
+                  else if(matches[0].includes('save')){
+                    this.validate();
+                  }
                   else if(matches[0].includes("email")) {
                     this.item.email = '';
                     this.tts.speak({text:'say new Email', rate: 0.80})
@@ -108,7 +120,17 @@ export class SettingPage implements OnInit, OnDestroy {
       (matches: Array<string>) => {
         if(matches[0] == 'back') {
           this.goBack();
-        } else if(matches[0].includes("name")) {
+        } 
+        else if(matches[0].includes('reset') && ( matches[0].includes('hole') || matches[0].includes('whole'))){
+          this.item.email = '';
+          this.item.name = '';
+          this.item.app_password = '';
+          this.ref.detectChanges();
+          this.tts.speak({text:'all form is reset now ',  rate: 0.80})
+          .then(() => { this.start(); })
+          .catch((reason: any) => console.log(reason));
+        }
+        else if(matches[0].includes("name")) {
           this.item.name = '';
           this.tts.speak({text:'say new name',  rate: 0.80})
           .then(() => {  this.set_name(); })
@@ -128,7 +150,7 @@ export class SettingPage implements OnInit, OnDestroy {
           .catch((reason: any) => console.log(reason));
 
         }else if(matches[0].includes("done") || matches[0].includes("save") || matches[0].includes("update")){
-          this.save();
+          this.validate();
         }
         else{
           this.item.email =  this.item.email + matches[0];
@@ -152,7 +174,18 @@ export class SettingPage implements OnInit, OnDestroy {
       (matches: Array<string>) => {
         if(matches[0] == 'back') {
           this.goBack();
-        } else if(matches[0].includes("email")) {
+        }
+        else if(matches[0].includes('reset') && ( matches[0].includes('hole') || matches[0].includes('whole'))){
+          this.item.email = '';
+          this.item.name = '';
+          this.item.app_password = '';
+          this.ref.detectChanges();
+          this.tts.speak({text:'all form is reset now ',  rate: 0.80})
+          .then(() => { this.start(); })
+          .catch((reason: any) => console.log(reason));
+        }
+        
+        else if(matches[0].includes("email")) {
           this.item.email = '';
           this.tts.speak({text:'say new email',  rate: 0.80})
           .then(() => { this.set_email(); })
@@ -172,7 +205,7 @@ export class SettingPage implements OnInit, OnDestroy {
 
         }
         else if(matches[0].includes("done") || matches[0].includes("save") || matches[0].includes("update")){
-          this.save();
+          this.validate();
         }
         else{
           this.item.name =  this.item.name + matches[0];
@@ -197,7 +230,17 @@ export class SettingPage implements OnInit, OnDestroy {
       (matches: Array<string>) => {
         if(matches[0] == 'back') {
           this.goBack();
-        } else if(matches[0].includes("email")) {
+        }
+        else if(matches[0].includes("reset") && matches[0].includes("whole")){
+          this.item.email = '';
+          this.item.name = '';
+          this.item.app_password = '';
+          this.ref.detectChanges();
+          this.tts.speak({text:'all form is reset now ',  rate: 0.80})
+          .then(() => { this.start(); })
+          .catch((reason: any) => console.log(reason));
+        }
+        else if(matches[0].includes("email")) {
           this.item.email = '';
           this.tts.speak({text:'say new email',  rate: 0.80})
           .then(() => {   this.set_email(); })
@@ -218,7 +261,7 @@ export class SettingPage implements OnInit, OnDestroy {
 
         }
         else if(matches[0].includes("done") || matches[0].includes("save") || matches[0].includes("update")){
-          this.save();
+          this.validate();
         }
         else{
           this.item.app_password =  this.item.app_password + matches[0];
@@ -235,12 +278,17 @@ export class SettingPage implements OnInit, OnDestroy {
 
   }
 
+  validate(){
+
+    this.save();
+  }
+
 
   save() {
     this.tts.speak({text:'please wait,  update in process',  rate: 0.80})
     .then(() => {
       this.save_date();
-     
+
       })
     .catch((reason: any) => {console.log(reason);  this.save_date();});
 

@@ -46,7 +46,7 @@ ngOnInit() {
 read_count(){
   // tslint:disable-next-line: max-line-length
   this.tts.speak('there are ' + this.data.length + ' unread email in your inbox, say one to read more description about first eamil, 2 for sencond and so on')
-  .then(() => {   })
+  .then(() => { this.read_mail();  })
   .catch((reason: any) =>{}  );
 }
 
@@ -65,10 +65,10 @@ read_mail(){
 
       (matches: Array<string>) => {
         console.log(matches);
-        if(matches[0]=='back'){
+        if(matches[0].includes('back') || matches[0].includes('home')){
         this.goBack();
         }
-        else if(matches[0]=='reset'){
+        else if(matches[0].includes('reset') || matches[0].includes('again')){
           this.read_count();
         }
         else if(matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first") ){ this.read(1);  }
@@ -87,12 +87,13 @@ read_mail(){
        }
        
       },
-      (onerror) => { this.read_count(); }
+      (onerror) => {  }
     );
 
 }
 
 read(no){
+  this.onItemClick(this.data[no]);
   const data = this.data[no].body.split('--- mail_boundary ---');
   this.tts.speak('this mail sended by  '+ this.data[no].from[0] +" and suject of this email is "+ this.data[no].subject+ " and content is     "+data[0]+" if you want read more say email number")
   .then(() => {  this.read_mail();  })
@@ -101,7 +102,7 @@ read(no){
 
 goBack() {
 
-  this.navCtrl.navigateForward(['/home']);
+  this.navCtrl.navigateForward(['/inbox']);
 
 }
 
