@@ -79,6 +79,15 @@ export class TrashPage implements OnInit {
           else if(matches[0].includes('nine') || matches[0]=='9' || matches[0].includes("ninth")){ this.read(9);  }
           else if(matches[0].includes('ten') || matches[0]=='10' || matches[0].includes("tenth")){ this.read(10);  }
           else if(matches[0].includes('eleven') || matches[0]=='11' || matches[0].includes("eleventh")){ this.read(11);  }
+          else if(matches[0].includes('twelve') || matches[0]=='12' || matches[0].includes("twelveth")){ this.read(11);  }
+          else if(matches[0].includes('thirteen') || matches[0]=='13') { this.read(13);  }
+          else if(matches[0].includes('fourteeh') || matches[0]=='14') { this.read(14);  }
+          else if(matches[0].includes('fifteen') || matches[0]=='15') { this.read(15); }
+          else if(matches[0].includes('sixteen') || matches[0]=='16' ) { this.read(16); }
+          else if(matches[0].includes('seventeen') || matches[0]=='17' ) { this.read(17); }
+          else if(matches[0].includes('eighteen') || matches[0]=='18' ) { this.read(18); }
+          else if(matches[0].includes('ninteen') || matches[0]=='19' ) { this.read(19); }
+          else if(matches[0].includes('twenty') || matches[0]=='20' ) { this.read(20);}
          else{
           this.again();
          }

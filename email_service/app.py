@@ -45,7 +45,7 @@ def outbox():
             mail_data = mailparser.parse_from_string(raw_email)
             data = {'id':mail_data.message_id, 'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
             email.insert(idx, data)
-            if idx == 10:
+            if idx == 20:
                 break
            
         return jsonify(email)
@@ -84,7 +84,7 @@ def trash():
             mail_data = mailparser.parse_from_string(raw_email)
             data = {'id':mail_data.message_id, 'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
             email.insert(idx, data)
-            if idx == 10:
+            if idx == 20:
                 break
            
         return jsonify(email)
@@ -146,7 +146,7 @@ def read_email_from_gmail():
             mail_data = mailparser.parse_from_string(raw_email)
             data = {'id':mail_data.message_id, 'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
             email.insert(idx, data)
-            if idx == 10:
+            if idx == 20:
                 break
            
         return jsonify(email) 

@@ -9,7 +9,7 @@ import { MenuService } from './services/menu-service';
 import { Router } from '@angular/router';
 import { SplashScreenLayout1Page } from './components/splash-screen/splash-screen-layout-1/splash-screen-layout-1.page'
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
-
+// import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +23,7 @@ export class AppComponent {
   title: 'Voice base email system for blinds'};
   isEnabledRTL = false;
   constructor(
+    // private androidPermissions: AndroidPermissions,
     public modalController: ModalController,
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -36,8 +37,12 @@ export class AppComponent {
   ) {
     this.isEnabledRTL = localStorage.getItem('isEnabledRTL') === 'true';
     this.initializeApp();
-    this.appPages = this.menuService.getAllThemes()
+    this.appPages = this.menuService.getAllThemes();
     // this.openModal();
+    // this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
+    //   result => console.log('Has permission?',result.hasPermission),
+    //   err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
+    // );
   }
 
   async showSplash(){

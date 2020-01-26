@@ -204,8 +204,8 @@ send() {
     );
   }
 
-  goBack() {
-    this.navCtrl.navigateForward(['home']);
-  }
+goBack() {
+  this.navCtrl.navigateForward(['home']);
+}
 
 }
