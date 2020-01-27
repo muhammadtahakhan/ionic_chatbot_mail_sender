@@ -178,13 +178,12 @@ export class RegisterPage implements OnInit {
             this.tts.speak('invalid email address please, speal again again')
             .then(() => { this.form.email = ''; this.ref.detectChanges();  this.takeuseremail(); })
             .catch((reason: any) => console.log(reason));
-
         }
 
         this.tts.speak('Please spell password')
         .then(() => { console.log('Success');  this.takePassword(); })
         .catch((reason: any) => console.log(reason));
-       
+
        }else{
         this.form.email = this.form.email?this.form.email+matches[0]:''+matches[0];
         this.form.email = this.form.email.replace(/ +/g, "");
@@ -341,17 +340,19 @@ export class RegisterPage implements OnInit {
        })
       .catch((reason: any) => console.log(reason));
     }
-    // else if(){
-
-    // }
+    else if(!this.validateEmail(this.form.email)){
+      this.form.email = '';
+      this.ref.detectChanges();
+      this.tts.speak({text:'invalid email field, fill again',  rate: 0.80})
+      .then(() => { this.takeuseremail(); })
+      .catch((reason: any) => console.log(reason));
+    }
     else{
       this.tts.speak('Thanks, signup is processing')
       .then(() => { console.log('Success'); this.signup(); })
       .catch((reason: any) => console.log(reason));
     }
 
-
-   
   }
 
   signup(){

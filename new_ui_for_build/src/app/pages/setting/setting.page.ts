@@ -154,6 +154,7 @@ export class SettingPage implements OnInit, OnDestroy {
         }
         else{
           this.item.email =  this.item.email + matches[0];
+          this.item.email =  this.item.email.replace(/ +/g, "");
           this.tts.speak({text:'say next word',  rate: 0.80})
           .then(() => { this.set_email(); })
           .catch((reason: any) => console.log(reason));
@@ -265,8 +266,9 @@ export class SettingPage implements OnInit, OnDestroy {
         }
         else{
           this.item.app_password =  this.item.app_password + matches[0];
+          this.item.app_password =  this.item.app_password.replace(/ +/g, "");
           this.tts.speak({text:'say next word',  rate: 0.80})
-          .then(() => { this.set_app_password(); })
+          .then(() => { this.ref.detectChanges(); this.set_app_password(); })
           .catch((reason: any) => console.log(reason));
         }
         this.ref.detectChanges();
@@ -279,9 +281,26 @@ export class SettingPage implements OnInit, OnDestroy {
   }
 
   validate(){
+    if(this.validateEmail( this.item.email)){
+      this.save();
+    }
+    
+    else{
 
-    this.save();
+      this.item.email = '';
+      this.ref.detectChanges();
+      this.tts.speak({text:'invalid email field, fill again',  rate: 0.80})
+      .then(() => { this.set_email(); })
+      .catch((reason: any) => console.log(reason));
+    }
+    
   }
+
+   validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
 
 
   save() {
@@ -299,7 +318,7 @@ export class SettingPage implements OnInit, OnDestroy {
     this.authenticationService.save_user_data(this.item).subscribe(
       res => {
         this.toastCtrl.presentToast('fields updated successfully');
-        this.tts.speak({text:'fields updated successfully', rate: 0.80}).then(() => { this.goBack() }).catch((reason: any) => {console.log(reason); this.goBack();}) },
+        this.tts.speak({text:'Fields updated successfully', rate: 0.80}).then(() => { this.goBack() }).catch((reason: any) => {console.log(reason); this.goBack();}) },
       (error) => { 
         this.toastCtrl.presentToast('some thing went worng, please try again');
         this.tts.speak({text: 'some thing went worng, please try again',  rate: 0.80}).then(() => {  }).catch((reason: any) => {}); },

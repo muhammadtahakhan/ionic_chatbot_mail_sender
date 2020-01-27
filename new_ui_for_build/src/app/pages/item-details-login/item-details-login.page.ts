@@ -124,7 +124,7 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
 
            } else {
            this.username = this.user.username = this.user.username + matches[0];
-          
+           this.user.username = this.user.username.replace(/ +/g, "");
             // this.user.get('username').setValue( this.user.get('username').value+matches[0]);
             this.tts.speak('say next work')
             .then(() => {console.log('Success');  this.takeUser(); })

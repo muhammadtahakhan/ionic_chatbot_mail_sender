@@ -137,9 +137,10 @@ takesubject() {
       .catch((reason: any) => console.log(reason));
 
      }  else {
-      this.cc = this.cc ? this.cc + matches[0] : '' + matches[0];
+      this.subject = this.subject ? this.subject + matches[0] : '' + matches[0];
+      
       this.tts.speak('say next work')
-      .then(() => {console.log('Success');  this.takesubject(); })
+      .then(() => {console.log('Success'); this.ref.detectChanges();  this.takesubject(); })
       .catch((reason: any) => console.log(reason));
      }
       this.ref.detectChanges();
@@ -168,7 +169,8 @@ takemessage() {
       .catch((reason: any) => console.log(reason));
 
      }  else {
-      this.cc = this.cc ? this.cc + matches[0] : '' + matches[0];
+      this.message ? this.message + matches[0] : '' + matches[0];
+      this.ref.detectChanges();
       this.tts.speak('say next work')
       .then(() => {console.log('Success');  this.takemessage(); })
       .catch((reason: any) => console.log(reason));
@@ -178,6 +180,25 @@ takemessage() {
     (onerror) => {console.log('error:', onerror);  }
   )
 
+}
+
+validate(){
+   if(!this.validateEmail(this.to)){
+    this.to = '';
+    
+    this.tts.speak({text:'invalid email field, fill again',  rate: 0.80})
+    .then(() => {this.ref.detectChanges(); this.taketoemail(); })
+    .catch((reason: any) => console.log(reason));
+  }
+  else{
+   this.send();
+  }
+
+}
+
+validateEmail(email){
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
 }
 
 send() {

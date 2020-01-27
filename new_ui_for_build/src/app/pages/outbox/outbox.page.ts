@@ -97,9 +97,11 @@ read_mail(){
 }
 
 read(no){
- 
-  this.tts.speak('this mail sended by  '+ this.data[no].from[0] +" and suject of this email is"+ this.data[no].subject+ " if you want read more say email number")
-  .then(() => {  this.read_mail();  })
+  no = no-1;
+  this.onItemClick(this.data[no]);
+  const data = this.data[no].body.split('--- mail_boundary ---');
+  this.tts.speak('this mail sended by  '+ this.data[no].from[0] +" and suject of this email is "+ this.data[no].subject+ " and content is     "+data[0]+" if you want read more say email number")
+  .then(() => {  this.navCtrl.navigateForward(['/inbox']); this.read_count(); })
   .catch((reason: any) => console.log(reason));
 }
 

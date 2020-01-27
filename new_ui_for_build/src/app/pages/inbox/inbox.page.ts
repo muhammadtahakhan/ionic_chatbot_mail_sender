@@ -66,7 +66,7 @@ read_mail(){
       (matches: Array<string>) => {
         console.log(matches);
         if(matches[0].includes('back') || matches[0].includes('home')){
-        this.goBack();
+          this.navCtrl.navigateForward(['/home']);
         }
         else if(matches[0].includes('reset') || matches[0].includes('again')){
           this.read_count();
@@ -102,6 +102,7 @@ read_mail(){
 }
 
 read(no){
+  no = no-1;
   this.onItemClick(this.data[no]);
   const data = this.data[no].body.split('--- mail_boundary ---');
   this.tts.speak('this mail sended by  '+ this.data[no].from[0] +" and suject of this email is "+ this.data[no].subject+ " and content is     "+data[0]+" if you want read more say email number")
