@@ -94,6 +94,9 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
             if ( matches[0] === 'back') {
             this.goBack();
             }
+            else if ((matches[0].includes('reset') || matches[0].includes('forget') || matches[0].includes('forgot')) && matches[0].includes('password')){
+              this.navCtrl.navigateForward(['reset-password']);
+            }
             else if (matches[0].includes('reset') || matches[0].includes('remove')) {
               this.username = '';
               this.user.username = '';
@@ -145,6 +148,9 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
             console.log(matches);
             if(matches[0]=='back'){
               this.goBack();
+            }
+            else if ((matches[0].includes('reset') || matches[0].includes('forget') || matches[0].includes('forgot')) && matches[0].includes('password')){
+              this.navCtrl.navigateForward(['reset-password']);
             }
             else if(matches[0].includes('reset') && ( matches[0].includes('hole') || matches[0].includes('whole') ) ){
               this.tts.speak('whole form is null now atart again, Please spell your username,')
@@ -254,6 +260,10 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
 
     goBack() {
       this.navCtrl.navigateForward(['home']);
+    }
+
+    goForgetPasswrd(){
+      this.navCtrl.navigateForward(['reset-password']);
     }
 
      mkkgoRegiser() {

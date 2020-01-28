@@ -90,6 +90,46 @@ class AuthController extends BaseController
 
     }
 
+    public function reset_password(Request $request){
+
+        try {
+            $rules = [
+               
+                'username' => 'required',
+                'password' => 'required',
+                
+                
+               ];
+               $customMessages = ['required' => 'The :attribute field can not be blank.', 
+               'email.unique' => 'The :attribute already been taken.',
+               'c_password.same'=> 'password does not match'
+            ];
+               $validator = \Validator::make($request->all(), $rules, $customMessages);
+               if ($validator->fails()) {
+                return $this->sendError([], $validator->errors()->first(), '', 400);
+            }
+    
+            $user = User::where('username', $request->username)->first();
+            $user->password = bcrypt($request->password);
+    
+           $data = $user->save();
+    
+            if($data){
+                return $this->sendResponse($data, 'Password updated successully');
+               }else{
+                return $this->sendError([], 'some thing went worng', '', 400);
+               }
+        
+    
+    
+    
+        } catch(\Exception $e) {
+            return $this->sendError([], $e->getMessage());
+        }
+    
+
+    }
+
 
     public function register(Request $request){
         $request->validate([
@@ -132,7 +172,7 @@ class AuthController extends BaseController
         // ]);
 
         $rules = [
-            'name' => 'required',
+            // 'name' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required',

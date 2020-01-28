@@ -37,7 +37,7 @@ def outbox():
         # for i in reversed(range(first_email_id, latest_email_id)):
         email = []
         
-        for idx, i in enumerate(id_list):
+        for idx, i in reversed(list(enumerate(id_list))):
             # print('iiiii========================', i)
             typ, data = mail.fetch(i, '(RFC822)' )
             raw_email = data[0][1]
@@ -66,7 +66,7 @@ def trash():
         mail.select('"[Gmail]/Trash"')
         type, data = mail.search(None, 'ALL')
         mail_ids = data[0]
-        print(mail_ids)
+        print('======>',mail_ids)
         
         id_list = mail_ids.split()   
         first_email_id = int(id_list[0])
@@ -75,8 +75,8 @@ def trash():
       
         # for i in reversed(range(first_email_id, latest_email_id)):
         email = []
-        
-        for idx, i in enumerate(id_list):
+        # id_list = id_list.reverse()
+        for idx, i in reversed(list(enumerate(id_list))):
             # print('iiiii========================', i)
             typ, data = mail.fetch(i, '(RFC822)' )
             raw_email = data[0][1]
@@ -138,7 +138,7 @@ def read_email_from_gmail():
         # for i in reversed(range(first_email_id, latest_email_id)):
         email = []
         
-        for idx, i in enumerate(id_list):
+        for idx, i in reversed(list(enumerate(id_list))):
             # print('iiiii========================', i)
             typ, data = mail.fetch(i, '(RFC822)' )
             raw_email = data[0][1]

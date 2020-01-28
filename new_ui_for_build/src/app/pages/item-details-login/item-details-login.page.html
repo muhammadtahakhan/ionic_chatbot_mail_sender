@@ -40,6 +40,8 @@
                 <ion-input required type="password" [(ngModel)]="user.password"></ion-input>
                 <ion-icon *ngIf="!isPasswordValid" icon-small name="remove-circle"></ion-icon>
             </ion-item>
+            <ion-button float-start fill="clear" button-clear (click)="goForgetPasswrd()">forgot password</ion-button>
+           <br/><br/>
             <!---Login button-->
             <ion-button float-end button-clear margin-top fill="clear" (click)="sayfinalWord()">
                login

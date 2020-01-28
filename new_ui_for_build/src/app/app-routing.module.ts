@@ -36,6 +36,7 @@ const routes: Routes = [
   { path: 'welcome', loadChildren: './pages/welcome/welcome.module#WelcomePageModule' },
   { path: 'initial-route', loadChildren: './pages/initial-route/initial-route.module#InitialRoutePageModule' },
   { path: 'trash', loadChildren: './pages/trash/trash.module#TrashPageModule' },
+  { path: 'reset-password', loadChildren: './pages/reset-password/reset-password.module#ResetPasswordPageModule' },
   
 ];
 

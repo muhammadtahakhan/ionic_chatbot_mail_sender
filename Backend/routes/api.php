@@ -53,6 +53,7 @@ Route::group([
     Route::post('agency_login', 'API\AuthController@Agencylogin');
     Route::post('login_social', 'API\AuthController@loginSocial');
     Route::post('signup', 'API\AuthController@signup');
+    Route::post('reset_password', 'API\AuthController@reset_password');
     Route::post('create_user', 'API\AuthController@create_user');
     Route::get('signup/activate/{token}', 'API\AuthController@signupActivate');
 

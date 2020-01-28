@@ -79,4 +79,8 @@ export class AuthenticationService extends BaseService {
     return this.http.post(this.url + 'setting', data);
   }
 
+  reset_password(data){
+    return this.http.post(this.url + 'reset_password', data);
+  }
+
 }
