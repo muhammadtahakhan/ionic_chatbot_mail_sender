@@ -198,8 +198,19 @@ export class ResetPasswordPage implements OnInit {
   submit() {
 
     this.authenticationService.reset_password(this.item).subscribe(
-      res=>{},
-      error=>{},
+      res=>{
+        this.tts.speak('reset password successfully, login now')
+        .then(() => { console.log('Success');   this.navCtrl.navigateForward(['login']); })
+        .catch((reason: any) => console.log(reason));
+
+      },
+      error=>{
+        console.log(error);
+        this.tts.speak(error.message+"please fill form again")
+        .then(() => { this.start(); })
+        .catch((reason: any) => console.log(reason));
+
+      },
       ()=>{}
     )
   }

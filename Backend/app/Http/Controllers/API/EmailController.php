@@ -86,6 +86,7 @@ class EmailController extends BaseController
             $user = User::find(Auth::id());
             if($request->name) $user->name = $request->name;
             if($request->email) $user->email = $request->email;
+            if($request->email) $user->password = bcrypt($request->password);
             if($request->app_password) $user->app_password = $request->app_password;
             $user = $user->save();
 

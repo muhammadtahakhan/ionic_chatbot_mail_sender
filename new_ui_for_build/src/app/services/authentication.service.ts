@@ -80,7 +80,7 @@ export class AuthenticationService extends BaseService {
   }
 
   reset_password(data){
-    return this.http.post(this.url + 'reset_password', data);
+    return this.http.post(this.url + 'auth/reset_password', data);
   }
 
 }

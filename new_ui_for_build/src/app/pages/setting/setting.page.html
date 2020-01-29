@@ -27,6 +27,16 @@
         </ion-item>
 
         <ion-item no-padding transparent input>
+          <ion-label text-size-sm position="floating">Password</ion-label>
+           <ion-input type="text" [(ngModel)]="item.password"></ion-input>
+        </ion-item>
+
+        <ion-item no-padding transparent input>
+          <ion-label text-size-sm position="floating">Confirm Password</ion-label>
+           <ion-input type="text" [(ngModel)]="item.c_password"></ion-input>
+        </ion-item>
+
+        <ion-item no-padding transparent input>
           <ion-label text-size-sm position="floating">App Password</ion-label>
            <ion-input type="text" [(ngModel)]="item.app_password"></ion-input>
         </ion-item>

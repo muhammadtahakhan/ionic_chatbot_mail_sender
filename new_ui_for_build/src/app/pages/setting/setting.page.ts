@@ -17,6 +17,8 @@ export class SettingPage implements OnInit, OnDestroy {
   item = {
     'name': '',
     'email': '',
+    'password':'',
+    'c_password':'',
     'app_password': ''
    };
 
@@ -91,6 +93,13 @@ export class SettingPage implements OnInit, OnDestroy {
                     .catch((reason: any) => console.log(reason));
 
                   }else if(matches[0].includes("password")) {
+                    this.item.password = '';
+                    this.item.c_password = '';
+                    this.tts.speak({text:'say new password',  rate: 0.80})
+                    .then(() => {  this.takePassword(); })
+                    .catch((reason: any) => console.log(reason));
+
+                  }else if(matches[0].includes("password") && matches[0].includes("app")) {
                     this.item.app_password = '';
                     this.tts.speak({text:'say new applcation password',  rate: 0.80})
                     .then(() => {   this.set_app_password(); })
@@ -137,6 +146,13 @@ export class SettingPage implements OnInit, OnDestroy {
           .catch((reason: any) => console.log(reason));
          
         }else if(matches[0].includes("password")) {
+          this.item.password = '';
+          this.item.c_password = '';
+          this.tts.speak({text:'say new password',  rate: 0.80})
+          .then(() => {  this.takePassword(); })
+          .catch((reason: any) => console.log(reason));
+
+        }else if(matches[0].includes("password") && matches[0].includes("app")) {
           this.item.app_password = '';
           this.tts.speak({text:'say new password',  rate: 0.80})
           .then(() => { this.set_app_password(); })
@@ -193,6 +209,13 @@ export class SettingPage implements OnInit, OnDestroy {
           .catch((reason: any) => console.log(reason));
           
         }else if(matches[0].includes("password")) {
+          this.item.password = '';
+          this.item.c_password = '';
+          this.tts.speak({text:'say new password',  rate: 0.80})
+          .then(() => {  this.takePassword(); })
+          .catch((reason: any) => console.log(reason));
+
+        }else if(matches[0].includes("password") && matches[0].includes("app")) {
           this.item.app_password = '';
           this.tts.speak({text:'say new password',  rate: 0.80})
           .then(() => {  this.set_app_password(); })
@@ -280,20 +303,29 @@ export class SettingPage implements OnInit, OnDestroy {
 
   }
 
-  validate(){
-    if(this.validateEmail( this.item.email)){
-      this.save();
-    }
-    
-    else{
+  validate() {
+      if(this.validateEmail( this.item.email)){
+          if(this.item.password != this.item.c_password){
+              this.item.password = '';
+              this.item.c_password = '';
+              this.ref.detectChanges();
+              this.tts.speak({text:'password dose not match, fill again',  rate: 0.80})
+              .then(() => { this.set_email(); })
+              .catch((reason: any) => console.log(reason));
+          }else{
+              this.save();
+          }
+          
+      }
+      else {
 
-      this.item.email = '';
-      this.ref.detectChanges();
-      this.tts.speak({text:'invalid email field, fill again',  rate: 0.80})
-      .then(() => { this.set_email(); })
-      .catch((reason: any) => console.log(reason));
-    }
-    
+          this.item.email = '';
+          this.ref.detectChanges();
+          this.tts.speak({text:'invalid email field, fill again',  rate: 0.80})
+          .then(() => { this.set_email(); })
+          .catch((reason: any) => console.log(reason));
+      }
+
   }
 
    validateEmail(email) 
@@ -313,6 +345,102 @@ export class SettingPage implements OnInit, OnDestroy {
 
 
   }
+
+
+  
+  takePassword(){
+
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+        else if(matches[0].includes('reset') && ( matches[0].includes('hole') || matches[0].includes('whole') ) ){
+          this.item.email = '';
+          this.item.name = '';
+          this.item.app_password = '';
+          this.ref.detectChanges();
+          this.tts.speak({text:'all form is reset now ',  rate: 0.80})
+          .then(() => { this.start(); })
+          .catch((reason: any) => console.log(reason));
+        }
+        else if(matches[0].includes('reset') || matches[0].includes('remove')){
+          this.item.password = '';
+          this.ref.detectChanges();
+          this.tts.speak('password is null now, start again')
+          .then(() => {console.log('Success');  this.takePassword(); })
+          .catch((reason: any) => console.log(reason));
+        }
+        else if(matches[0]=='next'){
+
+        this.tts.speak('Please spell password again')
+        .then(() => { console.log('Success');  this.takeConfirmPasswordname(); })
+        .catch((reason: any) => console.log(reason));
+
+       } else {
+        this.item.password = this.item.password?this.item.password+matches[0]:''+matches[0]
+        this.item = Object.assign({}, this.item);
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takePassword(); })
+        .catch((reason: any) => console.log(reason));
+       }
+       this.ref.detectChanges();
+      },
+      (onerror) => {console.log('error:', onerror);  }
+    ) 
+
+  }
+
+  takeConfirmPasswordname(){
+
+    this.speechRecognition.startListening()
+    .subscribe(
+
+      (matches: Array<string>) => {
+        console.log(matches);
+        if(matches[0]=='back'){
+        this.goBack();
+        }
+        else if(matches[0].includes('reset') && ( matches[0].includes('hole') || matches[0].includes('whole') ) ){
+          this.item.email = '';
+          this.item.name = '';
+          this.item.app_password = '';
+          this.ref.detectChanges();
+          this.tts.speak({text:'all form is reset now ',  rate: 0.80})
+          .then(() => { this.start(); })
+          .catch((reason: any) => console.log(reason));
+        }
+        else if(matches[0].includes('reset') || matches[0].includes('remove')){
+          this.item.c_password = '';
+          this.ref.detectChanges();
+          this.tts.speak('confirm password is null now, start again')
+          .then(() => {console.log('Success');  this.takeConfirmPasswordname(); })
+          .catch((reason: any) => console.log(reason));
+        }
+        else if(matches[0] === 'submit' || matches[0] === 'done' || matches[0]=='thanks' || matches[0]=='next' || matches[0]=='update' ){
+          this.validate();
+
+       }else{
+        this.item.c_password = this.item.c_password?this.item.c_password+matches[0]:''+matches[0]
+        this.item = Object.assign({}, this.item);
+        this.tts.speak('say next work')
+        .then(() => {console.log('Success');  this.takeConfirmPasswordname(); })
+        .catch((reason: any) => console.log(reason));
+       }
+       this.ref.detectChanges();
+      },
+      (onerror) => {console.log('error:', onerror);  }
+    ) 
+
+
+  }
+
+
+
+
 
   save_date(){
     this.authenticationService.save_user_data(this.item).subscribe(

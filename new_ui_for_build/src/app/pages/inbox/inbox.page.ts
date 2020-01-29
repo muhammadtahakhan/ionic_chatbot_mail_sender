@@ -123,7 +123,7 @@ isType(item) {
 // events
 onItemClick(params): void {
     console.log(params);
-    this.toastCtrl.presentToast('onItemClick');
+    this.toastCtrl.presentToast('email open');
     this.navCtrl.navigateForward(['email-detail'], {
       queryParams: params,
       });

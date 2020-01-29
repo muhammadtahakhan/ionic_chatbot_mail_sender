@@ -35,9 +35,10 @@ def outbox():
         
       
         # for i in reversed(range(first_email_id, latest_email_id)):
+        #  for idx, i in reversed(list(enumerate(id_list))):
         email = []
         
-        for idx, i in reversed(list(enumerate(id_list))):
+        for idx, i in enumerate(id_list):
             # print('iiiii========================', i)
             typ, data = mail.fetch(i, '(RFC822)' )
             raw_email = data[0][1]
@@ -138,7 +139,7 @@ def read_email_from_gmail():
         # for i in reversed(range(first_email_id, latest_email_id)):
         email = []
         
-        for idx, i in reversed(list(enumerate(id_list))):
+        for idx, i in enumerate(id_list):
             # print('iiiii========================', i)
             typ, data = mail.fetch(i, '(RFC822)' )
             raw_email = data[0][1]
