@@ -230,8 +230,8 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
       .pipe(takeWhile(() => this.alive))
       .subscribe(
         res => { console.log(res); },
-        error => {  
-          this.tts.speak('opps something went wrong, please fill form again ')
+        error => {
+          this.tts.speak('Invalid Credentials , please fill form again ')
               .then(() => {
                 this.username = '';
                 this.user.username = '';
