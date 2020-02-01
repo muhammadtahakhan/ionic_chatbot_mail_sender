@@ -61,24 +61,24 @@ def trash():
         mail = imaplib.IMAP4_SSL("imap.gmail.com", 993)
         mail.login(args['email'], args['password'])
         mail.list()
-        print(mail.list())
+        # print(mail.list())
         # mail.select('Travel')
         # mail.select('INBOX')
         mail.select('"[Gmail]/Trash"')
         type, data = mail.search(None, 'ALL')
         mail_ids = data[0]
-        print('======>',mail_ids)
+        # print('======>',mail_ids)
         
         id_list = mail_ids.split()   
         first_email_id = int(id_list[0])
         latest_email_id = int(id_list[-1])
-        
+        print('======>',first_email_id, latest_email_id)
       
         # for i in reversed(range(first_email_id, latest_email_id)):
         email = []
         # id_list = id_list.reverse()
         for idx, i in reversed(list(enumerate(id_list))):
-            # print('iiiii========================', i)
+            print('iiiii========================', i, idx)
             typ, data = mail.fetch(i, '(RFC822)' )
             raw_email = data[0][1]
             raw_email = str(raw_email, 'utf-8')
@@ -126,6 +126,7 @@ def read_email_from_gmail():
         mail.list()
         mail.select('inbox')
         
+        
         # type, data = mail.search(None, '(UNSEEN)')
         type, data = mail.search(None, 'ALL')
         mail_ids = data[0]
@@ -154,6 +155,47 @@ def read_email_from_gmail():
     except Exception as e:
         return jsonify({'success':'false', 'message':'some thing is wrong with login credentials'})
  
+@app.route("/delete")
+def deletet():
+    try:
+        args = request.args
+        mail_id = args['mail_id']
+        mail = imaplib.IMAP4_SSL("imap.gmail.com", 993)
+        mail.login(args['email'], args['password'])
+        mail.list()
+        mail.select('inbox')
+        
+        # # type, data = mail.search(None, '(UNSEEN)')
+        type, data = mail.search(None, 'ALL')
+        mail_ids = data[0]
+        print('mail_ids',mail_ids)
+
+        id_list = mail_ids.split()   
+        # first_email_id = int(id_list[0])
+        # latest_email_id = int(id_list[-1])
+        print("========++++++++++========== id_list ",id_list)
+
+        for num, i in enumerate(id_list):
+            # print('iiiii========================', i)
+            # typ, data = mail.fetch(i, '(RFC822)' )
+            # raw_email = data[0][1]
+            # raw_email = str(raw_email, 'utf-8')
+            # mail_data = mailparser.parse_from_string(raw_email)
+            # data = {'id':mail_data.message_id, 'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
+            # print(data['id'])
+            mail.store(i, '+X-GM-LABELS', '\\Trash')
+            # if data['id'] == mail_id:
+            #     break
+
+        mail.expunge()
+        mail.close()
+        mail.logout()  
+
+        return jsonify({'success':'true', 'message':'Delete successfully'})
+    
+    except Exception as e:
+         print(e)
+         return jsonify({'success':'false', 'message':'some thing is wrong with login credentials'})
 
 
 if __name__ == '__main__':
