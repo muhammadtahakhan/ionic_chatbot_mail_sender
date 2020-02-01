@@ -176,16 +176,17 @@ def deletet():
         print("========++++++++++========== id_list ",id_list)
 
         for num, i in enumerate(id_list):
-            # print('iiiii========================', i)
-            # typ, data = mail.fetch(i, '(RFC822)' )
-            # raw_email = data[0][1]
-            # raw_email = str(raw_email, 'utf-8')
-            # mail_data = mailparser.parse_from_string(raw_email)
-            # data = {'id':mail_data.message_id, 'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
-            # print(data['id'])
-            mail.store(i, '+X-GM-LABELS', '\\Trash')
-            # if data['id'] == mail_id:
-            #     break
+            print('iiiii========================', i, num)
+            typ, data = mail.fetch(i, '(RFC822)' )
+            raw_email = data[0][1]
+            raw_email = str(raw_email, 'utf-8')
+            mail_data = mailparser.parse_from_string(raw_email)
+            data = {'id':mail_data.message_id, 'subject':mail_data.subject, 'from':mail_data.from_, 'body':mail_data.body}
+            print(data['id'].replace('+' , ' '), mail_id)
+            # mail.store(i, '+X-GM-LABELS', '\\Trash')
+            if data['id'].replace('+' , ' ')  == mail_id:
+                 print('Match',data['id'])
+                 mail.store(i, '+X-GM-LABELS', '\\Trash')
 
         mail.expunge()
         mail.close()
