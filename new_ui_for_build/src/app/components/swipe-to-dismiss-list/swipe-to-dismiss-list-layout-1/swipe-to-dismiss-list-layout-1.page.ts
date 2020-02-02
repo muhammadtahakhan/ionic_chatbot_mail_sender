@@ -40,11 +40,11 @@ export class SwipeToDismissListLayout1Page implements OnChanges {
       event.stopPropagation();
     }
     this.dynamicList.closeSlidingItems()
-    const index = this.data.items.indexOf(item);
-    if (index > -1) {
-      this.data.items.splice(index, 1);
-    }
-    this.onDelete.emit(item)
+    // const index = this.data.items.indexOf(item);
+    // if (index > -1) {
+    //   this.data.items.splice(index, 1);
+    // }
+    this.onDelete.emit(item.id);
   }
 
   onItemClickFunc(item, event) {

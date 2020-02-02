@@ -18,16 +18,7 @@ use Illuminate\Http\Request;
 /*To Create model in ---->   php artisan make:model models/TemplateEvent*/
 
 Route::get('test', function() { return "ok"; });
-Route::get('property_search', 'API\PropertyController@search');
-Route::get('property_popular', 'API\PropertyController@searchPopular');
-Route::get('city', 'API\CityController@list');
-Route::get('property_purpose', 'API\PropertyPurposeController@list');
-Route::get('category_header', 'API\CategoryHeaderController@list');
-Route::get('category_line', 'API\CategoryLineController@list');
-Route::get('category_detail', 'API\CategoryDetailController@list');
-Route::get('property/{id}', 'API\PropertyController@getOne');
-Route::get('units', 'API\UnitsLovController@List');
-Route::get('agencies_logo', 'API\AgenciesLogoController@list');
+
 
 
 
@@ -90,33 +81,18 @@ Route::group(['middleware' => ['auth:api']], function($router) {
     Route::get('signup/activate_user/{user_id}', 'API\AuthController@adminActivateUser');
   
 
-
-    /*CRUD for event*/
-    Route::get('role', 'API\RoleController@list');
-    Route::get('role/{id}', 'API\RoleController@getOne');
-    Route::post('role', 'API\RoleController@create');
-    Route::put('role', 'API\RoleController@update');
-    Route::delete('role', 'API\RoleController@delete');
-
     Route::get('get_profile', 'API\AuthController@agentOne');
     Route::put('update_profile', 'API\AuthController@updateAgent');
     Route::put('update_my_profile', 'API\AuthController@updateMyProfile');
 
-    Route::put('assign_privilege', 'API\RoleController@assignPrivilege');
-
-
-    /*CRUD for privilege templates*/
-    Route::get('privilege', 'API\PrivilegeController@list');
-    Route::post('privilege', 'API\PrivilegeController@create');
-    Route::put('privilege', 'API\PrivilegeController@update');
-    Route::delete('privilege', 'API\PrivilegeController@delete');
+    
 
     Route::get('my_emials', 'API\EmailController@get_email');
     Route::get('inbox', 'API\EmailController@get_email');
     Route::get('outbox', 'API\EmailController@outbox');
     Route::get('trash', 'API\EmailController@trash');
     Route::get('send_email', 'API\EmailController@send_email');
-    Route::get('trash_email', 'API\EmailController@send_email');
+    Route::get('trash_email', 'API\EmailController@trash_email');
 
     Route::post('setting', 'API\EmailController@setting');
     Route::get('setting', 'API\EmailController@get_setting');
