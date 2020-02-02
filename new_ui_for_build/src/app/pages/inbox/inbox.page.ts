@@ -73,26 +73,26 @@ read_mail(){
           this.read_count();
         }
 
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first") ){ this.onDelete(this.data[1].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('two') || matches[0]=='2' ||  matches[0].includes("second")){ this.onDelete(this.data[2].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('three') || matches[0]=='3' ||  matches[0].includes("third")){ this.onDelete(this.data[3].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('four') || matches[0]=='4' ||  matches[0].includes("fourth")){ this.onDelete(this.data[4].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('five') || matches[0]=='5' ||  matches[0].includes("fifth")){ this.onDelete(this.data[5].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('six') || matches[0]=='6' || matches[0].includes("sixth")){this.onDelete(this.data[6].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('seven') || matches[0]=='7' || matches[0].includes("seventh")){ this.onDelete(this.data[7].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('eight') || matches[0]=='8' || matches[0].includes("eighth")){ this.onDelete(this.data[8].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('nine') || matches[0]=='9' || matches[0].includes("ninth")){ this.onDelete(this.data[9].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('ten') || matches[0]=='10' || matches[0].includes("tenth")){ this.onDelete(this.data[10].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('eleven') || matches[0]=='11' || matches[0].includes("eleventh")){ this.onDelete(this.data[11].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('twelve') || matches[0]=='12' || matches[0].includes("twelveth")){ this.onDelete(this.data[12].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('thirteen') || matches[0]=='13') { this.onDelete(this.data[13].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) &&  matches[0].includes('fourteeh') || matches[0]=='14') { this.onDelete(this.data[14].id)  }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('fifteen') || matches[0]=='15') { this.onDelete(this.data[15].id) }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('sixteen') || matches[0]=='16' ) { this.onDelete(this.data[16].id) }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('seventeen') || matches[0]=='17' ) { this.onDelete(this.data[17].id) }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('eighteen') || matches[0]=='18' ) { this.onDelete(this.data[18].id) }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('ninteen') || matches[0]=='19' ) { this.onDelete(this.data[19].id) }
-        else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('twenty') || matches[0]=='20' ) { this.onDelete(this.data[20].id)}
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first")) ){ this.onDelete(this.data[1]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('two') || matches[0]=='2' ||  matches[0].includes("second")) ){ this.onDelete(this.data[2]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('three') || matches[0]=='3' ||  matches[0].includes("third")) ){ this.onDelete(this.data[3]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('four') || matches[0]=='4' ||  matches[0].includes("fourth")) ){ this.onDelete(this.data[4]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('five') || matches[0]=='5' ||  matches[0].includes("fifth")) ){ this.onDelete(this.data[5]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('six') || matches[0]=='6' || matches[0].includes("sixth")) ){this.onDelete(this.data[6]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('seven') || matches[0]=='7' || matches[0].includes("seventh")) ){ this.onDelete(this.data[7]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('eight') || matches[0]=='8' || matches[0].includes("eighth")) ){ this.onDelete(this.data[8]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('nine') || matches[0]=='9' || matches[0].includes("ninth")) ){ this.onDelete(this.data[9]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('ten') || matches[0]=='10' || matches[0].includes("tenth")) ){ this.onDelete(this.data[10]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('eleven') || matches[0]=='11' || matches[0].includes("eleventh")) ){ this.onDelete(this.data[11]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('twelve') || matches[0]=='12' || matches[0].includes("twelveth")) ){ this.onDelete(this.data[12]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('thirteen') || matches[0]=='13')) { this.onDelete(this.data[13]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('fourteeh') || matches[0]=='14')) { this.onDelete(this.data[14]['id'])  }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('fifteen') || matches[0]=='15')) { this.onDelete(this.data[15]['id']) }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('sixteen') || matches[0]=='16' )) { this.onDelete(this.data[16]['id']) }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('seventeen') || matches[0]=='17' )) { this.onDelete(this.data[17]['id']) }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('eighteen') || matches[0]=='18' )) { this.onDelete(this.data[18]['id']) }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('ninteen') || matches[0]=='19' )) { this.onDelete(this.data[19]['id']) }
+        else if( (matches[0].toLowerCase().includes('delete') ) && (matches[0].includes('twenty') || matches[0]=='20' )) { this.onDelete(this.data[20]['id'])}
 
         else if(matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first") ){ this.read(1);  }
         else if(matches[0].includes('two') || matches[0]=='2' ||  matches[0].includes("second")){ this.read(2);  }
