@@ -72,27 +72,6 @@ read_mail(){
         else if(matches[0].includes('reset') || matches[0].includes('again')){
           this.read_count();
         }
-        else if(matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first") ){ this.read(1);  }
-        else if(matches[0].includes('two') || matches[0]=='2' ||  matches[0].includes("second")){ this.read(2);  }
-        else if(matches[0].includes('three') || matches[0]=='3' ||  matches[0].includes("third")){ this.read(3);  }
-        else if(matches[0].includes('four') || matches[0]=='4' ||  matches[0].includes("fourth")){ this.read(4);  }
-        else if(matches[0].includes('five') || matches[0]=='5' ||  matches[0].includes("fifth")){ this.read(5);  }
-        else if(matches[0].includes('six') || matches[0]=='6' || matches[0].includes("sixth")){ this.read(6);  }
-        else if(matches[0].includes('seven') || matches[0]=='7' || matches[0].includes("seventh")){ this.read(7);  }
-        else if(matches[0].includes('eight') || matches[0]=='8' || matches[0].includes("eighth")){ this.read(8);  }
-        else if(matches[0].includes('nine') || matches[0]=='9' || matches[0].includes("ninth")){ this.read(9);  }
-        else if(matches[0].includes('ten') || matches[0]=='10' || matches[0].includes("tenth")){ this.read(10);  }
-        else if(matches[0].includes('eleven') || matches[0]=='11' || matches[0].includes("eleventh")){ this.read(11);  }
-        else if(matches[0].includes('twelve') || matches[0]=='12' || matches[0].includes("twelveth")){ this.read(11);  }
-        else if(matches[0].includes('thirteen') || matches[0]=='13') { this.read(13);  }
-        else if(matches[0].includes('fourteeh') || matches[0]=='14') { this.read(14);  }
-        else if(matches[0].includes('fifteen') || matches[0]=='15') { this.read(15); }
-        else if(matches[0].includes('sixteen') || matches[0]=='16' ) { this.read(16); }
-        else if(matches[0].includes('seventeen') || matches[0]=='17' ) { this.read(17); }
-        else if(matches[0].includes('eighteen') || matches[0]=='18' ) { this.read(18); }
-        else if(matches[0].includes('ninteen') || matches[0]=='19' ) { this.read(19); }
-        else if(matches[0].includes('twenty') || matches[0]=='20' ) { this.read(20);}
-
 
         else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first") ){ this.onDelete(this.data[1].id)  }
         else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('two') || matches[0]=='2' ||  matches[0].includes("second")){ this.onDelete(this.data[2].id)  }
@@ -114,6 +93,27 @@ read_mail(){
         else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('eighteen') || matches[0]=='18' ) { this.onDelete(this.data[18].id) }
         else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('ninteen') || matches[0]=='19' ) { this.onDelete(this.data[19].id) }
         else if( (matches[0].includes('delete') || matches[0].includes('remove')) && matches[0].includes('twenty') || matches[0]=='20' ) { this.onDelete(this.data[20].id)}
+
+        else if(matches[0].includes('one') || matches[0]=='1' || matches[0].includes("first") ){ this.read(1);  }
+        else if(matches[0].includes('two') || matches[0]=='2' ||  matches[0].includes("second")){ this.read(2);  }
+        else if(matches[0].includes('three') || matches[0]=='3' ||  matches[0].includes("third")){ this.read(3);  }
+        else if(matches[0].includes('four') || matches[0]=='4' ||  matches[0].includes("fourth")){ this.read(4);  }
+        else if(matches[0].includes('five') || matches[0]=='5' ||  matches[0].includes("fifth")){ this.read(5);  }
+        else if(matches[0].includes('six') || matches[0]=='6' || matches[0].includes("sixth")){ this.read(6);  }
+        else if(matches[0].includes('seven') || matches[0]=='7' || matches[0].includes("seventh")){ this.read(7);  }
+        else if(matches[0].includes('eight') || matches[0]=='8' || matches[0].includes("eighth")){ this.read(8);  }
+        else if(matches[0].includes('nine') || matches[0]=='9' || matches[0].includes("ninth")){ this.read(9);  }
+        else if(matches[0].includes('ten') || matches[0]=='10' || matches[0].includes("tenth")){ this.read(10);  }
+        else if(matches[0].includes('eleven') || matches[0]=='11' || matches[0].includes("eleventh")){ this.read(11);  }
+        else if(matches[0].includes('twelve') || matches[0]=='12' || matches[0].includes("twelveth")){ this.read(11);  }
+        else if(matches[0].includes('thirteen') || matches[0]=='13') { this.read(13);  }
+        else if(matches[0].includes('fourteeh') || matches[0]=='14') { this.read(14);  }
+        else if(matches[0].includes('fifteen') || matches[0]=='15') { this.read(15); }
+        else if(matches[0].includes('sixteen') || matches[0]=='16' ) { this.read(16); }
+        else if(matches[0].includes('seventeen') || matches[0]=='17' ) { this.read(17); }
+        else if(matches[0].includes('eighteen') || matches[0]=='18' ) { this.read(18); }
+        else if(matches[0].includes('ninteen') || matches[0]=='19' ) { this.read(19); }
+        else if(matches[0].includes('twenty') || matches[0]=='20' ) { this.read(20);}
 
 
        else{
