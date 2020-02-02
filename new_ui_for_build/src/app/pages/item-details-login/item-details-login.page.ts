@@ -259,7 +259,7 @@ export class ItemDetailsLoginPage implements OnInit, OnDestroy  {
     }
 
     goBack() {
-      this.navCtrl.navigateForward(['home']);
+      this.navCtrl.navigateForward(['initial-route']);
     }
 
     goForgetPasswrd(){
