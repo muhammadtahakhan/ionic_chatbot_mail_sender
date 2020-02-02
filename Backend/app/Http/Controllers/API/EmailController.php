@@ -115,14 +115,13 @@ class EmailController extends BaseController
         try {
 
             // print_r([$request->input('message'), $request->input('to')]); die();
-            $endpoint = "http://127.0.0.1:5000/send";
+            $endpoint = "http://127.0.0.1:5000/delete";
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', $endpoint, ['query' => [
                 'email' => Auth::user()['email'], 
                 'password' => Auth::user()['app_password'],
-                'message' => $request->input('message'),
-                'subject' => $request->input('subject'),
-                'to' => $request->input('to')
+                'mail_id' => $request->input('mail_id'),
+                
             ]]);
             
             $statusCode = $response->getStatusCode();

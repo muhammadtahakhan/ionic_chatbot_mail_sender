@@ -116,6 +116,7 @@ Route::group(['middleware' => ['auth:api']], function($router) {
     Route::get('outbox', 'API\EmailController@outbox');
     Route::get('trash', 'API\EmailController@trash');
     Route::get('send_email', 'API\EmailController@send_email');
+    Route::get('trash_email', 'API\EmailController@send_email');
 
     Route::post('setting', 'API\EmailController@setting');
     Route::get('setting', 'API\EmailController@get_setting');
