@@ -114,7 +114,7 @@ class EmailController extends BaseController
     public function send_email(Request $request) {
         try {
 
-            // print_r([$request->input('message'), $request->input('to')]); die();
+            // print_r([ Auth::user()['email'], Auth::user()['app_password'], $request->input('message'), $request->input('to')]); die();
             $endpoint = "http://127.0.0.1:5000/send";
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', $endpoint, ['query' => [

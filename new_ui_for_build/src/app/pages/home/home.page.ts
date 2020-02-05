@@ -68,7 +68,7 @@ export class HomePage implements OnInit, AfterViewInit {
           this.goTo('compose-email');
         }
 
-        if ( matches[0].includes("inbox")) {
+        else if ( matches[0].includes("inbox")) {
           this.goTo('inbox');
 
 

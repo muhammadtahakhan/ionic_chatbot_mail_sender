@@ -17,10 +17,10 @@ import { finalize } from 'rxjs/operators';
 })
 export class ComposePage implements OnInit {
 
-  to = 'to@mail.com';
-  cc = 'cc@mail.com';
-  subject = 'test mail';
-  message = 'Hello dear, ';
+  to = '';
+  cc = '';
+  subject = '';
+  message = '';
 
   constructor(
     public navCtrl: NavController,
@@ -50,7 +50,7 @@ export class ComposePage implements OnInit {
   }
 
   start(){
-    this.reset();
+    
     this.tts.speak('Please spell to email, once done call next for next field')
     .then(() => {console.log('Success'); this.taketoemail();  })
     .catch((reason: any) => console.log(reason));
@@ -169,10 +169,10 @@ takemessage() {
       .catch((reason: any) => console.log(reason));
 
      }  else {
-      this.message ? this.message + matches[0] : '' + matches[0];
-      this.ref.detectChanges();
+      this.message = this.message ? this.message + matches[0] : '' + matches[0];
+     
       this.tts.speak('say next work')
-      .then(() => {console.log('Success');  this.takemessage(); })
+      .then(() => {console.log('Success');  this.ref.detectChanges(); this.takemessage(); })
       .catch((reason: any) => console.log(reason));
      }
      this.ref.detectChanges();
